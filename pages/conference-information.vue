@@ -36,7 +36,7 @@
 
             <el-divider />
             <div class="location">
-                <Title title="住宿資訊"></Title>
+                <Title title="住宿建議"></Title>
                 <div class="location-info-box">
                     <p class="title">住宿地點: <span class="location-info">長榮桂冠酒店(台中)</span>
                     </p>
