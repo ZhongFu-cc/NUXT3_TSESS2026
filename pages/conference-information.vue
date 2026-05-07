@@ -17,7 +17,7 @@
             </div>
 
             <div class="agenda-info">
-                <h1 class="title">Agenda</h1>
+                <p class="title">Agenda</p>
                 <div class="agenda-info-box">
                     <img v-for="agenda in agendas" :key="agenda.publishFileId" :src="envMinio + agenda.path"
                         :alt="agenda.alt" class="gallery-image" />
@@ -36,15 +36,12 @@
 
             <el-divider />
             <div class="location">
-                <h1 class="title">會議地點: <span class="location-info">台中國際會展中心</span>
-                </h1>
+                <Title title="住宿資訊"></Title>
                 <div class="location-info-box">
-                    <!-- <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3639.3742506591266!2d120.64870461089562!3d24.193668878280345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3469173875c5e6d5%3A0x7571e722f78acf23!2z6Ie65Lit5ZyL6Zqb5pyD5bGV5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1772522489602!5m2!1szh-TW!2stw"
-                        width="600" height="450" style="border:0;" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                    <p class="title">住宿地點: <span class="location-info">長榮桂冠酒店(台中)</span>
+                    </p>
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d909.8402748937049!2d120.65209442851838!3d24.19412969864251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3469164648af289b%3A0x65e91f3afb2cb0dd!2zNDA36Ie65Lit5biC6KW_5bGv5Y2A5riv5bC-6YeM6buO5piO6Lev5LiJ5q61MTAwMuiZnw!5e0!3m2!1szh-TW!2stw!4v1777963471238!5m2!1szh-TW!2stw"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29118.78264391924!2d120.63439867031012!3d24.177068910634258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693d85219ce6c1%3A0x633ac16eda2e07ed!2z6ZW35qau5qGC5Yag6YWS5bqX77yI5Y-w5Lit77yJ!5e0!3m2!1szh-TW!2stw!4v1778122048732!5m2!1szh-TW!2stw"
                         width="600" height="450" style="border:0;" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
@@ -228,13 +225,11 @@ onMounted(() => {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         padding: 2.5rem 0;
-        border-width: 0px 0 1px 0;
-        border-style: solid;
-        border-color: #D3D3D3;
         width: 100%;
         margin: 0 auto;
+
 
         .title {
             color: $main-text-color;
@@ -262,8 +257,9 @@ onMounted(() => {
         .location-info-box {
             width: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
 
             iframe {
                 width: 100%;
