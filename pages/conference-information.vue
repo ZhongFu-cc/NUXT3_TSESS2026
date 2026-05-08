@@ -35,7 +35,7 @@
             </div>
 
             <el-divider />
-            <div class="location">
+            <!-- <div class="location">
                 <Title title="住宿建議"></Title>
                 <div class="location-info-box">
                     <p class="title">住宿地點: <span class="location-info">長榮桂冠酒店(台中)</span>
@@ -45,7 +45,7 @@
                         width="600" height="450" style="border:0;" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- <h1 class="temp">議程確認中</h1> -->
 
