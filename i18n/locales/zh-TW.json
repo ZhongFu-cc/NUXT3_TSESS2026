@@ -6,7 +6,7 @@
   "lastName": "英文姓氏",
   "email": "電子郵件",
   "confirmEmail": "確認電子郵件",
-  "password": "密碼(登入密碼)",
+  "password": "創建密碼(此網站密碼)",
   "confirmPassword": "確認密碼",
   "affiliation": "所屬機構",
   "jobTitle": "職稱",
