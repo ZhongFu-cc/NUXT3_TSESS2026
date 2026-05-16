@@ -5,7 +5,8 @@
             <div class="main-section">
                 <Title title="乳癌遺傳性基因檢測工作坊"></Title>
                 <Title title="Hereditary Breast Cancer Genetic Testing Workshop"></Title>
-                <p class="reminder">請填寫以下資訊完成註冊</p>
+                <!-- <p class="reminder">請填寫以下資訊完成註冊</p> -->
+                <p style="color:red;" class="reminder">工作坊報名已截止</p>
 
                 <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
                     require-asterisk-position="right" :show-message="true" :scroll-to-error="true">
@@ -60,7 +61,7 @@
                     </el-form-item>
 
                     <el-form-item class="submit-btn">
-                        <el-button :disabled="isDisabled" type="primary" @click="submit(form)">前往付款</el-button>
+                        <el-button :disabled="true" type="primary" @click="submit(form)">前往付款</el-button>
                     </el-form-item>
                 </el-form>
             </div>
