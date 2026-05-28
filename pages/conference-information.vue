@@ -27,9 +27,9 @@
                             class="agenda-download">
                             TICBCS 議程下載
                         </a>
-                        <!-- <a href="https://lihi2.com/StUJt" target="_blank" download class="agenda-download">
-                            TICBCS 手冊下載
-                        </a> -->
+                        <a v-if="manual && manual.path" :href="manual.path" target="_blank" class="agenda-download">
+                            TICBCS 手冊
+                        </a>
                     </div>
                 </div>
             </div>
@@ -87,10 +87,23 @@ const fetchAgendaPdf = async () => {
     }
 }
 
+const manual = ref<any>(null)
+const fetchManual = async () => {
+    try {
+        const res: any = await CSRrequest.get(`/publish-file/manual`, {
+
+        })
+        manual.value = res.data[0]
+    } catch (error) {
+        console.error('Error fetching manual file:', error);
+    }
+}
+
 
 onMounted(() => {
     fetchAgendaFile();
     fetchAgendaPdf();
+    fetchManual();
 })
 </script>
 <style lang="scss" scoped>
