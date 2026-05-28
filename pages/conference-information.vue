@@ -28,7 +28,7 @@
                             TICBCS 議程下載
                         </a>
                         <a v-if="manual && manual.path" :href="manual.path" target="_blank" class="agenda-download">
-                            TICBCS 手冊下載
+                            TICBCS 手冊
                         </a>
                     </div>
                 </div>
