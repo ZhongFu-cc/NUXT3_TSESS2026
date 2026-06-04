@@ -80,5 +80,6 @@
   "logoutConfirmation": "確定要登出嗎?",
   "logoutTitle": "確認登出",
   "confirm": "確定",
-  "cancel": "取消"
+  "cancel": "取消",
+  "registrationDeadlineEnd": "報名已截止"
 }
