@@ -144,5 +144,6 @@
   "logoutConfirmation": "Are you sure you want to log out?",
   "logoutTitle": "Confirm Logout",
   "confirm": "Confirm",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "registrationDeadlineEnd": "Registration is closed "
 }

@@ -141,7 +141,8 @@
                             </div>
                         </el-form-item>
                         <el-form-item class="submit-btn">
-                            <el-button type="primary" @click="submit(form)">{{ $t('submit') }}</el-button>
+                            <el-button :disabled="isDisableSubmit" type="primary" @click="submit(form)">{{ $t('submit')
+                            }}</el-button>
                         </el-form-item>
                     </el-card>
                 </el-form>
@@ -164,6 +165,8 @@ import countries from '@/assets/data/countries.json'
 const { t } = useI18n();
 
 const country = ref(countries);
+const { setting, fetchSetting } = useSetting()
+console.log('setting', setting.value)
 
 useSeoMeta({
     title: '註冊資訊',
@@ -408,12 +411,21 @@ const submit = async (formEl: FormInstance | undefined) => {
 }
 
 
-
-
-
+const isDisableSubmit = computed(() => {
+    if (!setting.value) return true
+    const today = new Date().getTime();
+    const deadline = new Date(setting.value.lastRegistrationTime).getTime();
+    if (today > deadline) {
+        ElNotification.warning({
+            title: 'Warning',
+            message: t('registrationDeadlineEnd'),
+        })
+    }
+    return today > deadline
+})
 
 /**---------------------- */
-onMounted(() => {
+onMounted(async () => {
     // router.push('/demo-register')
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
@@ -421,6 +433,7 @@ onMounted(() => {
         }
     })
     getCaptcha()
+    await fetchSetting()
 
     nextTick(() => {
         lang.value = localStorage.getItem('lang') || 'zh'
