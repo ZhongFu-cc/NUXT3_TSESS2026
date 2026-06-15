@@ -33,7 +33,7 @@ useSeoMeta({
 
 const imageUrl = ref(`/img/sponsor_logo`);
 const images = computed(() => {
-    return Array.from({ length: 33 }, (_, i) => ({
+    return Array.from({ length: 32 }, (_, i) => ({
         id: i + 1,
         src: `${imageUrl.value}/LOGO_${i + 1}.png`,
         alt: `Image ${i + 1}`,
