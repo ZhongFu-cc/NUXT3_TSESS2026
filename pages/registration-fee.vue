@@ -2,9 +2,9 @@
         <main class="common-section">
             <Banner />
 
-            <Breadcrumbs firstRoute="Registration" secoundRoute="Registration Fee"></Breadcrumbs>
+            <Breadcrumbs :firstRoute="t('registration')" :secoundRoute="t('registrationFee')"></Breadcrumbs>
 
-           <Title :title="'Registration Fee'"></Title>
+           <Title :title="t('registrationFee')"></Title>
             <!-- <table class="personal-registration-table">
                 <tr class="personal-row-1">
                     <th class="category-col" :rowspan="2" :colspan="2">Category</th>
@@ -97,6 +97,8 @@
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
 import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
+
+const { t } = useI18n();
 </script>
 <style lang="scss" scoped>
 .common-section {

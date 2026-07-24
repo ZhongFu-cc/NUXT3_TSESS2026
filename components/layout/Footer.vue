@@ -1,8 +1,8 @@
 <template>
     <footer class="footer-section">
         <div class="footer-box">
-            <p>中華民國乳癌教育暨防治學會</p>
-            <p>聯絡我們: twbc.prevention@gmail.com</p>
+            <!-- <p>中華民國乳癌教育暨防治學會</p>
+            <p>聯絡我們: twbc.prevention@gmail.com</p> -->
         </div>
     </footer>
 </template>
@@ -11,7 +11,7 @@ import Title from './Title.vue';
 </script>
 <style lang="scss" scoped>
 .footer-section {
-    background: linear-gradient(to right, #ee9ab9 0%, #383587 70%);
+    background: linear-gradient(to right, #345855 0%, #709194 70%);
     // background: url('../../assets/img/ticbcs_footer.jpg') no-repeat top center;
     background-size: cover;
     padding: 2rem 0;

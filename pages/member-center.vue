@@ -48,7 +48,7 @@
 <script lang="ts" setup>
 import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
-import Accommodation from './accommodation.vue';
+// import Accommodation from './accommodation.vue';
 
 const { t, setLocale } = useI18n();
 

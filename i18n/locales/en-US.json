@@ -1,7 +1,7 @@
 {
   "home": "Home",
   "aboutUs": "About Us",
-  "conferenceInformation": "TICBCS 2026",
+  "conferenceInformation": "TSESS 2026",
   "registration": "Registration",
   "registrationFee": "Registration Fee",
   "onlineRegistration": "Online Registration",
@@ -145,5 +145,10 @@
   "logoutTitle": "Confirm Logout",
   "confirm": "Confirm",
   "cancel": "Cancel",
-  "registrationDeadlineEnd": "Registration is closed "
+  "registrationDeadlineEnd": "Registration is closed ",
+  "registrationForm": "Online Registration",
+  "location": "Southern Branch od the National Palace Museum",
+  "welcomeMessage": "Welcome Message",
+  "startDate": "Saturday, 5 December 2026, 08:00 – 17:50",
+  "endDate": "Sunday, 6 December 2026, 08:00 – 12:10"
 }

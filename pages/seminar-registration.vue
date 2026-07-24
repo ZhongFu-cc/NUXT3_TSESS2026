@@ -24,9 +24,6 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="image-box">
-                        <img src="@/assets/img/bubble_tea_no-problem.png" alt="">
-                    </div>
                 </div>
 
                 <el-divider></el-divider>

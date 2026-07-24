@@ -2,7 +2,7 @@
     <div class="breadcrumbs">
         <div class="temp-box"></div>
         <el-breadcrumb class="breadcrumb" :separator-icon="ArrowRight">
-            <el-breadcrumb-item :to="{ path: '/' }">Home</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/' }">{{ t('home') }}</el-breadcrumb-item>
             <el-breadcrumb-item>{{ props.firstRoute }}</el-breadcrumb-item>
             <el-breadcrumb-item>{{ props.secoundRoute }}</el-breadcrumb-item>
         </el-breadcrumb>
@@ -16,6 +16,7 @@ const props = defineProps<{
     secoundRoute: string
 }>();
 
+const { t } = useI18n();
 
 </script>
 <style lang="scss" scoped>
@@ -31,18 +32,18 @@ const props = defineProps<{
         font-size: 1rem;
         font-weight: normal;
         letter-spacing: 0.1rem;
-        color: #D5C1C5;
+        color: #053147;
         margin-left: 9.5%;
 
         :deep(.is-link) {
             &:hover {
-                color: #DFB4BD;
+                color: #053147;
             }
         }
 
         :deep(.el-breadcrumb__inner) {
 
-            color: #DFB4BD;
+            color: #053147;
         }
 
         img {

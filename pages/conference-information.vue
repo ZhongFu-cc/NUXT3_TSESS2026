@@ -3,20 +3,23 @@
         <Banner />
         <div class="main-section">
             <div class="meeting-info">
-                <Title title="研討會資訊"></Title>
+                <Title :title="t('conferenceInformation')"></Title>
                 <div class="meeting-info-box">
                     <div>
-                        <p><span class="title">會議時間:</span>2026年06月13日(六)，上午08:00 - 下午17:50
+                        <p class="title">{{ t('conferenceDate') }}:
                         </p>
                         <p class="time">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            2026年06月14日(日)，上午08:00 - 下午12:10</p>
+                            {{t('startDate')}}
+                        </p>
+                        <p class="time">
+                            {{t('endDate')}}
+                          </p>
                     </div>
-                    <p><span class="title">會議地點:</span>台中國際會展中心</p>
+                    <p><span class="title">{{ t('conferenceLocation') }}:</span>{{ t('location') }}</p>
                 </div>
             </div>
 
-            <div class="agenda-info">
+            <div class="agenda-info" v-if="agendas.length > 0">
                 <p class="title">Agenda</p>
                 <div class="agenda-info-box">
                     <img v-for="agenda in agendas" :key="agenda.publishFileId" :src="envMinio + agenda.path"
@@ -25,7 +28,7 @@
                     <div class="download">
                         <a v-if="agendaPdf && agendaPdf.path" :href="envMinio + agendaPdf.path" target="_blank" download
                             class="agenda-download">
-                            TICBCS 議程下載
+                            TSESS 議程下載
                         </a>
                         <a v-if="manual && manual.path" :href="manual.path" target="_blank" class="agenda-download">
                             TICBCS 手冊
@@ -54,6 +57,8 @@
 <script setup lang="ts">
 import Title from '@/components/layout/Title.vue';
 import Banner from '@/components/layout/Banner.vue';
+
+const { t } = useI18n();
 
 useSeoMeta({
     title: '會議資訊',
@@ -136,9 +141,9 @@ onMounted(() => {
     }
 
     .meeting-info {
-        border-width: 1px 0 1px 0;
-        border-style: solid;
-        border-color: #D3D3D3;
+        // border-width: 1px 0 1px 0;
+        // border-style: solid;
+        // border-color: #D3D3D3;
         width: 100%;
         margin: 0 auto;
         padding: 1.5rem 0;
@@ -172,6 +177,10 @@ onMounted(() => {
                 @media screen and (max-width: 768px) {
                     font-size: 1.2rem;
                 }
+            }
+
+            .time {
+                margin-left: 1.5rem;
             }
         }
     }
