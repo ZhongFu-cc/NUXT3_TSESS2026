@@ -1,8 +1,8 @@
 <template>
     <div>
         <main class="common-section">
-            <Breadcrumbs firstRoute="Abstracts" secoundRoute="Submission Guidelines"></Breadcrumbs>
-            <Title title="Submission Guidelines"></Title>
+            <Breadcrumbs :firstRoute="t('abstract')" :secoundRoute="t('submissionGuidelines')"></Breadcrumbs>
+            <Title :title="t('submissionGuidelines')"></Title>
         </main>
 
     </div>
@@ -10,6 +10,8 @@
 <script setup lang="ts">
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
 import Title from '@/components/layout/Title.vue';
+
+const { t } = useI18n();
 
 </script>
 <style lang="scss" scoped>
