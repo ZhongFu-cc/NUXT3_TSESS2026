@@ -1,12 +1,12 @@
 <template>
     <div class="common-section">
-        <!-- <Title title="贊助廠商"></Title> -->
+        <Title title="Coming Soon"></Title>
         <Banner></Banner>
-        <h1 class="title">感謝下列廠商熱情贊助!!</h1>
+        <!-- <h1 class="title">感謝下列廠商熱情贊助!!</h1> -->
         <div class="image-section">
-            <div v-for="(image, index) in images" :key="index" class="image-item">
+            <!-- <div v-for="(image, index) in images" :key="index" class="image-item">
                 <img :src="image.src" :alt="image.alt" @error="" />
-            </div>
+            </div> -->
         </div>
         <!-- <img src="../assets/img/sponsor_list.png" alt=""> -->
         <!-- <div class="image-section">
