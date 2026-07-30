@@ -4,7 +4,7 @@
             <Banner />
             <div class="main-section">
                 <div class="credit-box">
-                    <div class="credit-point-box">
+                    <!-- <div class="credit-point-box">
                         <ul>
                             <Title title="研討會申請之會議學分(申請中)"></Title>
                             <li>(1)台灣乳房醫學會 <span class="score"></span></li>
@@ -23,12 +23,12 @@
                                 </ul>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
 
                 <el-divider></el-divider>
                 <Title title="研討會報名"></Title>
-                <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
+                <!-- <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
                     require-asterisk-position="right" :show-message="true" :scroll-to-error="true"
                     :validate-on-rule-change="false">
                     <div class="reminder">
@@ -142,7 +142,7 @@
                             }}</el-button>
                         </el-form-item>
                     </el-card>
-                </el-form>
+                </el-form> -->
             </div>
         </main>
 

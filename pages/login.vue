@@ -3,7 +3,7 @@
         <Banner />
         <Title title="Member Login" />
         <div class="main-section">
-            <el-form class="login-form" ref="formRef" :model="loginInfo" :rules="formRule"
+            <!-- <el-form class="login-form" ref="formRef" :model="loginInfo" :rules="formRule"
                 :label-position="formatLabelPosition">
                 <div class="nationality-select">
                     <el-button :class="{ active: attendeeType === 0 }" @click="attendeeType = 0">
@@ -53,12 +53,10 @@
                     <el-button class="sign-btn" @click="login(formRef)">Sign in</el-button>
                 </el-form-item>
                 <div class="btn-section">
-                    <!-- <nuxt-link :to="'retrieve-password'">Retrieve password</nuxt-link>
-                    <span>&nbsp /</span> -->
                     <p>Don't have an account? &nbsp</p>
                     <nuxt-link class="sign-text" to="/seminar-registration">Sign up</nuxt-link>
                 </div>
-            </el-form>
+            </el-form> -->
         </div>
     </main>
 </template>
