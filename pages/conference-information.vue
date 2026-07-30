@@ -11,9 +11,9 @@
                         <p class="time">
                             {{t('startDate')}}
                         </p>
-                        <p class="time">
-                            {{t('endDate')}}
-                          </p>
+                        <!-- <p class="time"> -->
+                            <!-- {{t('endDate')}} -->
+                          <!-- </p> -->
                     </div>
                     <p><span class="title">{{ t('conferenceLocation') }}:</span>{{ t('location') }}</p>
                 </div>

@@ -183,6 +183,7 @@ function handleScroll() {
 const primaryMenuItems = computed(() => [
     { name: t('aboutUs'), route: '/about-us', activeKey: 'aboutUs' },
     { name: t('news'), route: '/news', activeKey: 'news' },
+    { name: t('invitedSpeakers'), route: '/invited-speakers', activeKey: 'invitedSpeakers' },
     { name: t('conferenceInformation'), route: '/conference-information', activeKey: 'conferenceInformation' },
     {
         name: t('seminarRegistration'), route: '', activeKey: 'seminarRegistration', subMenu: [
@@ -190,12 +191,16 @@ const primaryMenuItems = computed(() => [
             { name: t('registrationForm'), route: '/login', activeKey: 'registrationForm' },
         ]
     },
+    { name: t('abstract'), route: '', activeKey: 'abstract', subMenu: [
+        { name: t('submissionGuidelines'), route: '/submission-guidelines', activeKey: 'submissionGuidelines' },
+        { name: t('abstractSubmission'), route: '/login', activeKey: 'abstractSubmission' },
+    ] },
 ])
 
 // 次級菜單項目 (在螢幕寬度不足以顯示所有 primary menu 項目時會顯示在 sub-menu 中)
 const secondaryMenuItems = computed(() => [
     { name: t('transportation'), route: '/transportation', activeKey: 'transportation' },
-    { name: t('sponsorList'), route: '/sponsor-list', activeKey: 'sponsorList' },
+    { name: t('sponsorList'), route: '/sponsor-list', activeKey: 'sponsorList' }
 ])
 
 // Gallery 菜單項目
