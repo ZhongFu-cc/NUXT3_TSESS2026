@@ -69,9 +69,9 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import Title from '@/components/layout/Title.vue';
 
 useSeoMeta({
-    title: '會員登入 | TICBCS 2026',
-    description: 'TICBCS 2026 會員登入頁面',
-    keywords: 'Login,Sign In,TICBCS,TICBCS 2026,2026 TICBCS'
+    title: '會員登入 | TSESS 2026',
+    description: 'TSESS 2026 會員登入頁面',
+    keywords: 'Login,Sign In,TSESS,TSESS 2026,2026 TSESS'
 })
 
 definePageMeta({

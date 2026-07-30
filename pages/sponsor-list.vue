@@ -28,7 +28,7 @@ import Banner from '@/components/layout/Banner.vue';
 useSeoMeta({
     title: '贊助廠商',
     description: '感謝下列廠商熱情贊助!!',
-    keywords: 'sponsor list, TICBCS, ticbcs, TICBCS2026, ticbcs2026, 贊助廠商, 台中國際乳癌研討會 , 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會',
+    keywords: 'sponsor list, TSESS, TSESS, TSESS2026, TSESS2026, 贊助廠商, 台中國際乳癌研討會 , 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會',
 });
 
 const imageUrl = ref(`/img/sponsor_logo`);

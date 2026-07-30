@@ -2,16 +2,12 @@
     <div class="transportation-section">
         <Banner />
         <div class="main-box">
-            <p class="title"><span class="conference-location">會議地點</span> 臺中國際會展中心</p>
+            <p class="title"><span class="conference-location">{{ t('conferenceLocation') }}</span> {{ t('location') }}</p>
             <div class="map-box">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d909.8402748937049!2d120.65209442851838!3d24.19412969864251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3469164648af289b%3A0x65e91f3afb2cb0dd!2zNDA36Ie65Lit5biC6KW_5bGv5Y2A5riv5bC-6YeM6buO5piO6Lev5LiJ5q61MTAwMuiZnw!5e0!3m2!1szh-TW!2stw!4v1777963471238!5m2!1szh-TW!2stw"
+                    src="https://www.google.com/maps?q=%E5%9C%8B%E7%AB%8B%E6%95%85%E5%AE%AE%E5%8D%9A%E7%89%A9%E9%99%A2%E5%8D%97%E9%83%A8%E9%99%A2%E5%8D%80&output=embed"
                     width="600" height="450" style="border:0;" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <!-- <div class="location-info-box">
-                    <p>台中市北屯區經貿路一段100號</p>
-                    <p>No. 100, Sec. 1, Jingmao Rd., Beitun Dist., Taichung City 406040, Taiwan</p>
-                </div> -->
             </div>
 
             <div class="transpotation-item-box">
@@ -19,24 +15,32 @@
                     <div class="image-box">
                         <img src="@/assets/img/icon/transpotation1.svg" alt="">
                     </div>
-                    <h1><span>台中高鐵站></span> <span>臺中國際會展中心</span></h1>
+                    <h1><span>{{ t('transportationHighSpeedRailTitle') }}</span> <span>{{ t('location') }}</span></h1>
                 </div>
                 <ul class="decimal-list">
 
-                    <li>捷運
+                    <li>{{ t('transportationHighSpeedRailBusPlatformTitle') }}
                         <div class="transportation-content">
-                            <p>步驟一: 從高鐵台中站搭乘台中捷運綠線 (往北屯總站方向)</p>
-                            <p>下車站點「文心櫻花站」或「文華高中站」</p>
-
-                            <p>步驟二: 搭乘計程車約10分鐘抵達臺中國際會展中心。</p>
+                            <p>{{ t('transportationHighSpeedRailItem1Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=72120&amp;rn=1600672900747&amp;lan=C" target="_blank" rel="noopener noreferrer">7212</a> {{ t('transportationHighSpeedRailItem1After') }}</p>
                         </div>
                     </li>
 
-                    <li>計程車
+                    <li>{{ t('transportationHighSpeedRailBusPlatformTitle') }}
                         <div class="transportation-content">
-                            <p>搭乘地點: 高鐵台中站 1F 7出口</p>
-                            <p>下車地點：臺中國際會展中心</p>
-                            <p>車程時間: 約20分鐘</p>
+                            <p>{{ t('transportationHighSpeedRailItem2Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=07460&amp;rn=1669878703021&amp;lan=C" target="_blank" rel="noopener noreferrer">106</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=01660&amp;rn=1606092456120&amp;lan=C" target="_blank" rel="noopener noreferrer">166</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=72350&amp;rn=1606092408322&amp;lan=C" target="_blank" rel="noopener noreferrer">7235</a> {{ t('transportationHighSpeedRailItem2After') }}</p>
+                            <p>{{ t('transportationHighSpeedRailItem2AltBefore') }} <a class="bus" href="http://www.singing168.com.tw/Y_route7423.html" target="_blank" rel="noopener noreferrer">{{ t('transportationRouteYellow9') }}</a> {{ t('transportationHighSpeedRailItem2AltAfter') }}</p>
+                        </div>
+                    </li>
+
+                    <li>{{ t('transportationHighSpeedRailBusPlatformTitle') }}
+                        <div class="transportation-content">
+                            <p>{{ t('transportationHighSpeedRailItem3Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=07420&amp;rn=1650354603219&amp;lan=C" target="_blank" rel="noopener noreferrer">105</a> {{ t('transportationHighSpeedRailItem3After') }}</p>
+                        </div>
+                    </li>
+
+                    <li>{{ t('transportationHighSpeedRailShuttleTitle') }}
+                        <div class="transportation-content">
+                            <p>{{ t('transportationHighSpeedRailShuttleDesc') }}</p>
                         </div>
                     </li>
                 </ul>
@@ -46,23 +50,22 @@
                     <div class="image-box">
                         <img src="@/assets/img/icon/transpotation2.svg" alt="">
                     </div>
-                    <h1><span>台中火車站></span> <span>臺中國際會展中心</span></h1>
+                    <h1><span>{{ t('transportationTrainTitle') }}</span> <span>{{ t('location') }}</span></h1>
 
                 </div>
                 <ul class="decimal-list">
 
-                    <li>公車
+                    <li>{{ t('transportationTrainRearExitTitle') }}
                         <div class="transportation-content">
-                            <p>8號：「臺中車站(臺灣大道)」➡「會展中心(會議中心)」➡ 約55分鐘抵達​</p>
-                            <p>82號：「臺中車站(臺灣大道)」➡「綠美圖(中科路)」 ➡ 約41分鐘 ➡ 步行約 8 ~ 10 分鐘抵達</p>
+                            <p>{{ t('transportationTrainRearExitItem1Before') }} <a class="bus" href="https://south.npm.gov.tw/Uploads/files/BRT7212%E6%99%82%E5%88%BB%E8%A1%A81140124.png" target="_blank" rel="noopener noreferrer">{{ t('transportationTimetable') }}</a>。</p>
+                            <p>{{ t('transportationTrainRearExitItem2') }}</p>
                         </div>
                     </li>
 
-                    <li>計程車
+                    <li>{{ t('transportationTrainFrontExitTitle') }}
                         <div class="transportation-content">
-                            <p>搭乘地點: 地下停車場 3A臨停出口​</p>
-                            <p>下車地點：臺中國際會展中心</p>
-                            <p>車程時間: 約 30 分鐘</p>
+                            <p>{{ t('transportationTrainFrontExitItem1Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=07460&amp;rn=1669878703021&amp;lan=C" target="_blank" rel="noopener noreferrer">106</a> {{ t('transportationTrainFrontExitItem1After') }}</p>
+                            <p>{{ t('transportationTrainFrontExitItem2Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=73030&amp;rn=1630565722539&amp;lan=C" target="_blank" rel="noopener noreferrer">7303</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=73200&amp;rn=1630565799066&amp;lan=C" target="_blank" rel="noopener noreferrer">7320</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=73260&amp;rn=1630565848194&amp;lan=C" target="_blank" rel="noopener noreferrer">7326</a> {{ t('transportationTrainFrontExitItem2After') }}</p>
                         </div>
                     </li>
                 </ul>
@@ -71,29 +74,26 @@
             <div class="transpotation-item-box">
                 <div class="item-title">
                     <div class="image-box">
-                        <img src="@/assets/img/icon/transpotation3.svg" alt="">
+                        <img src="@/assets/img/icon/transpotation7.svg" alt="">
                     </div>
-                    <h1><span>台中捷運​></span> <span>臺中國際會展中心</span></h1>
+                    <h1>{{ t('transportationDrivingTitle') }}</h1>
 
                 </div>
                 <ul class="decimal-list">
-                    <li>計程車
-                        <ul class="disc-list">
-                            <li>
-                                <div class="transportation-content">
-                                    <p>搭乘地點: 捷運文心櫻花站​​</p>
-                                    <p>下車地點：臺中國際會展中心</p>
-                                    <p>車程時間: 約 10 分鐘</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="transportation-content">
-                                    <p>搭乘地點: 捷運文華高中站​</p>
-                                    <p>下車地點：臺中國際會展中心</p>
-                                    <p>車程時間: 約 10 分鐘</p>
-                                </div>
-                            </li>
-                        </ul>
+                    <li>{{ t('transportationDrivingItem1Title') }}
+                        <div class="transportation-content">
+                            <p>{{ t('transportationDrivingItem1Desc') }}</p>
+                        </div>
+                    </li>
+                    <li>{{ t('transportationDrivingItem2Title') }}
+                        <div class="transportation-content">
+                            <p>{{ t('transportationDrivingItem2Desc') }}</p>
+                        </div>
+                    </li>
+                    <li>{{ t('transportationDrivingItem3Title') }}
+                        <div class="transportation-content">
+                            <p>{{ t('transportationDrivingItem3Desc') }}</p>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -104,39 +104,30 @@
                     <div class="image-box">
                         <img src="@/assets/img/icon/transpotation6.svg" alt="">
                     </div>
-                    <h1>停車訊息​</h1>
+                    <h1>{{ t('transportationParkingTitle') }}</h1>
                 </div>
                 <ul class="disc-list">
 
-                    <li>路線指引
+                    <li>{{ t('transportationParkingItem1Title') }}
                         <div class="transportation-content">
-                            <p>沿國道3號和國道一號前往西屯區的中清路二段/台1乙線➡ 從國道一號的 174-大雅出口下交流道➡ 右轉進入黎明路三段。</p>
+                            <p>{{ t('transportationParkingItem1Desc') }}</p>
                         </div>
                     </li>
-                    <li>臺中國際會展中心​停車場
+                    <li>{{ t('transportationParkingItem2Title') }}
                         <ul>
                             <li>
                                 <div class="transportation-content">
-                                    <p>汽車每小時30(每日上限180元)、機車每次20元 (僅收現金)</p>
+                                    <p>{{ t('transportationParkingItem2Desc1') }}</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="transportation-content">
-                                    <p>黎明路出入口：限高 2.1公尺，僑大路出入口：限高 4 公尺</p>
+                                    <p>{{ t('transportationParkingItem2Desc2') }}</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="transportation-content">
-                                    <p>展覽館地下1樓及地下2樓</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>中央公園北側停車場​
-                        <ul>
-                            <li>
-                                <div class="transportation-content">
-                                    <p>距離臺中國際會展中心​約800公尺，步行約10分鐘。​</p>
+                                    <p>{{ t('transportationParkingItem2Desc3') }}</p>
                                 </div>
                             </li>
                         </ul>
@@ -152,17 +143,18 @@
 </template>
 <script lang="ts" setup>
 import Banner from '@/components/layout/Banner.vue';
+const { t } = useI18n();
 useSeoMeta({
-    title: '交通資訊 | 台中國際乳癌研討會 2026',
-    description: '了解如何輕鬆前往我們的會議場地。探索各種交通選擇，包括公共交通、停車資訊等，確保您順利抵達活動現場。',
-    keywords: '交通資訊, TICBCS, ticbcs, TICBCS2026, ticbcs2026, 臺中國際會展中心, 台中國際乳癌研討會 , 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會, 公共交通, 停車資訊',
+    title: () => t('transportationSeoTitle'),
+    description: () => t('transportationSeoDescription'),
+    keywords: () => t('transportationSeoKeywords'),
 });
 
 
 </script>
 <style lang="scss" scoped>
 .main-box {
-    width: 60%;
+    width: 70%;
     margin: 0 auto;
     color: $main-color;
 

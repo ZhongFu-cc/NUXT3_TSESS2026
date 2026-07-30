@@ -44,8 +44,8 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    // background: url('../../assets/img/ticbcsBanner_new (1).jpg') no-repeat center center;
-    // background: url('../../assets/img/ticbcsBanner_new.jpg') no-repeat bottom center;
+    // background: url('../../assets/img/TSESSBanner_new (1).jpg') no-repeat center center;
+    // background: url('../../assets/img/TSESSBanner_new.jpg') no-repeat bottom center;
     background-size: cover;
     min-height: 38rem;
     width: 100%;
