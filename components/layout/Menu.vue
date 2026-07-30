@@ -28,7 +28,7 @@
                 <div class="logo-container" v-if="!isActive">
                     <nuxt-link class="logo-link" :to="localPath('/')" @click="pcModeActiveItemState.setActiveItem('')">
                         <div class="logo-image-box">
-                            <img class="logo" src="/img/logo.png" alt="TICBCS Logo" />
+                            <img class="logo" src="/img/logo.png" alt="TSESS Logo" />
                         </div>
                     </nuxt-link>
                 </div>

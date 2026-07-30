@@ -12,7 +12,7 @@ import Title from './Title.vue';
 <style lang="scss" scoped>
 .footer-section {
     background: linear-gradient(to right, #345855 0%, #709194 70%);
-    // background: url('../../assets/img/ticbcs_footer.jpg') no-repeat top center;
+    // background: url('../../assets/img/TSESS_footer.jpg') no-repeat top center;
     background-size: cover;
     padding: 2rem 0;
 

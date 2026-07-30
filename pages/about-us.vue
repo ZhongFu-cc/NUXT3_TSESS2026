@@ -5,10 +5,23 @@
         <div class="main-section">
             <h1 class="title">{{ t('welcomeMessage') }}</h1>
             <div class="welcome-box">
-                <!-- <div class="image-box">
+                <div class="image-box">
                     <img src="@/assets/img/president4.jpg" alt="">
-                </div> -->
+                     <div class="people-infomation-box">
+                        <p class="name">{{ t('presidentName') }}</p>
+                        <p class="title">{{ t('presidentTitle') }}</p>
+                    </div>
+                </div>
                 <div class="welcome-content">
+                    <p>{{ t('welcomeMessageContent') }}</p>
+                    <p>{{ t('welcomeMessageContent2') }}</p>
+
+
+                    <p v-if="locale === 'en'">{{ t('welcomeMessageContent3') }}</p>
+                    <p v-if="locale === 'en'">{{ t('welcomeMessageContent4') }}</p>
+                    <p v-if="locale === 'en'">{{ t('welcomeMessageContent5') }}</p>
+                    <p>{{ t('welcomeMessageEnd') }}</p>
+
                     <!-- <p>各位嘉賓、學界專家及同仁&nbsp;:</p>
                     <p>歡迎您蒞臨台中國際乳癌研討會。本研討會源自中華民國乳癌教育暨防治學會所辦之國際研討會，並在歷任理事長不懈努力下逐步奠定基礎。近年來，藉由中國醫藥大學附設醫院以及中國醫藥大學洪明奇校長的鼎力支持，本會已躋身為中部地區具代表性的重要國際乳癌研討會&nbsp;!
                     </p>
@@ -70,131 +83,171 @@
 <script lang="ts" setup>
 import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
-const { t } = useI18n();
+const { t, locale } = useI18n();
 useSeoMeta({
     title: '關於我們',
     description: '了解更多關於我們的組織、使命和價值觀。探索我們如何在世界上產生影響。',
-    keywords: 'about us, TICBCS, ticbcs, TICBCS2026, ticbcs2026, 關於我們, 台中國際乳癌研討會 , 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會',
+    keywords: 'about us, TSESS, TSESS, TSESS2026, TSESS2026, 關於我們, 台中國際乳癌研討會 , 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會',
 });
 
 </script>
 <style lang="scss" scoped>
 .about-us-section {
     .main-section {
-        width: 60%;
+        width: 100%;
+        max-width: 1200px;
         margin: 0 auto;
         color: $main-color;
-
-        @media screen and (max-width: 1024px) {
-            width: 80%;
-        }
+        padding: 0 1.5rem;
     }
 
-    .title {
-        font-size: 2.5rem;
-        display: flex;
-        justify-content: center;
-        margin-top: 5rem;
-    }
 
     .welcome-box {
         display: flex;
-        gap: 2rem;
-        margin-top: 3.5rem;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 3rem;
+        margin: 3.5rem 0;
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
             flex-direction: column;
+            align-items: center;
         }
 
         .image-box {
-            flex: 1;
-            border-radius: 10px;
+            flex: 0 0 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-            img {
-                border-radius: 10px;
-                overflow: hidden;
-                object-fit: cover;
+            @media screen and (max-width: 1024px) {
                 width: 100%;
+                flex: unset;
             }
 
+            img {
+                width: 100%;
+                max-width: 380px;
+                height: auto;
+                object-fit: cover;
+                border-radius: 10px;
+                display: block;
+            }
+
+            .people-infomation-box {
+                width: 100%;
+                max-width: 380px;
+                margin-top: 1rem;
+                background-color: $main-color;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+
+                .name {
+                    font-size: 1.4rem;
+                    color: white;
+                    font-weight: 600;
+                    margin-bottom: .5rem;
+                }
+
+                .title {
+                    font-size: 1rem;
+                    color: white;
+                    line-height: 1.6;
+                }
+            }
         }
 
         .welcome-content {
-            color: $main-text-color;
             flex: 1;
-            padding: 0 20px;
-            font-size: 1.5rem;
+            min-width: 0;
+            color: $main-text-color;
+            font-size: 1.05rem;
+            line-height: 2;
+            padding: 0;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1rem;
 
-            @media screen and (max-width: 1920px) {
-                font-size: 1.5rem;
+
+            .title {
+                font-size: 2rem;
+                color: $main-color;
+                font-weight: 700;
+                margin-bottom: 1rem;
             }
 
-            @media screen and (max-width: 1440px) {
-                font-size: 1rem;
+            p {
+                margin: 0;
+                text-align: justify;
             }
 
-            @media screen and (max-width: 768px) {
-                font-size: 1.5rem;
-
-            }
-        }
-    }
-
-    .image-box {
-        display: flex;
-        justify-content: center;
-        gap: 2rem;
-
-        @media screen and (max-width: 426px) {
-            flex-direction: column;
-        }
-
-        .logo-box {
-            width: calc(100%/3 - 2rem);
-            display: flex;
-            flex-direction: column;
-
-            @media screen and (max-width: 426px) {
-                width: 100%;
+            .first-word {
+                display: inline-block;
+                width: 2em;
             }
 
-            .logo-name {
-                color: $main-text-color;
-                font-size: 1rem;
-                text-align: center;
-            }
-
-            img {
-                width: 100%;
-                height: auto;
-            }
-        }
-
-        .logo-box2 {
-            display: flex;
-            flex-direction: column;
-            width: calc(100%/3 - 2rem);
-
-            @media screen and (max-width: 426px) {
-                width: 100%;
-            }
-
-            .logo-name {
-                color: $main-text-color;
+            .association-name {
+                margin-top: 1.5rem;
+                text-align: right;
                 font-size: 1.2rem;
-                text-align: center;
-            }
-
-            img {
-                width: 100%;
-                height: auto;
+                color: $main-color;
+                font-weight: bold;
             }
         }
-
     }
+
+    // .image-box {
+    //     display: flex;
+    //     justify-content: center;
+    //     gap: 2rem;
+
+    //     @media screen and (max-width: 426px) {
+    //         flex-direction: column;
+    //     }
+
+    //     .logo-box {
+    //         width: calc(100%/3 - 2rem);
+    //         display: flex;
+    //         flex-direction: column;
+
+    //         @media screen and (max-width: 426px) {
+    //             width: 100%;
+    //         }
+
+    //         .logo-name {
+    //             color: $main-color;
+    //             font-size: 1rem;
+    //             text-align: center;
+    //         }
+
+    //         img {
+    //             width: 100%;
+    //             height: auto;
+    //         }
+    //     }
+
+    //     .logo-box2 {
+    //         display: flex;
+    //         flex-direction: column;
+    //         width: calc(100%/3 - 2rem);
+
+    //         @media screen and (max-width: 426px) {
+    //             width: 100%;
+    //         }
+
+    //         .logo-name {
+    //             color: $main-color;
+    //             font-size: 1.2rem;
+    //             text-align: center;
+    //         }
+
+    //         img {
+    //             width: 100%;
+    //             height: auto;
+    //         }
+    //     }
+
+    // }
 
 }
 </style>

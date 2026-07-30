@@ -168,7 +168,7 @@ console.log('setting', setting.value)
 useSeoMeta({
     title: '註冊資訊',
     description: '註冊即將舉行的乳癌手術與重建研討會。加入我們，向領先專家學習，與同行交流，並掌握乳癌治療的最新進展。',
-    keywords: 'seminar registration, TICBCS, ticbcs, TICBCS2026, ticbcs2026, 註冊資訊, 台中國際乳癌研討會 , 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會, 學分資訊, 報名資訊',
+    keywords: 'seminar registration, TSESS, TSESS, TSESS2026, TSESS2026, 註冊資訊, 台中國際乳癌研討會 , 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會, 學分資訊, 報名資訊',
 });
 
 const lang = ref('')
