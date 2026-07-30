@@ -50,7 +50,7 @@
   "memberInfo": "會員資訊",
   "profileReminder": "請盡快完成個人資料，以確保您能順利參加會議並享有相關權益。",
   "isQualified": "具備資格參與會議",
-  "abstract": "摘要",
+  "abstract": "投稿摘要",
   "payment": "付款",
   "accommodation": "住宿",
   "notPaid": "未付款",
@@ -89,7 +89,7 @@
   "conferenceLocation": "會議地點",
   "welcomeMessage": "理事長的話",
   "conferenceDate": "會議時間",
-  "startDate": "2026年12月05日(六)，上午08:00 - 下午17:50",
+  "startDate": "2026年12月05日(六)，上午08:00 - 下午17:20",
   "endDate": "  2026年12月06日(日)，上午08:00 - 下午12:10",
   "home": "首頁",
   "registration": "註冊資訊",
@@ -137,5 +137,9 @@
   "transportationParkingItem2Desc3": "機車 197 格，含無障礙機車位 6 格。",
   "welcomeMessageEnd": "誠摯歡迎各位貴賓蒞臨，共襄盛舉。 ",
   "presidentName": "楊昌蓁",
-  "presidentTitle": "台灣脊椎微創內視鏡醫學會 理事長"
+  "presidentTitle": "台灣脊椎微創內視鏡醫學會 理事長",
+  "invitedSpeakers": "特邀講者",
+  "submissionGuidelines": "投稿規範",
+  "abstractSubmission": "摘要投稿",
+  "invitedSpeaker": "特邀講者"
 }
