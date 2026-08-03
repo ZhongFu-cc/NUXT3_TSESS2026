@@ -4,28 +4,46 @@
 
         <div class="main-section">
             <div class="content">
-              
-                <!-- <div class="content-message-box">
-                    <p><b>Research and Real-World Issue of Breast Cancer</b></p>
-                    <p>立足台中、接軌國際、培育英才、任重道遠</p>
-                    <p>在乳癌診治持續邁向個人化與整合照護的今日，我們誠摯地邀清您蒞臨本次年會，與國內外專家共探乳癌診療的新趨勢</p>
-                    <p>本年會將涵蓋從基因檢測、輔助治療、到臨床決策支援與病人全人照護的最新實證，盼您共襄盛舉，攜手推動更完善的乳癌照護路徑。</p>
-                </div> -->
+                <!-- <CountdownTimer :target-date="eventDate"></CountdownTimer> -->
+
+                <div class="info-section">
+                    <div class="link-section">
+                        <QuickLinks></QuickLinks>
+                    </div>
+                    <div class="news-section">
+                        <News></News>
+                    </div>
+                    <div class="date-section">
+                        <KeyDate></KeyDate>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <div class="video-box">
+            <iframe v-for="video in videos" :src="envMinio + video.path" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
     </main>
 </template>
 <script lang="ts" setup>
 import Banner from '@/components/layout/Banner.vue';
-import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
-import Title from '~/components/layout/Title.vue';
+// import CountdownTimer from '@/components/CountdownTimer.vue';
+import News from '@/components/home/News.vue';
+import QuickLinks from '@/components/home/QuickLinks.vue';
+import KeyDate from '@/components/home/KeyDate.vue';
+import { useI18n } from 'vue-i18n';
 
 useSeoMeta({
-    title: 'TSESS 2026 - Taichung International Breast Comprehensive Breast Cancer Symposium',
-    description: 'TSESS 2026 is an international symposium dedicated to comprehensive breast cancer research and treatment. Join us in Taichung for cutting-edge insights, expert discussions, and collaborative opportunities in the field of breast cancer.',
-    keywords: 'home, breast cancer, conference, TSESS2026, TSESS, TSESS2026, TSESS, 台中國際會展中心, 台中國際乳癌研討會, 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會',
+    title: 'TSESS 2026 | Taiwan Society of Endoscopic and Single Site Surgery Conference 2026',
+    description: 'Welcome to the TSESS 2026 (Taiwan Society of Endoscopic and Single Site Surgery Conference) Conference 2026, held in Taipei from November 14-15, 2026. Explore the latest advancements in sustainable perfect form and safety, bringing together global experts for exchange and collaboration.',
+    keywords: 'Home,TSESS,TSESS 2026,2026 TSESS'
 })
+
+const { locale, setLocale, t } = useI18n();
+
+const eventDate = new Date('2026-11-14T00:00:00');
 
 const carousel = ref();
 
@@ -36,6 +54,26 @@ const next = () => {
     carousel.value.next();
 };
 
+const envMinio = useRuntimeConfig().public.minio
+
+
+const videos = ref<any[]>([])
+const fetchVideos = async () => {
+    try {
+        const res: any = await CSRrequest.get(`/publish-file/video`)
+        console.log('Fetched videos:', res.data);
+        videos.value = res.data
+    } catch (error) {
+        console.error('Error fetching videos file:', error);
+    }
+}
+
+onMounted(() => {
+    fetchVideos()
+})
+
+
+
 
 </script>
 <style lang="scss" scoped>
@@ -44,19 +82,20 @@ const next = () => {
     min-height: 60vw;
 
     .main-section {
-        width: 60%;
+        width: 100%;
         margin-inline: auto;
 
         @media screen and (max-width: 1024px) {
-            width: 80%;
+            // width: 80%;
         }
     }
 
     .content {
 
         display: flex;
+        flex-direction: column;
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
             flex-direction: column;
         }
 
@@ -79,7 +118,7 @@ const next = () => {
             flex-direction: column;
             justify-content: center;
             gap: 3rem;
-            color: $main-text-color;
+            color: $main-color;
 
             // @media screen and (max-width: 1920px) {
             //     font-size: 1.2rem;
@@ -104,17 +143,32 @@ const next = () => {
             }
         }
 
+
     }
 
-    .news-section {
-        min-height: 15rem;
-        background-color: #D9D5E4;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2.5rem;
-        color: #424384;
+    .video-box {
+        width: 80%;
+        margin: 5rem auto;
+
+        iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9; // margin: 5rem auto;
+        }
+
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+        }
     }
+
+    // .news-section {
+    //     min-height: 15rem;
+    //     background-color: #D9D5E4;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     font-size: 2.5rem;
+    //     color: #B62D66;
+    // }
 
     .carousel-section {
         display: flex;
@@ -177,6 +231,47 @@ const next = () => {
 
             }
         }
+
+    }
+
+    .info-section {
+        display: flex;
+        width: 75%;
+        gap: 3rem;
+        margin: 2rem auto;
+
+        .link-section {
+            width: 25%;
+        }
+
+        .news-section {
+            width: 35%;
+        }
+
+        .date-section {
+            width: 40%;
+        }
+
+        @media screen and (max-width: 1024px) {
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            .link-section {
+                width: 80%;
+            }
+
+            .news-section {
+                width: 80%;
+            }
+
+            .date-section {
+                width: 80%;
+            }
+
+
+        }
+
 
     }
 }

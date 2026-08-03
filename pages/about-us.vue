@@ -3,7 +3,7 @@
         <Banner />
         <Breadcrumbs :firstRoute="t('aboutUs')" :secoundRoute="t('welcomeMessage')"></Breadcrumbs>
         <div class="main-section">
-            <h1 class="title">{{ t('welcomeMessage') }}</h1>
+            <Title class="title" :title="t('welcomeMessage')"></Title>
             <div class="welcome-box">
                 <div class="image-box">
                     <img src="@/assets/img/president4.jpg" alt="">
@@ -83,6 +83,7 @@
 <script lang="ts" setup>
 import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
+import Title from '@/components/layout/Title.vue';
 const { t, locale } = useI18n();
 useSeoMeta({
     title: '關於我們',
@@ -94,11 +95,11 @@ useSeoMeta({
 <style lang="scss" scoped>
 .about-us-section {
     .main-section {
-        width: 100%;
+        width: 90%;
         max-width: 1200px;
         margin: 0 auto;
         color: $main-color;
-        padding: 0 1.5rem;
+        // padding: 0 1.5rem;
     }
 
 
@@ -139,8 +140,9 @@ useSeoMeta({
                 max-width: 380px;
                 margin-top: 1rem;
                 background-color: $main-color;
-                padding: 1rem 1.5rem;
+                padding: 1rem 0.5rem;
                 border-radius: 10px;
+                box-sizing: border-box;
 
                 .name {
                     font-size: 1.4rem;

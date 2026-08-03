@@ -141,5 +141,19 @@
   "invitedSpeakers": "特邀講者",
   "submissionGuidelines": "投稿規範",
   "abstractSubmission": "摘要投稿",
-  "invitedSpeaker": "特邀講者"
+  "invitedSpeaker": "特邀講者",
+  "target": "對象",
+  "period": "期間",
+  "fee": "費用",
+  "taiwanParticipantsMember": "台灣參加者－會員",
+  "fullPeriod": "全期",
+  "taiwanParticipantsNonMember": "台灣參加者－非會員",
+  "foreignParticipants": "國外參加者（會員／非會員皆同）",
+  "earlyBird": "早鳥 7/29–8/31",
+  "regularPeriod": "9/1–12/5",
+  "quickLinks": "快速連結",
+  "keyDates": "重要日程",
+  "keyDate1": "TSESS 2026",
+  "dec": "12月",
+  "onlineRegistration": "線上註冊"
 }

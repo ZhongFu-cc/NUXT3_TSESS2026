@@ -469,9 +469,12 @@ onMounted(() => {
                     text-align: left;
                     text-align: center;
                     margin-left: 0;
+                    width: 100%;
+                    border-radius: 8px;
 
                     &:hover {
-                        color: #FF5529;
+                        color: #243567;
+                        background-color: #FFF;
                         cursor: pointer;
                     }
                 }

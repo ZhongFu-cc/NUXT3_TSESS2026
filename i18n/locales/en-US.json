@@ -200,5 +200,16 @@
   "presidentName": "Chang Chen Yang",
   "presidentTitle": "Taiwan Society for Endoscopic Spine Surgery President",
   "invitedSpeakers": "Invited Speaker",
-  "invitedSpeaker": "Invited Speaker"
+  "invitedSpeaker": "Invited Speaker",
+  "target": "Category",
+  "period": "Period",
+  "fee": "Fee",
+  "taiwanParticipantsMember": "Domestic - Member",
+  "fullPeriod": "Full period",
+  "taiwanParticipantsNonMember": "Domestic - Non-member",
+  "foreignParticipants": "International (member & non-member)",
+  "earlyBird": "Early bird, Jul 29 – Aug 31",
+  "regularPeriod": "Sep 1 – Dec 5",
+  "keyDate1": "TSESS 2026",
+  "dec": "Dec"
 }

@@ -2,7 +2,7 @@
     <div class="transportation-section">
         <Banner />
         <div class="main-box">
-            <p class="title"><span class="conference-location">{{ t('conferenceLocation') }}</span> {{ t('location') }}</p>
+            <p class="title"><span class="conference-location">{{ t('conferenceLocation') }}:</span> {{ t('location') }}</p>
             <div class="map-box">
                 <iframe
                     src="https://www.google.com/maps?q=%E5%9C%8B%E7%AB%8B%E6%95%85%E5%AE%AE%E5%8D%9A%E7%89%A9%E9%99%A2%E5%8D%97%E9%83%A8%E9%99%A2%E5%8D%80&output=embed"
