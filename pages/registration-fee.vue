@@ -1,96 +1,61 @@
 <template>
-        <main class="common-section">
-            <Banner />
+    <main class="common-section">
+        <Banner />
 
-            <Breadcrumbs :firstRoute="t('registration')" :secoundRoute="t('registrationFee')"></Breadcrumbs>
+        <Breadcrumbs :firstRoute="t('registration')" :secoundRoute="t('registrationFee')"></Breadcrumbs>
 
-           <Title :title="t('registrationFee')"></Title>
-            <!-- <table class="personal-registration-table">
+        <Title :title="t('registrationFee')"></Title>
+
+        <table class="personal-registration-table">
+            <thead>
                 <tr class="personal-row-1">
-                    <th class="category-col" :rowspan="2" :colspan="2">Category</th>
-                    <th :colspan="2">Only Physical</th>
+                    <th>{{ t('target') }}</th>
+                    <th>{{ t('period') }}</th>
+                    <th>{{ t('fee') }}</th>
                 </tr>
-                <tr class="personal-row-2">
-                    <th>
-                        <p>Early-Bird</p>
-                        <p>(before Sep 30, 2025)</p>
-                    </th>
-                    <th>
-                        <p>Onsite</p>
-                        <p>(Oct 1- Nov 16, 2025)</p>
-                    </th>
-                </tr>
-                <tr class="personal-row-3">
-                    <td :rowspan="2">
-                        <p class="category-item">Professor/</p>
-                        <p class="category-item">Physician/</p>
-                        <p class="category-item">Company</p>
-                    </td>
-                    <td>Non-member</td>
-                    <td>USD 400(TWD12800)</td>
-                    <td>USD 500(TWD16000)</td>
-                </tr>
-                <tr class="personal-row-4">
-                    <td>Member</td>
-                    <td>USD 300(TWD9600)</td>
-                    <td>USD 400(TWD12800)</td>
-                </tr>
-                <tr class="personal-row-5">
-                    <td :colspan="2">
-                        <p class="category-item">Trainee/Nurse/Researcher</p>
-                    </td>
-                    <td>USD 150(TWD4800)</td>
-                    <td>USD 200(TWD6400)</td>
+            </thead>
 
-                </tr>
-            </table>
-            <p class="tips">*The exchange rate is caculated based on USD 32</p>
-            <div class="btn-section"> <nuxt-link class="register-btn" to="/online-registration">Register Now !</nuxt-link>
-            </div>
-            <div class="shadow-divider"></div>
-
-            <Title :title="'Group Registration'"></Title>
-
-            <table class="group-registration-table">
-                <tr class="group-row-1">
-                    <th>
-                        <p>Minimum Number of Persons</p>
-                        <p>Required for Group Registration</p>
-                        <p>(Foreigners ONLY: Professor, Physician and Company)</p>
-                    </th>
-                    <th>
-                        <p>Benefit</p>
-                    </th>
-                    <th>
-                        <p>Payment</p>
-                        <p>Method</p>
-                    </th>
-                    <th>
-                        <p>Deadline</p>
-                    </th>
-                </tr>
+            <tbody>
                 <tr>
-                    <td>
-                        <p>5 persons</p>
-                    </td>
-                    <td>
-                        <p>10% Discount</p>
-                    </td>
-                    <td>
-                        <p>Credit card</p>
-                    </td>
-                    <td>
-                        <p>9/30</p>
-                    </td>
+                    <td>{{ t('taiwanParticipantsMember') }}</td>
+                    <td>{{ t('fullPeriod') }}</td>
+                    <td>NT$1,000</td>
                 </tr>
-            </table>
-            <p class="tips">*Please fill in the form completely</p>
-            <p class="tips">*The credit card transaction page will be given through email to the sender.</p>
-            <p class="tips">*Payment for group registration must be paid at once by one person.</p>
-                <div class="btn-section"> <nuxt-link class="group-register-btn" to="/registration-now/group-registration">Group Registration Form</nuxt-link>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>{{ t('taiwanParticipantsNonMember') }}</td>
+                    <td>{{ t('fullPeriod') }}</td>
+                    <td>NT$4,000</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>{{ t('foreignParticipants') }}</td>
+                    <td>{{ t('earlyBird') }}</td>
+                    <td>US$100</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>{{ t('foreignParticipants') }}</td>
+                    <td>{{ t('regularPeriod') }}</td>
+                    <td>US$150</td>
+                </tr>
+            </tbody>
 
-            </div> -->
-        </main>
+
+
+
+
+        </table>
+
+        <div class="btn-section">
+            <nuxt-link class="register-btn" to="/login">
+                {{ t('onlineRegistration') }}
+            </nuxt-link>
+        </div>
+    </main>
 
 </template>
 <script setup lang="ts">
@@ -133,13 +98,14 @@ const { t } = useI18n();
 
         th {
             color: white;
-            background-color: #DE6A75;
+            background-color: #053147;
             border: 1px solid #EEE2DC;
             padding: 1rem;
         }
 
         td {
-            background-color: #FEECE8;
+            background-color: $main-color;
+            color: white;
             padding: 1rem;
             border: 1px solid #EEE2DC;
 
@@ -152,7 +118,7 @@ const { t } = useI18n();
             .category-col {
                 padding: 2rem 0.5rem;
                 text-align: start;
-                border: #F29EA6 1px solid;
+                border: #053147 1px solid;
                 width: 50%;
             }
         }
@@ -172,7 +138,7 @@ const { t } = useI18n();
 
         .register-btn {
             min-width: 13rem;
-            background-color: #DE6A75;
+            background-color: $main-color;
             color: white;
             padding: 1rem 2rem;
             font-weight: 600;
@@ -181,6 +147,8 @@ const { t } = useI18n();
 
             &:hover {
                 cursor: pointer;
+                background-color: lighten($main-color, 10%);
+                transform: scale(1.05);
             }
         }
 
@@ -215,6 +183,7 @@ const { t } = useI18n();
             padding: 1rem;
             border: 1px solid #EEE2DC;
             color: #7A2D67;
+
             &:not(:first-child) {
                 text-align: center;
             }

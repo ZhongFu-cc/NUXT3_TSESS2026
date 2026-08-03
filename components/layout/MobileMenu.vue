@@ -59,22 +59,20 @@ const setLang = (lang: string) => {
 }
 
 
-const menu = reactive([
+const menu = reactive<any>([
     { title: t('home'), path: '/', isActive: false, isShow: true },
     { title: t('aboutUs'), path: '/about-us', isActive: false, isShow: true },
+    { title: t('news'), path: '/news', isActive: false, isShow: true },
+    { title: t('invitedSpeaker'), path: '/invited-speakers', isActive: false, isShow: true },
     { title: t('conferenceInformation'), path: '/conference-information', isActive: false, isShow: true },
-    { title: t('seminarRegistration'), path: '/seminar-registration', isActive: false, isShow: true },
-    { title: t('transportation'), path: '/transportation', isActive: false, isShow: true },
-    { title: t('travel'), path: '/travel', isActive: false, isShow: true },
-    { title: t('sponsorList'), path: '/sponsor-list', isActive: false, isShow: true },
-    { title: t('mascot'), path: '/mascot', isActive: false, isShow: true },
     {
-        title: 'Gallery', path: '/gallery', isActive: false, isShow: true, submenu: [
-            { title: '2023 Gallery', path: '/gallery/2023' },
-            { title: '2024 Gallery', path: '/gallery/2024' },
-            { title: '2025 Gallery', path: '/gallery/2025' },
+        title: t('seminarRegistration'), path: '', isActive: false, isShow: true, submenu: [
+            { title: t('registrationFee'), path: '/registration-fee', isActive: false },
+            { title: t('registrationForm'), path: '/login', isActive: false },
         ]
     },
+     { title: t('transportation'), path: '/transportation', isActive: false, isShow: true },
+    { title: t('sponsorList'), path: '/sponsor-list', isActive: false, isShow: true },
 ])
 
 
@@ -148,11 +146,11 @@ const logout = async () => {
         padding: 2rem 2rem;
 
         li {
-            padding: 1rem;
+            padding: 2rem 1rem 0 1rem;
             font-size: 1.3rem;
             font-weight: bold;
             color: white;
-
+            
             img {
                 width: 1.5rem;
                 margin-right: 0.5rem;
@@ -177,7 +175,7 @@ const logout = async () => {
             }
 
             &.active {
-                color: #FF5529;
+                color: $main-color;
                 border-radius: 10px;
             }
         }
@@ -199,13 +197,13 @@ const logout = async () => {
                 font-weight: bold;
                 display: block;
                 color: $main-content-color;
-                padding: 0.5rem 0;
+                padding: 0.1rem 0 0 0;
             }
 
             &.is-open {
                 overflow: auto !important;
                 max-height: none !important;
-                margin-left: 5vw;
+                // margin-left: 5vw;
                 font-size: 16px;
             }
         }
@@ -231,6 +229,7 @@ const logout = async () => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 2rem;
 
     :deep(.el-card__body) {
         padding: 0.5rem;
@@ -238,6 +237,12 @@ const logout = async () => {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+
+        li {
+            padding: 0.5rem 0;
+            color: white;
+
+        }
     }
 }
 </style>

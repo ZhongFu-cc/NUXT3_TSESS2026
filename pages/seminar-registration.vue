@@ -26,8 +26,7 @@
                     </div> -->
                 </div>
 
-                <el-divider></el-divider>
-                <Title title="研討會報名"></Title>
+                <Title :title="$t('onlineRegistration')"></Title>
                 <!-- <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
                     require-asterisk-position="right" :show-message="true" :scroll-to-error="true"
                     :validate-on-rule-change="false">
