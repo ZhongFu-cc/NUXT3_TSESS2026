@@ -20,6 +20,40 @@
             </div>
         </div>
 
+        <div class="carousel-section">
+            <el-button class="left-btn" @click="prev"><el-icon>
+                    <ElIconArrowLeftBold />
+                </el-icon></el-button>
+            <div class="carousel-box">
+                <el-carousel ref="carousel" :interval="4000" type="card" arrow="never">
+                    <!-- <el-carousel-item>
+                        <img src="@/assets/img/carousel/img0.jpg" alt="">
+                    </el-carousel-item> -->
+                    <el-carousel-item>
+                        <img src="@/assets/img/carousel/img1.jpg" alt="">
+                    </el-carousel-item>
+                    <el-carousel-item>
+                        <img src="@/assets/img/carousel/img2.jpg" alt="">
+                    </el-carousel-item>
+                    <el-carousel-item>
+                        <img src="@/assets/img/carousel/img3.jpg" alt="">
+                    </el-carousel-item>
+                    <el-carousel-item>
+                        <img src="@/assets/img/carousel/img4.jpg" alt="">
+                    </el-carousel-item>
+                    <el-carousel-item>
+                        <img src="@/assets/img/carousel/img5.jpg" alt="">
+                    </el-carousel-item>
+                    <el-carousel-item>
+                        <img src="@/assets/img/carousel/img6.jpg" alt="">
+                    </el-carousel-item>
+                </el-carousel>
+            </div>
+            <el-button class="right-btn" @click="next"><el-icon>
+                    <ElIconArrowRightBold />
+                </el-icon></el-button>
+        </div>
+
         <div class="video-box">
             <iframe v-for="video in videos" :src="envMinio + video.path" title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -170,7 +204,7 @@ onMounted(() => {
     //     color: #B62D66;
     // }
 
-    .carousel-section {
+  .carousel-section {
         display: flex;
         justify-content: center;
         align-items: center;
