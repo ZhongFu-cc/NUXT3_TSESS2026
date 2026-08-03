@@ -1,7 +1,7 @@
 <template>
     <div class="common-section">
-        <Title title="Coming Soon"></Title>
         <Banner></Banner>
+        <Title title="Coming Soon"></Title>
         <!-- <h1 class="title">感謝下列廠商熱情贊助!!</h1> -->
         <div class="image-section">
             <!-- <div v-for="(image, index) in images" :key="index" class="image-item">
