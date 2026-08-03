@@ -1,8 +1,10 @@
 <template>
     <footer class="footer-section">
         <div class="footer-box">
-            <!-- <p>中華民國乳癌教育暨防治學會</p>
-            <p>聯絡我們: twbc.prevention@gmail.com</p> -->
+            <p>Taiwan Society of Endoscopic Spine Surgery secretary </p>
+            <p>學會秘書:方藝臻、唐雅慧 </p>
+            <p>TEL: 05-2648000#5240、5908；0963-598526 </p>
+            <p>E-mail: tsess201805@gmail.com   </p>
         </div>
     </footer>
 </template>
