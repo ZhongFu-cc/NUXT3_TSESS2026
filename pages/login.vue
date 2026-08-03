@@ -39,8 +39,8 @@
                     </div>
                 </el-form-item>
                 <div class="captcha-section">
-                    <el-form-item class="captcha" label="Verification Code" prop="verificationCode">
-                        <el-input v-model="loginInfo.verificationCode" placeholder="Captcha"></el-input>
+                    <el-form-item class="captcha" :label="t('verificationCode')" prop="verificationCode">
+                        <el-input v-model="loginInfo.verificationCode" ></el-input>
                     </el-form-item>
                     <div class="captcha-img-section">
                         <img :src="captcha.image" alt="">
@@ -50,11 +50,11 @@
                     </div>
                 </div>
                 <el-form-item class="sign-btn-section">
-                    <el-button class="sign-btn" @click="login(formRef)">Sign in</el-button>
+                    <el-button class="sign-btn" @click="login(formRef)">{{ t('signIn') }}</el-button>
                 </el-form-item>
                 <div class="btn-section">
-                    <p>Don't have an account? &nbsp</p>
-                    <nuxt-link class="sign-text" to="/seminar-registration">Sign up</nuxt-link>
+                    <p>{{ t('dontHaveAccount') }} &nbsp</p>
+                    <nuxt-link class="sign-text" to="/seminar-registration">{{t('signUp')}}</nuxt-link>
                 </div>
             </el-form>
         </div>
@@ -84,7 +84,13 @@ const captcha = reactive<any>({
 
 });
 
+const { t, locale } = useI18n();
+
 const attendeeType = ref(0);
+
+watch(locale, (newLocale) => {
+    attendeeType.value = newLocale === 'en' ? 1 : 0;
+});
 
 const getCaptcha = async () => {
     let res = await CSRrequest.get('/member/captcha');
