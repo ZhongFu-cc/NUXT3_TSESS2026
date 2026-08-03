@@ -155,5 +155,9 @@
   "keyDates": "重要日程",
   "keyDate1": "TSESS 2026",
   "dec": "12月",
-  "onlineRegistration": "線上註冊"
+  "onlineRegistration": "線上註冊",
+  "verificationCode": "驗證碼",
+  "signIn": "登入",
+  "dontHaveAccount": "尚未擁有帳號?",
+  "signUp": "前往註冊"
 }

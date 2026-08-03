@@ -211,5 +211,9 @@
   "earlyBird": "Early bird, Jul 29 – Aug 31",
   "regularPeriod": "Sep 1 – Dec 5",
   "keyDate1": "TSESS 2026",
-  "dec": "Dec"
+  "dec": "Dec",
+  "verificationCode": "Verification Code",
+  "signIn": "Sign In",
+  "dontHaveAccount": "Don't have an account?",
+  "signUp": "Sign up"
 }
