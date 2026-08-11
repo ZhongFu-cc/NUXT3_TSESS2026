@@ -53,11 +53,12 @@
                                 </el-icon>
                             </div>
 
-                            <div class="sub-menu-box" v-if="pcModeActiveItemState.activedItem === menu.activeKey">
+                            <div class="sub-menu-box" v-if="openedMenu === menu.activeKey">
                                 <nuxt-link v-for="sub in menu.subMenu" :key="sub.activeKey" class="sub-menu-item"
                                     :to="localPath(sub.route)" @click="
-                                        pcModeActiveItemState.setActiveItem(menu.activeKey)
-                                        ">
+                                        pcModeActiveItemState.activedItem = menu.activeKey;
+                                    closeAllMenus();
+                                    ">
                                     {{ sub.name }}
                                 </nuxt-link>
                             </div>
@@ -94,7 +95,7 @@
                     <!-- 次選單區塊 -->
                     <div class="hidden-menu-box menu-box">
                         <div class="menu-title" :class="pcModeActiveItemState.validActive('secondary')"
-                            @click="secondaryMenuState.toggleMenu">{{ t('viewMore') }}<el-icon>
+                            @click="secondaryMenuState.toggleMenu">{{ t('common.viewMore') }}<el-icon>
                                 <ElIconArrowDown />
                             </el-icon></div>
                         <div class="sub-menu-box" v-if="secondaryMenuState.isOpen">
@@ -123,18 +124,18 @@
                     <!-- 會員選單區塊 -->
                     <div class="member-menu-box menu-box">
                         <div v-if="isLogin" class="menu-title" :class="pcModeActiveItemState.validActive('member')"
-                            @click="memberMenuState.toggleMenu">{{ t('member') }}<el-icon>
+                            @click="memberMenuState.toggleMenu">{{ t('common.member') }}<el-icon>
                                 <ElIconArrowDown />
                             </el-icon></div>
 
                         <div class="sub-menu-box" v-if="memberMenuState.isOpen">
                             <nuxt-link class="sub-menu-item" :to="localPath('/member-center')"
-                                @click="pcModeActiveItemState.setActiveItem('member')">{{ t('memberCenter')
+                                @click="pcModeActiveItemState.setActiveItem('member')">{{ t('common.memberCenter')
                                 }}</nuxt-link>
-                            <nuxt-link class="sub-menu-item" @click="handleLogout">{{ t('logout') }}</nuxt-link>
+                            <nuxt-link class="sub-menu-item" @click="handleLogout">{{ t('common.logout') }}</nuxt-link>
                         </div>
                         <nuxt-link class="menu-item" v-if="!isLogin" :to="localPath('/login')"
-                            @click="pcModeActiveItemState.setActiveItem('member')">{{ t('login') }}</nuxt-link>
+                            @click="pcModeActiveItemState.setActiveItem('member')">{{ t('common.login') }}</nuxt-link>
                     </div>
 
                     <div class="menu-box">
@@ -144,7 +145,7 @@
                             alt="earth icon" @click="translationMenuState.toggleMenu" />
 
                         <div class="sub-menu-box last-sub-menu-box" v-if="translationMenuState.isOpen">
-                            <el-button @click="setLang('zh')">繁體中文</el-button>
+                            <el-button @click="setLang('zh-TW')">繁體中文</el-button>
                             <el-button @click="setLang('en')">English</el-button>
                         </div>
                     </div>
@@ -162,7 +163,7 @@ const localPath = useLocalePath()
 const { t, setLocale } = useI18n()
 
 const initLang = () => {
-    const savedLang = localStorage.getItem('lang') || 'zh';
+    const savedLang = localStorage.getItem('lang') || 'zh-TW';
     console.log('Saved language:', savedLang);
     setLocale(savedLang);
 }
@@ -181,36 +182,31 @@ function handleScroll() {
 
 // 菜單基礎項目
 const primaryMenuItems = computed(() => [
-    { name: t('aboutUs'), route: '/about-us', activeKey: 'aboutUs' },
-    { name: t('news'), route: '/news', activeKey: 'news' },
-    { name: t('invitedSpeakers'), route: '/invited-speakers', activeKey: 'invitedSpeakers' },
-    { name: t('conferenceInformation'), route: '/conference-information', activeKey: 'conferenceInformation' },
+    { name: t('common.aboutUs'), route: '/about-us', activeKey: 'aboutUs' },
+    { name: t('common.news'), route: '/news', activeKey: 'news' },
+    { name: t('common.invitedSpeakers'), route: '/invited-speakers', activeKey: 'invitedSpeakers' },
+    { name: t('common.conferenceInformation'), route: '/conference-information', activeKey: 'conferenceInformation' },
     {
-        name: t('seminarRegistration'), route: '', activeKey: 'seminarRegistration', subMenu: [
-            { name: t('registrationFee'), route: '/registration-fee', activeKey: 'registrationFee' },
-            { name: t('registrationForm'), route: '/login', activeKey: 'registrationForm' },
+        name: t('common.seminarRegistration'), route: '', activeKey: 'seminarRegistration', subMenu: [
+            { name: t('common.registrationFee'), route: '/registration-fee', activeKey: 'registrationFee' },
+            { name: t('common.registrationForm'), route: '/login', activeKey: 'registrationForm' },
         ]
     },
-    { name: t('abstract'), route: '', activeKey: 'abstract', subMenu: [
-        { name: t('submissionGuidelines'), route: '/submission-guidelines', activeKey: 'submissionGuidelines' },
-        { name: t('abstractSubmission'), route: '/login', activeKey: 'abstractSubmission' },
-    ] },
+    {
+        name: t('common.abstract'), route: '', activeKey: 'abstract', subMenu: [
+            { name: t('common.submissionGuidelines'), route: '/submission-guidelines', activeKey: 'submissionGuidelines' },
+            { name: t('common.abstractSubmission'), route: '/abstract-submission', activeKey: 'abstractSubmission' },
+        ]
+    },
 ])
 
 // 次級菜單項目 (在螢幕寬度不足以顯示所有 primary menu 項目時會顯示在 sub-menu 中)
 const secondaryMenuItems = computed(() => [
-    { name: t('transportation'), route: '/transportation', activeKey: 'transportation' },
-    { name: t('sponsorList'), route: '/sponsor-list', activeKey: 'sponsorList' }
+    { name: t('common.transportation'), route: '/transportation', activeKey: 'transportation' },
+    { name: t('common.sponsorList'), route: '/sponsor-list', activeKey: 'sponsorList' }
 ])
 
-// Gallery 菜單項目
-// const galleryMenuItem = {
-//     name: 'Gallery', route: '', activeKey: 'gallery', subMenu: [
-//         { name: 'Gallery 2023', route: '/gallery/2023', activeKey: 'gallery2023' },
-//         { name: 'Gallery 2024', route: '/gallery/2024', activeKey: 'gallery2024' },
-//         { name: 'Gallery 2025', route: '/gallery/2025', activeKey: 'gallery2025' },
-//     ]
-// }
+const openedMenu = ref('')
 
 // 次級菜單狀態
 const secondaryMenuState = ref({
@@ -276,31 +272,44 @@ const pcModeActiveItemState = ref({
 })
 
 const handleSubMenuClick = (menuKey: string) => {
-    if (pcModeActiveItemState.value.activedItem === menuKey) {
-        pcModeActiveItemState.value.activedItem = '';
-    } else {
-        pcModeActiveItemState.value.setActiveItem(menuKey);
-    }
-    secondaryMenuState.value.isOpen = false;
-    galleryMenuState.value.isOpen = false;
-    memberMenuState.value.isOpen = false;
-    translationMenuState.value.isOpen = false;
-};
+    openedMenu.value =
+        openedMenu.value === menuKey
+            ? ''
+            : menuKey
+
+    pcModeActiveItemState.value.activedItem = menuKey
+
+    secondaryMenuState.value.isOpen = false
+    galleryMenuState.value.isOpen = false
+    memberMenuState.value.isOpen = false
+    translationMenuState.value.isOpen = false
+}
+
 
 const handleLogout = () => {
-    ElMessageBox.confirm(t('logoutConfirmation'), t('logoutTitle'), {
-        confirmButtonText: t('confirm'),
-        cancelButtonText: t('cancel'),
+    ElMessageBox.confirm(t('common.logoutConfirmation'), t('common.logoutTitle'), {
+        confirmButtonText: t('common.confirm'),
+        cancelButtonText: t('common.cancel'),
         type: 'warning',
     }).then(() => {
         const token = ref<string | null>(localStorage.getItem('Authorization-member') || null);
         token.value = null;
         isLogin.value = false;
         memberMenuState.value.isOpen = false;
+        localStorage.removeItem('Authorization-member');
         useRouter().push(localPath('/'));
     }).catch(() => {
         // 取消登出
     });
+}
+
+const closeAllMenus = () => {
+    openedMenu.value = ''
+
+    secondaryMenuState.value.isOpen = false
+    galleryMenuState.value.isOpen = false
+    memberMenuState.value.isOpen = false
+    translationMenuState.value.isOpen = false
 }
 
 
@@ -545,7 +554,7 @@ onMounted(() => {
 
             .sub-menu-box {
                 background-color: white;
-                border: 1px solid #915aa1;
+                border: 1px solid #243f67;
 
                 .menu-title {
                     color: black;
@@ -574,7 +583,7 @@ onMounted(() => {
                     text-align: center;
 
                     &:hover {
-                        color: #FF5529;
+                        color: #243f67;
                         cursor: pointer;
                     }
                 }

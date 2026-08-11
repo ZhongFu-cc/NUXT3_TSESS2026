@@ -3,6 +3,8 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     const memberInfo = useState('memberInfo', () => null) as Ref<any>
     const localePath = useLocalePath()
 
+    const { $i18n } = useNuxtApp()
+
 
     if (process.server) {
         return;
@@ -56,6 +58,11 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
 
     if (isLogin.value && to.path === localePath('/login')) {
+        ElNotification({
+            title: '提示',
+            message: $i18n.t('common.alreadyLogin'),
+            type: 'warning',
+        });
         return navigateTo(localePath('/'))
     }
 })

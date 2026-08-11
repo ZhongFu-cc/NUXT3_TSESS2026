@@ -4,6 +4,7 @@ export const useAuth = () => {
 
     const checkLoginState = async () => {
         const token = localStorage.getItem('Authorization-member')
+        console.log('token', token)
 
         if (token) {
             const res = await CSRrequest.get('/member/getMemberInfo')

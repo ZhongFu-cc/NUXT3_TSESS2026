@@ -10,7 +10,7 @@
                 <div class="title-image-box">
                     <img class="home-banner-bak" src="@/assets/img/EmojiObjectsOutlined.svg">
                 </div>
-                <h1 class="title">{{ $t('news') }}</h1>
+                <h1 class="title">{{ $t('common.news') }}</h1>
             </div>
             <!-- <nuxt-link class="more-link" to="/news">
                 {{ $t('more') }}<el-icon>

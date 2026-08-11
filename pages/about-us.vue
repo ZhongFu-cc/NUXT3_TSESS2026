@@ -1,26 +1,26 @@
 <template>
     <section class="about-us-section">
         <Banner />
-        <Breadcrumbs :firstRoute="t('aboutUs')" :secoundRoute="t('welcomeMessage')"></Breadcrumbs>
+        <Breadcrumbs :firstRoute="t('common.aboutUs')" :secoundRoute="t('common.welcomeMessage')"></Breadcrumbs>
         <div class="main-section">
-            <Title class="title" :title="t('welcomeMessage')"></Title>
+            <Title class="title" :title="t('common.welcomeMessage')"></Title>
             <div class="welcome-box">
                 <div class="image-box">
                     <img src="@/assets/img/president4.jpg" alt="">
-                     <div class="people-infomation-box">
-                        <p class="name">{{ t('presidentName') }}</p>
-                        <p class="title">{{ t('presidentTitle') }}</p>
+                    <div class="people-infomation-box">
+                        <p class="name">{{ t('common.presidentName') }}</p>
+                        <p class="title">{{ t('common.presidentTitle') }}</p>
                     </div>
                 </div>
                 <div class="welcome-content">
-                    <p>{{ t('welcomeMessageContent') }}</p>
-                    <p>{{ t('welcomeMessageContent2') }}</p>
+                    <p>{{ t('common.welcomeMessageContent') }}</p>
+                    <p>{{ t('common.welcomeMessageContent2') }}</p>
 
 
-                    <p v-if="locale === 'en'">{{ t('welcomeMessageContent3') }}</p>
-                    <p v-if="locale === 'en'">{{ t('welcomeMessageContent4') }}</p>
-                    <p v-if="locale === 'en'">{{ t('welcomeMessageContent5') }}</p>
-                    <p>{{ t('welcomeMessageEnd') }}</p>
+                    <p v-if="locale === 'en'">{{ t('common.welcomeMessageContent3') }}</p>
+                    <p v-if="locale === 'en'">{{ t('common.welcomeMessageContent4') }}</p>
+                    <p v-if="locale === 'en'">{{ t('common.welcomeMessageContent5') }}</p>
+                    <p>{{ t('common.welcomeMessageEnd') }}</p>
 
                     <!-- <p>各位嘉賓、學界專家及同仁&nbsp;:</p>
                     <p>歡迎您蒞臨台中國際乳癌研討會。本研討會源自中華民國乳癌教育暨防治學會所辦之國際研討會，並在歷任理事長不懈努力下逐步奠定基礎。近年來，藉由中國醫藥大學附設醫院以及中國醫藥大學洪明奇校長的鼎力支持，本會已躋身為中部地區具代表性的重要國際乳癌研討會&nbsp;!
@@ -109,6 +109,9 @@ useSeoMeta({
         align-items: flex-start;
         gap: 3rem;
         margin: 3.5rem 0;
+        animation: fadeUp 0.8s ease, floatBox 6s ease-in-out infinite;
+
+
 
         @media screen and (max-width: 1024px) {
             flex-direction: column;
@@ -120,6 +123,16 @@ useSeoMeta({
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            transition:
+                transform .4s ease,
+                box-shadow .4s ease;
+
+            &:hover {
+                transform: translateY(-6px);
+                box-shadow:
+                    0 20px 40px rgba(0, 0, 0, .12);
+            }
 
             @media screen and (max-width: 1024px) {
                 width: 100%;
@@ -138,11 +151,19 @@ useSeoMeta({
             .people-infomation-box {
                 width: 100%;
                 max-width: 380px;
+
                 margin-top: 1rem;
-                background-color: $main-color;
-                padding: 1rem 0.5rem;
-                border-radius: 10px;
-                box-sizing: border-box;
+
+                background: linear-gradient(135deg,
+                        $main-color,
+                        lighten($main-color, 10%));
+
+                padding: 1.2rem 1rem;
+
+                border-radius: 12px;
+
+                box-shadow:
+                    0 10px 25px rgba(0, 0, 0, 0.08);
 
                 .name {
                     font-size: 1.4rem;
@@ -157,6 +178,7 @@ useSeoMeta({
                     line-height: 1.6;
                 }
             }
+
         }
 
         .welcome-content {
@@ -165,10 +187,14 @@ useSeoMeta({
             color: $main-text-color;
             font-size: 1.05rem;
             line-height: 2;
-            padding: 0;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.25rem;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .04);
+            max-width: 750px;
 
 
             .title {
@@ -250,6 +276,19 @@ useSeoMeta({
     //     }
 
     // }
+    @keyframes floatBox {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-6px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
 
 }
 </style>

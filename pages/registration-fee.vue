@@ -2,44 +2,44 @@
     <main class="common-section">
         <Banner />
 
-        <Breadcrumbs :firstRoute="t('registration')" :secoundRoute="t('registrationFee')"></Breadcrumbs>
+        <Breadcrumbs :firstRoute="t('common.registration')" :secoundRoute="t('common.registrationFee')"></Breadcrumbs>
 
-        <Title :title="t('registrationFee')"></Title>
+        <Title :title="t('common.registrationFee')"></Title>
 
         <table class="personal-registration-table">
             <thead>
                 <tr class="personal-row-1">
-                    <th>{{ t('target') }}</th>
-                    <th>{{ t('period') }}</th>
-                    <th>{{ t('fee') }}</th>
+                    <th>{{ t('common.target') }}</th>
+                    <th>{{ t('common.period') }}</th>
+                    <th>{{ t('common.fee') }}</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr>
-                    <td>{{ t('taiwanParticipantsMember') }}</td>
-                    <td>{{ t('fullPeriod') }}</td>
+                    <td>{{ t('common.taiwanParticipantsMember') }}</td>
+                    <td>{{ t('common.fullPeriod') }}</td>
                     <td>NT$1,000</td>
                 </tr>
             </tbody>
             <tbody>
                 <tr>
-                    <td>{{ t('taiwanParticipantsNonMember') }}</td>
-                    <td>{{ t('fullPeriod') }}</td>
+                    <td>{{ t('common.taiwanParticipantsNonMember') }}</td>
+                    <td>{{ t('common.fullPeriod') }}</td>
                     <td>NT$4,000</td>
                 </tr>
             </tbody>
             <tbody>
                 <tr>
-                    <td>{{ t('foreignParticipants') }}</td>
-                    <td>{{ t('earlyBird') }}</td>
+                    <td>{{ t('common.earlyBirdforeignParticipants') }}</td>
+                    <td>{{ t('common.earlyBird') }}</td>
                     <td>US$100</td>
                 </tr>
             </tbody>
             <tbody>
                 <tr>
-                    <td>{{ t('foreignParticipants') }}</td>
-                    <td>{{ t('regularPeriod') }}</td>
+                    <td>{{ t('common.foreignParticipants') }}</td>
+                    <td>{{ t('common.regularPeriod') }}</td>
                     <td>US$150</td>
                 </tr>
             </tbody>
@@ -52,7 +52,7 @@
 
         <div class="btn-section">
             <nuxt-link class="register-btn" to="/login">
-                {{ t('onlineRegistration') }}
+                {{ t('common.onlineRegistration') }}
             </nuxt-link>
         </div>
     </main>

@@ -39,6 +39,12 @@
                             <p>{{ $t('profile') }}</p>
                         </div>
                     </nuxt-link>
+                    <nuxt-link class="select-box" :to="localePath('/abstract')">
+                        <img src="@/assets/img/Online submission-01.svg" alt="">
+                        <div class="label-box">
+                            <p>{{ $t('submission') }}</p>
+                        </div>
+                    </nuxt-link>
                 </div>
 
             </div>
@@ -167,7 +173,7 @@ definePageMeta({
             transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 
             &:hover {
-                background-color: #874757;
+                background-color: $main-color;
                 transform: translateY(-1px);
             }
         }
@@ -218,7 +224,7 @@ definePageMeta({
     }
 
     .select-section {
-        background: url('assets/img/topbs_background-image.jpg') repeat center;
+        background: url('assets/img/background-image.png') repeat center;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -316,7 +322,7 @@ definePageMeta({
             }
 
             &:hover {
-                border: #915aa1 2px solid;
+                border: #537676 2px solid;
                 transform: scale(1.05);
             }
 
