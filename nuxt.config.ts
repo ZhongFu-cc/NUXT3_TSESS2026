@@ -116,10 +116,10 @@ export default defineNuxtConfig({
     lazy: true,
     langDir: 'i18n/locales',
     locales: [
-      { code: 'zh', language: 'zh-TW', file: 'zh-TW.json' },
-      { code: 'en', language: 'en-US', file: 'en-US.json' }
+      { code: 'zh-TW', language: 'zh-TW', files: ['zh-TW/common.json', 'zh-TW/submission.json'] },
+      { code: 'en', language: 'en-US', files: ['en/common.json', 'en/submission.json'] }
     ],
-    defaultLocale: 'zh',
+    defaultLocale: 'zh-TW',
     vueI18n: './i18n.config.ts'
   }
 })

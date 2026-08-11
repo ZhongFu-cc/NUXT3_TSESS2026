@@ -1,28 +1,31 @@
 <template>
     <div class="quick-link-section">
-        <div class="title-box">
-            <div class="title-image-box">
-                <img class="home-banner-bak" src="@/assets/img/Link.svg">
+            <ClientOnly>
+            <div class="title-box">
+                <div class="title-image-box">
+                    <img class="home-banner-bak" src="@/assets/img/Link.svg">
+                </div>
+                <h1 class="title">{{ $t('common.quickLinks') }}</h1>
             </div>
-            <h1 class="title">{{ $t('quickLinks') }}</h1>
+            <div class="link-item-box">
+                <nuxt-link to="/conference-information" class="link-item item1">
+                    <div class="item-image-box">
+                        <img class="link-item" src="@/assets/img/AuditOutlined.svg">
+                    </div>
+                    <div class="link-item-text">{{ $t('common.conferenceInformation') }}</div>
+                </nuxt-link>
+                <nuxt-link to="/registration-fee" class="link-item item3">
+                    <div class="item-image-box">
+                        <img class="link-item" src="@/assets/img/Online registration-01.svg">
+                    </div>
+                    <div class="link-item-text">{{ $t('common.registration') }}</div>
+                </nuxt-link>
+            </div>
+        </ClientOnly>
         </div>
-        <div class="link-item-box">
-            <nuxt-link to="/conference-information" class="link-item item1">
-                <div class="item-image-box">
-                    <img class="link-item" src="@/assets/img/AuditOutlined.svg">
-                </div>
-                <div class="link-item-text">{{ $t('conferenceInformation') }}</div>
-            </nuxt-link>
-            <nuxt-link to="/registration-fee" class="link-item item3">
-                <div class="item-image-box">
-                    <img class="link-item" src="@/assets/img/Online registration-01.svg">
-                </div>
-                <div class="link-item-text">{{ $t('registration') }}</div>
-            </nuxt-link>
-        </div>
-    </div>
 </template>
 <script lang="ts" setup>
+
 </script>
 <style lang="scss" scoped>
 .quick-link-section {

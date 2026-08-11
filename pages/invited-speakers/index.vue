@@ -3,8 +3,8 @@
     <main class="common-section">
       <Banner></Banner>
       <!-- <h1 class="title">Invited Speakers</h1> -->
-      <Breadcrumbs firstRoute="" :secoundRoute="t('invitedSpeaker')"></Breadcrumbs>
-      <Title :title="t('invitedSpeaker')"></Title>
+      <Breadcrumbs firstRoute="" :secoundRoute="t('common.invitedSpeaker')"></Breadcrumbs>
+      <Title :title="t('common.invitedSpeaker')"></Title>
       <div class="content">
         <speaker class="speaker" v-for="item in internationalSpeakers" :speaker="item"></speaker>
       </div>
@@ -84,7 +84,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .common-section {
   // width: $common-section-width;
-  margin: $common-section-margin;
+  // margin: $common-section-margin;
   font-family: $common-section-font-family;
 
   .title {

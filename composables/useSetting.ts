@@ -6,9 +6,9 @@ export const useSetting = () => {
     const fetchSetting = async () => {
         if (setting.value) return;
         try {
-            const res = await CSRrequest.get('/setting')
-            console.log(res.data)
+            const res = await CSRrequest.get('/setting/front')
             setting.value = res.data
+            console.log('Fetched setting:', setting.value)
         } catch (error) {
             console.error('Failed to fetch setting:', error)
         }

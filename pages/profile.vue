@@ -248,7 +248,7 @@ const fillForm = (data: Record<string, any>) => {
 };
 
 const statusText = computed(() => {
-    const statusMap = locale.value === 'zh'
+    const statusMap = locale.value === 'zh-TW'
         ? {
             0: '尚未完成付款',
             1: '付款確認中',
@@ -267,12 +267,12 @@ const statusText = computed(() => {
 
 const statusDescription = computed(() => {
     if (memberInfo.status === 2) {
-        return locale.value === 'zh'
+        return locale.value === 'zh-TW'
             ? '目前帳號狀態正常，可繼續使用投稿、付款與會員功能。'
             : 'Your account is active and ready for submissions, payment, and member services.';
     }
 
-    return locale.value === 'zh'
+    return locale.value === 'zh-TW'
         ? '若資料或付款尚未完成，建議先更新資訊並回到會員中心確認狀態。'
         : 'If your profile or payment is incomplete, please update your information and review your member center status.';
 });

@@ -1,21 +1,22 @@
 <template>
     <div class="common-section">
         <Banner />
+        <Breadcrumb firstRoute="" :secoundRoute="t('common.conferenceInformation')" />
         <div class="main-section">
             <div class="meeting-info">
-                <Title :title="t('conferenceInformation')"></Title>
+                <Title :title="t('common.conferenceInformation')"></Title>
                 <div class="meeting-info-box">
                     <div>
-                        <p class="title">{{ t('conferenceDate') }}:
+                        <p class="title">{{ t('common.conferenceDate') }}:
                         </p>
                         <p class="time">
-                            {{t('startDate')}}
+                            {{t('common.startDate')}}
                         </p>
                         <!-- <p class="time"> -->
                             <!-- {{t('endDate')}} -->
                           <!-- </p> -->
                     </div>
-                    <p><span class="title">{{ t('conferenceLocation') }}:</span>{{ t('location') }}</p>
+                    <p><span class="title">{{ t('common.conferenceLocation') }}:</span>{{ t('common.location') }}</p>
                 </div>
             </div>
 
@@ -57,6 +58,7 @@
 <script setup lang="ts">
 import Title from '@/components/layout/Title.vue';
 import Banner from '@/components/layout/Banner.vue';
+import Breadcrumb from '@/components/layout/Breadcrumbs.vue';
 
 const { t } = useI18n();
 
@@ -113,13 +115,7 @@ onMounted(() => {
 </script>
 <style lang="scss" scoped>
 .common-section {
-    // margin: $common-section-margin;
-    // width: $common-section-width;
     font-family: $common-section-font-family;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
     gap: 2.5rem;
     color: $main-color;
 

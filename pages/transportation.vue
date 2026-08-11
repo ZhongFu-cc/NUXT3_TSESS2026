@@ -2,7 +2,7 @@
     <div class="transportation-section">
         <Banner />
         <div class="main-box">
-            <p class="title"><span class="conference-location">{{ t('conferenceLocation') }}:</span> {{ t('location') }}</p>
+            <p class="title"><span class="conference-location">{{ t('common.conferenceLocation') }}:</span> {{ t('common.location') }}</p>
             <div class="map-box">
                 <iframe
                     src="https://www.google.com/maps?q=%E5%9C%8B%E7%AB%8B%E6%95%85%E5%AE%AE%E5%8D%9A%E7%89%A9%E9%99%A2%E5%8D%97%E9%83%A8%E9%99%A2%E5%8D%80&output=embed"
@@ -15,32 +15,32 @@
                     <div class="image-box">
                         <img src="@/assets/img/icon/transpotation1.svg" alt="">
                     </div>
-                    <h1><span>{{ t('transportationHighSpeedRailTitle') }}</span> <span>{{ t('location') }}</span></h1>
+                    <h1><span>{{ t('common.transportationHighSpeedRailTitle') }}</span> <span>{{ t('common.location') }}</span></h1>
                 </div>
                 <ul class="decimal-list">
 
-                    <li>{{ t('transportationHighSpeedRailBusPlatformTitle') }}
+                    <li>{{ t('common.transportationHighSpeedRailBusPlatformTitle') }}
                         <div class="transportation-content">
-                            <p>{{ t('transportationHighSpeedRailItem1Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=72120&amp;rn=1600672900747&amp;lan=C" target="_blank" rel="noopener noreferrer">7212</a> {{ t('transportationHighSpeedRailItem1After') }}</p>
+                            <p>{{ t('common.transportationHighSpeedRailItem1Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=72120&amp;rn=1600672900747&amp;lan=C" target="_blank" rel="noopener noreferrer">7212</a> {{ t('common.transportationHighSpeedRailItem1After') }}</p>
                         </div>
                     </li>
 
-                    <li>{{ t('transportationHighSpeedRailBusPlatformTitle') }}
+                    <li>{{ t('common.transportationHighSpeedRailBusPlatformTitle') }}
                         <div class="transportation-content">
-                            <p>{{ t('transportationHighSpeedRailItem2Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=07460&amp;rn=1669878703021&amp;lan=C" target="_blank" rel="noopener noreferrer">106</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=01660&amp;rn=1606092456120&amp;lan=C" target="_blank" rel="noopener noreferrer">166</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=72350&amp;rn=1606092408322&amp;lan=C" target="_blank" rel="noopener noreferrer">7235</a> {{ t('transportationHighSpeedRailItem2After') }}</p>
-                            <p>{{ t('transportationHighSpeedRailItem2AltBefore') }} <a class="bus" href="http://www.singing168.com.tw/Y_route7423.html" target="_blank" rel="noopener noreferrer">{{ t('transportationRouteYellow9') }}</a> {{ t('transportationHighSpeedRailItem2AltAfter') }}</p>
+                            <p>{{ t('common.transportationHighSpeedRailItem2Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=07460&amp;rn=1669878703021&amp;lan=C" target="_blank" rel="noopener noreferrer">106</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=01660&amp;rn=1606092456120&amp;lan=C" target="_blank" rel="noopener noreferrer">166</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=72350&amp;rn=1606092408322&amp;lan=C" target="_blank" rel="noopener noreferrer">7235</a> {{ t('transportationHighSpeedRailItem2After') }}</p>
+                            <p>{{ t('common.transportationHighSpeedRailItem2AltBefore') }} <a class="bus" href="http://www.singing168.com.tw/Y_route7423.html" target="_blank" rel="noopener noreferrer">{{ t('common.transportationRouteYellow9') }}</a> {{ t('common.transportationHighSpeedRailItem2AltAfter') }}</p>
                         </div>
                     </li>
 
-                    <li>{{ t('transportationHighSpeedRailBusPlatformTitle') }}
+                    <li>{{ t('common.transportationHighSpeedRailBusPlatformTitle') }}
                         <div class="transportation-content">
-                            <p>{{ t('transportationHighSpeedRailItem3Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=07420&amp;rn=1650354603219&amp;lan=C" target="_blank" rel="noopener noreferrer">105</a> {{ t('transportationHighSpeedRailItem3After') }}</p>
+                            <p>{{ t('common.transportationHighSpeedRailItem3Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=07420&amp;rn=1650354603219&amp;lan=C" target="_blank" rel="noopener noreferrer">105</a> {{ t('common.transportationHighSpeedRailItem3After') }}</p>
                         </div>
                     </li>
 
-                    <li>{{ t('transportationHighSpeedRailShuttleTitle') }}
+                    <li>{{ t('common.transportationHighSpeedRailShuttleTitle') }}
                         <div class="transportation-content">
-                            <p>{{ t('transportationHighSpeedRailShuttleDesc') }}</p>
+                            <p>{{ t('common.transportationHighSpeedRailShuttleDesc') }}</p>
                         </div>
                     </li>
                 </ul>
@@ -50,22 +50,22 @@
                     <div class="image-box">
                         <img src="@/assets/img/icon/transpotation2.svg" alt="">
                     </div>
-                    <h1><span>{{ t('transportationTrainTitle') }}</span> <span>{{ t('location') }}</span></h1>
+                    <h1><span>{{ t('common.transportationTrainTitle') }}</span> <span>{{ t('common.location') }}</span></h1>
 
                 </div>
                 <ul class="decimal-list">
 
-                    <li>{{ t('transportationTrainRearExitTitle') }}
+                    <li>{{ t('common.transportationTrainRearExitTitle') }}
                         <div class="transportation-content">
-                            <p>{{ t('transportationTrainRearExitItem1Before') }} <a class="bus" href="https://south.npm.gov.tw/Uploads/files/BRT7212%E6%99%82%E5%88%BB%E8%A1%A81140124.png" target="_blank" rel="noopener noreferrer">{{ t('transportationTimetable') }}</a>。</p>
-                            <p>{{ t('transportationTrainRearExitItem2') }}</p>
+                            <p>{{ t('common.transportationTrainRearExitItem1Before') }} <a class="bus" href="https://south.npm.gov.tw/Uploads/files/BRT7212%E6%99%82%E5%88%BB%E8%A1%A81140124.png" target="_blank" rel="noopener noreferrer">{{ t('common.transportationTimetable') }}</a>。</p>
+                            <p>{{ t('common.transportationTrainRearExitItem2') }}</p>
                         </div>
                     </li>
 
-                    <li>{{ t('transportationTrainFrontExitTitle') }}
+                    <li>{{ t('common.transportationTrainFrontExitTitle') }}
                         <div class="transportation-content">
-                            <p>{{ t('transportationTrainFrontExitItem1Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=07460&amp;rn=1669878703021&amp;lan=C" target="_blank" rel="noopener noreferrer">106</a> {{ t('transportationTrainFrontExitItem1After') }}</p>
-                            <p>{{ t('transportationTrainFrontExitItem2Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=73030&amp;rn=1630565722539&amp;lan=C" target="_blank" rel="noopener noreferrer">7303</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=73200&amp;rn=1630565799066&amp;lan=C" target="_blank" rel="noopener noreferrer">7320</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=73260&amp;rn=1630565848194&amp;lan=C" target="_blank" rel="noopener noreferrer">7326</a> {{ t('transportationTrainFrontExitItem2After') }}</p>
+                            <p>{{ t('common.transportationTrainFrontExitItem1Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=07460&amp;rn=1669878703021&amp;lan=C" target="_blank" rel="noopener noreferrer">106</a> {{ t('common.transportationTrainFrontExitItem1After') }}</p>
+                            <p>{{ t('common.transportationTrainFrontExitItem2Before') }} <a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=73030&amp;rn=1630565722539&amp;lan=C" target="_blank" rel="noopener noreferrer">7303</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=73200&amp;rn=1630565799066&amp;lan=C" target="_blank" rel="noopener noreferrer">7320</a>、<a class="bus" href="https://www.taiwanbus.tw/eBUSPage/Query/QueryResult.aspx?rno=73260&amp;rn=1630565848194&amp;lan=C" target="_blank" rel="noopener noreferrer">7326</a> {{ t('common.transportationTrainFrontExitItem2After') }}</p>
                         </div>
                     </li>
                 </ul>
@@ -76,23 +76,23 @@
                     <div class="image-box">
                         <img src="@/assets/img/icon/transpotation7.svg" alt="">
                     </div>
-                    <h1>{{ t('transportationDrivingTitle') }}</h1>
+                    <h1>{{ t('common.transportationDrivingTitle') }}</h1>
 
                 </div>
                 <ul class="decimal-list">
-                    <li>{{ t('transportationDrivingItem1Title') }}
+                    <li>{{ t('common.transportationDrivingItem1Title') }}
                         <div class="transportation-content">
-                            <p>{{ t('transportationDrivingItem1Desc') }}</p>
+                            <p>{{ t('common.transportationDrivingItem1Desc') }}</p>
                         </div>
                     </li>
-                    <li>{{ t('transportationDrivingItem2Title') }}
+                    <li>{{ t('common.transportationDrivingItem2Title') }}
                         <div class="transportation-content">
-                            <p>{{ t('transportationDrivingItem2Desc') }}</p>
+                            <p>{{ t('common.transportationDrivingItem2Desc') }}</p>
                         </div>
                     </li>
-                    <li>{{ t('transportationDrivingItem3Title') }}
+                    <li>{{ t('common.transportationDrivingItem3Title') }}
                         <div class="transportation-content">
-                            <p>{{ t('transportationDrivingItem3Desc') }}</p>
+                            <p>{{ t('common.transportationDrivingItem3Desc') }}</p>
                         </div>
                     </li>
                 </ul>
@@ -104,30 +104,30 @@
                     <div class="image-box">
                         <img src="@/assets/img/icon/transpotation6.svg" alt="">
                     </div>
-                    <h1>{{ t('transportationParkingTitle') }}</h1>
+                    <h1>{{ t('common.transportationParkingTitle') }}</h1>
                 </div>
                 <ul class="disc-list">
 
-                    <li>{{ t('transportationParkingItem1Title') }}
+                    <li>{{ t('common.transportationParkingItem1Title') }}
                         <div class="transportation-content">
-                            <p>{{ t('transportationParkingItem1Desc') }}</p>
+                            <p>{{ t('common.transportationParkingItem1Desc') }}</p>
                         </div>
                     </li>
-                    <li>{{ t('transportationParkingItem2Title') }}
+                    <li>{{ t('common.transportationParkingItem2Title') }}
                         <ul>
                             <li>
                                 <div class="transportation-content">
-                                    <p>{{ t('transportationParkingItem2Desc1') }}</p>
+                                    <p>{{ t('common.transportationParkingItem2Desc1') }}</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="transportation-content">
-                                    <p>{{ t('transportationParkingItem2Desc2') }}</p>
+                                    <p>{{ t('common.transportationParkingItem2Desc2') }}</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="transportation-content">
-                                    <p>{{ t('transportationParkingItem2Desc3') }}</p>
+                                    <p>{{ t('common.transportationParkingItem2Desc3') }}</p>
                                 </div>
                             </li>
                         </ul>
@@ -145,8 +145,8 @@
 import Banner from '@/components/layout/Banner.vue';
 const { t } = useI18n();
 useSeoMeta({
-    title: () => t('transportationSeoTitle'),
-    description: () => t('transportationSeoDescription'),
+    title: () => t('common.transportationSeoTitle'),
+    description: () => t('common.transportationSeoDescription'),
     keywords: () => t('transportationSeoKeywords'),
 });
 

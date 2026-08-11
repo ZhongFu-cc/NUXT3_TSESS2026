@@ -39,22 +39,22 @@
                     </div>
                 </el-form-item>
                 <div class="captcha-section">
-                    <el-form-item class="captcha" :label="t('verificationCode')" prop="verificationCode">
+                    <el-form-item class="captcha" :label="t('common.verificationCode')" prop="verificationCode">
                         <el-input v-model="loginInfo.verificationCode" ></el-input>
                     </el-form-item>
                     <div class="captcha-img-section">
-                        <img :src="captcha.image" alt="">
+                        <img :src="captcha.image" alt="" @click="getCaptcha">
                         <el-button class="refresh-btn" @click="getCaptcha"><el-icon>
                                 <ElIconRefreshRight />
                             </el-icon></el-button>
                     </div>
                 </div>
                 <el-form-item class="sign-btn-section">
-                    <el-button class="sign-btn" @click="login(formRef)">{{ t('signIn') }}</el-button>
+                    <el-button class="sign-btn" @click="login(formRef)">{{ t('common.signIn') }}</el-button>
                 </el-form-item>
                 <div class="btn-section">
-                    <p>{{ t('dontHaveAccount') }} &nbsp</p>
-                    <nuxt-link class="sign-text" to="/seminar-registration">{{t('signUp')}}</nuxt-link>
+                    <p>{{ t('common.dontHaveAccount') }} &nbsp</p>
+                    <nuxt-link class="sign-text" to="/seminar-registration">{{t('common.signUp')}}</nuxt-link>
                 </div>
             </el-form>
         </div>
