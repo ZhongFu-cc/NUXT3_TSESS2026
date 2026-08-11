@@ -86,9 +86,7 @@ const captcha = reactive<any>({
 
 const { t, locale } = useI18n();
 console.log('Current locale:', locale.value); // 檢查當前語言環境
-const attendeeType = computed(() => {
-    return locale.value === 'zh-TW' ? 0 : 1;
-});
+const attendeeType = ref<number>(0); // 0: 國內與會者, 1: Oversea Attendee
 // watch(locale, (newLocale) => {
 //     console.log('Language changed to:', newLocale);
 //     attendeeType.value = newLocale === 'zh-TW' ? 0 : 1;
