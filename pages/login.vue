@@ -85,12 +85,14 @@ const captcha = reactive<any>({
 });
 
 const { t, locale } = useI18n();
-
-const attendeeType = ref(0);
-
-watch(locale, (newLocale) => {
-    attendeeType.value = newLocale === 'en' ? 1 : 0;
+console.log('Current locale:', locale.value); // 檢查當前語言環境
+const attendeeType = computed(() => {
+    return locale.value === 'zh-TW' ? 0 : 1;
 });
+// watch(locale, (newLocale) => {
+//     console.log('Language changed to:', newLocale);
+//     attendeeType.value = newLocale === 'zh-TW' ? 0 : 1;
+// });
 
 const getCaptcha = async () => {
     let res = await CSRrequest.get('/member/captcha');
@@ -180,7 +182,7 @@ onMounted(() => {
     window.addEventListener('resize', setFormLabelPosotion);
 
     nextTick(() => {
-        attendeeType.value = localStorage.getItem('lang') === 'en' ? 1 : 0;
+        // attendeeType.value = localStorage.getItem('lang') === 'en' ? 1 : 0;
     })
 });
 
