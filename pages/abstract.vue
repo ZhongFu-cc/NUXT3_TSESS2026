@@ -4,16 +4,16 @@
         <Breadcrumbs firstRoute="Member" secoundRoute="Abstract" />
         <Title title="Abstract" />
 
-        <!-- <div class="paper-section">
+        <div class="paper-section">
             <div class="paper-table-box">
                 <table class="paper-table">
                     <thead>
                         <tr class="table-header">
-                            <th v-if="isShowAll">{{ $t('type') }}</th>
-                            <th>{{ $t('abstractTitle') }}</th>
-                            <th v-if="isShowAll">{{ $t('firstAuthor') }}</th>
-                            <th>{{ $t('status') }}</th>
-                            <th>{{ $t('action') }}</th>
+                            <th v-if="isShowAll">{{ $t('common.type') }}</th>
+                            <th>{{ $t('common.abstractTitle') }}</th>
+                            <th v-if="isShowAll">{{ $t('common.firstAuthor') }}</th>
+                            <th>{{ $t('common.status') }}</th>
+                            <th>{{ $t('common.action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,21 +23,21 @@
                             <td class="paper-title" :class="!isShowAll ? 'first-col' : ''">{{ paper.absTitle }}</td>
                             <td v-if="isShowAll">{{ paper.firstAuthor }}</td>
                             <td>
-                                <span v-if="paper.status === 1" class="status-accepted">{{ $t('accepted') }}</span>
-                                <span v-else-if="paper.status === 2" class="status-rejected">{{ $t('rejected') }}</span>
+                                <span v-if="paper.status === 1" class="status-accepted">{{ $t('common.accepted') }}</span>
+                                <span v-else-if="paper.status === 2" class="status-rejected">{{ $t('common.rejected') }}</span>
                             </td>
                             <td class="last-col">
                                 <div class="action-wrapper">
                                     <el-button v-if="!isDisabled && paper.status === 0" link class="edit-btn"
                                         @click='headToEditPaper(paper)'>{{
-                                            $t('edit') }}</el-button>
+                                            $t('common.edit') }}</el-button>
                                     <el-button link class="see-more-btn" @click='toggleSeeMore(paper)'>{{
-                                        $t('view') }}</el-button>
+                                        $t('common.view') }}</el-button>
                                     <el-button v-if="!isDisabled && paper.status === 0" link class="see-more-btn"
                                         @click='deletePaper(paper)'>{{
-                                            $t('delete') }}</el-button>
+                                            $t('common.delete') }}</el-button>
                                     <el-button v-if="paper.status === 1 && !isUploadDisabled" link class="see-more-btn"
-                                        @click="headToUploadFile(paper)">{{ $t('upload') }}</el-button>
+                                        @click="headToUploadFile(paper)">{{ $t('common.upload') }}</el-button>
                                 </div>
                             </td>
                         </tr>
@@ -45,9 +45,9 @@
                 </table>
             </div>
             <el-button class="go-submit-btn" :disabled="isDisabled" @click="headToSubmit">
-                {{ $t('abstractSubmission') }}
+                {{ $t('common.abstractSubmission') }}
             </el-button>
-        </div> -->
+        </div>
 
 
         <el-dialog class="paper-info" v-model="isOpen" :width="dialogWidth">
@@ -63,93 +63,96 @@
                         <td>{{ paperInfo.publicationNumber }}</td>
                     </tr>
                 </tbody>
+                <!-- 發表方式 -->
                 <tbody>
                     <tr v-if="paperInfo.presentationType">
-                        <td class="column-name">Presentation Type</td>
+                        <td class="column-name">{{ $t('common.presentationType') }}</td>
                         <td>{{ paperInfo.presentationType }}</td>
                     </tr>
                 </tbody>
+                <!-- 發表時間 -->
                 <tbody>
                     <tr v-if="paperInfo.reportTime">
-                        <td class="column-name">Report Time</td>
+                        <td class="column-name">{{ $t('common.reportTime') }}</td>
                         <td>{{ paperInfo.reportTime }}</td>
                     </tr>
                 </tbody>
+                <!-- 發表地點 -->
                 <tbody>
                     <tr v-if="paperInfo.reportLocation">
-                        <td class="column-name">Report Location</td>
+                        <td class="column-name">{{ $t('common.reportLocation') }}</td>
                         <td>{{ paperInfo.reportLocation }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('abstractType') }}</td>
+                        <td class="column-name">{{ $t('common.abstractType') }}</td>
                         <td>{{ paperInfo.absType }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('abstractTitle') }}</td>
+                        <td class="column-name">{{ $t('common.abstractTitle') }}</td>
                         <td>{{ paperInfo.absTitle }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('firstAuthor') }}</td>
+                        <td class="column-name">{{ $t('common.firstAuthor') }}</td>
                         <td>{{ paperInfo.firstAuthor }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr v-if="paperInfo.absType === 'Young Investigator'">
-                        <td class="column-name">{{ $t('firstAuthorBirthday') }}</td>
+                        <td class="column-name">{{ $t('common.firstAuthorBirthday') }}</td>
                         <td>{{ paperInfo.firstAuthorBirthday }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('speaker') }}</td>
+                        <td class="column-name">{{ $t('common.speaker') }}</td>
                         <td>{{ paperInfo.speaker }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('speakerAffiliation') }}</td>
+                        <td class="column-name">{{ $t('common.speakerAffiliation') }}</td>
                         <td>{{ paperInfo.speakerAffiliation }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('correspondingAuthor') }}</td>
+                        <td class="column-name">{{ $t('common.correspondingAuthor') }}</td>
                         <td>{{ paperInfo.correspondingAuthor }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('correspondingAuthorMail') }}</td>
+                        <td class="column-name">{{ $t('common.correspondingAuthorMail') }}</td>
                         <td>{{ paperInfo.correspondingAuthorEmail }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('correspondingAuthorPhone') }}</td>
+                        <td class="column-name">{{ $t('common.correspondingAuthorPhone') }}</td>
                         <td>{{ paperInfo.correspondingAuthorPhone }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('allAuthors') }}</td>
+                        <td class="column-name">{{ $t('common.allAuthors') }}</td>
                         <td>{{ paperInfo.allAuthor }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('allAuthorsAffiliation') }}</td>
+                        <td class="column-name">{{ $t('common.allAuthorsAffiliation') }}</td>
                         <td>{{ paperInfo.allAuthorAffiliation }}</td>
                     </tr>
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('abstractFile') }}</td>
+                        <td class="column-name">{{ $t('common.abstractFile') }}</td>
                         <td v-if="envMinio + paperInfo.FileUpload">
                             <a class="preview-link" :href="envMinio + paperInfo.paperFileUpload[0].path"
                                 target="_blank">Preview</a>
@@ -158,10 +161,10 @@
                 </tbody>
                 <tbody>
                     <tr>
-                        <td class="column-name">{{ $t('abstractStatus') }}</td>
+                        <td class="column-name">{{ $t('common.abstractStatus') }}</td>
                         <td v-if="paperInfo.status">
-                            <span v-if="paperInfo.status === 1" class="status-accepted">{{ $t('accepted') }}</span>
-                            <span v-else-if="paperInfo.status === 2" class="stat s-rejected">{{ $t('rejected') }}</span>
+                            <span v-if="paperInfo.status === 1" class="status-accepted">{{ $t('common.accepted') }}</span>
+                            <span v-else-if="paperInfo.status === 2" class="stat s-rejected">{{ $t('common.rejected') }}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -313,7 +316,7 @@ onMounted(async () => {
     .paper-section {
         width: 100%;
         margin: 2rem auto;
-        background: url('assets/img/topbs_background-image.jpg') center center;
+        background: url('assets/img/background-image.png') center center;
         padding: 3rem 0;
 
     }
@@ -415,7 +418,7 @@ onMounted(async () => {
 
             .even {
                 td {
-                    background-color: #E8979E;
+                    background-color: $main-color;
                     color: white;
                     font-weight: bold;
                 }
@@ -648,7 +651,7 @@ onMounted(async () => {
         width: 20%;
         margin: 2rem auto;
         display: block;
-        background-color: #E8979E;
+        background-color: $main-color;
         color: white;
         border-radius: 5px;
 

@@ -1,21 +1,44 @@
 <template>
-    <div class="key-date-section">
+  <ClientOnly>
+      <div class="key-date-section">
         <div class="title-box">
             <div class="title-text-box">
                 <div class="title-image-box">
                     <img class="home-banner-bak" src="@/assets/img/CalendarHeatMap.svg">
                 </div>
-                <h1 class="title">{{ $t('keyDates') }}</h1>
+                <h1 class="title">{{ $t('common.keyDates') }}</h1>
             </div>
         </div>
 
         <ul class="key-date-item-box">
             <li class="key-date-item">
                 <div class="key-date-info">
-                    <p class="date-box"><span>5</span><span class="month">{{ $t('dec') }}<span
+                    <p class="date-box"><span>1</span><span class="month">{{ $t('common.sep') }}<span
                                 class="year">2026</span></span>
                     </p>
-                    <p class="info">{{ $t('keyDate1') }}</p>
+                    <p class="info">{{ $t('common.keyDate2') }}</p>
+                </div>
+                <a class="key-date-link" href="https://evt.to/zhxxqd2dy2hg" target="_blank">
+                    <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
+                </a>
+            </li>
+            <li class="key-date-item">
+                <div class="key-date-info">
+                    <p class="date-box"><span>1</span><span class="month">{{ $t('common.nov') }}<span
+                                class="year">2026</span></span>
+                    </p>
+                    <p class="info">{{ $t('submission.submissionDeadlineStage') }}</p>
+                </div>
+                <a class="key-date-link" href="https://evt.to/0h80ht9jr8k4" target="_blank">
+                    <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
+                </a>
+            </li>
+            <li class="key-date-item">
+                <div class="key-date-info">
+                    <p class="date-box"><span>5</span><span class="month">{{ $t('common.dec') }}<span
+                                class="year">2026</span></span>
+                    </p>
+                    <p class="info">{{ $t('common.keyDate1') }}</p>
                 </div>
                 <a class="key-date-link" href="https://evt.to/xxz8k0hxq1lv" target="_blank">
                     <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
@@ -47,6 +70,7 @@
             </li> -->
         </ul>
     </div>
+  </ClientOnly>
 </template>
 <script lang="ts" setup></script>
 <style lang="scss" scoped>

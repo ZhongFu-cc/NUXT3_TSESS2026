@@ -3,145 +3,161 @@
         <main class="common-section">
             <Banner />
             <div class="main-section">
-                <div class="credit-box">
-                    <!-- <div class="credit-point-box">
-                        <ul>
-                            <Title title="研討會申請之會議學分(申請中)"></Title>
-                            <li>(1)台灣乳房醫學會 <span class="score"></span></li>
-                            <li>(2)台灣外科醫學會 <span class="score"></span></li>
-                            <li>(3)社團法人臨床藥學會 藥師<span class="score"></span></li>
-                            <li>(4)台灣專科護理師學會
-                                <ul>
-                                    <li>(1)專科護理師 <span class="score"></span></li>
-                                    <li>(2)護理師 <span class="score"></span></li>
-                                </ul>
-                            </li>
-                            <li>(5)中華民國癌症醫學會
-                                <ul>
-                                    <li>(1)腫瘤內科 <span class="score"></span></li>
-                                    <li>(2)腫瘤外科 <span class="score"></span></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div> -->
-                </div>
-
-                <Title :title="$t('onlineRegistration')"></Title>
-                <!-- <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
+                <Title :title="$t('common.registration')"></Title>
+                <!-- <RegistrationFee></RegistrationFee> -->
+                <el-form :model="formData" class="form" ref="form" :rules="formRules" labelPosition="top"
                     require-asterisk-position="right" :show-message="true" :scroll-to-error="true"
                     :validate-on-rule-change="false">
-                    <div class="reminder">
-                        <p>* {{ t('registrationInfo1') }}</p>
-                        <p>* {{ t('registrationInfo2') }}</p>
+                    <div class="registration-notice">
+                        <p>{{ t('common.registrationReminder') }}</p>
+                        <!-- <p v-if="formData.country === 'Taiwan'">若未填寫匯款帳號末五碼請於註冊完成後補填。</p> -->
                     </div>
-                    <el-card class="form-card">
-                        <div class="main-form">
+
+                    <div class="main-form">
+                        <ClientOnly>
                             <div class="left-seciton">
-                                <el-form-item :label="$t('country')" :prop="country">
+                                <el-form-item :label="t('common.country')" prop="country">
                                     <el-select v-model="formData.country" placeholder="Select Country" filterable>
-                                        <el-option v-for="item in country" :key="item" :label="item" :value="item">
-                                        </el-option>
+                                        <el-option v-for="country in countryList" :key="country" :label="country"
+                                            :value="country"></el-option>
                                     </el-select>
                                 </el-form-item>
 
-                                <el-form-item :label="$t('chineseName')" :prop="'chineseName'">
+                                <el-form-item :label="t('common.chineseName')" :prop="'chineseName'"
+                                    :style="{ order: getOrder('chineseName') }">
                                     <el-input v-model="formData.chineseName"
-                                        :placeholder="$t('chineseName')"></el-input>
+                                        :placeholder="t('common.chineseName')"></el-input>
                                 </el-form-item>
 
-                                <div class="member-name">
-                                    <el-form-item class="first-name" required :label="$t('firstName')" prop="firstName">
+                                <div class="member-name" :style="{ order: getOrder('englishName') }">
+                                    <el-form-item class="first-name" required :label="t('common.firstName')"
+                                        prop="firstName">
                                         <el-input v-model="formData.firstName"
-                                            :placeholder="$t('firstName')"></el-input>
+                                            :placeholder="t('common.firstName')"></el-input>
                                     </el-form-item>
-                                    <el-form-item class="last-name" required :label="$t('lastName')" prop="lastName">
-                                        <el-input v-model="formData.lastName" :placeholder="$t('lastName')"></el-input>
+                                    <el-form-item class="last-name" required :label="t('common.lastName')"
+                                        prop="lastName">
+                                        <el-input v-model="formData.lastName"
+                                            :placeholder="t('common.lastName')"></el-input>
                                     </el-form-item>
 
                                 </div>
 
-                                <el-form-item class="email required" :label="$t('email')" prop="email">
-                                    <el-input v-model="formData.email" :placeholder="$t('email')"
+
+                                <el-form-item :label="t('common.idCard')" prop="idCard"
+                                    :style="{ order: getOrder('idCard') }">
+                                    <el-input v-model="formData.idCard" :placeholder="t('common.idCard')"></el-input>
+                                </el-form-item>
+
+
+
+                                <el-form-item :label="t('common.password')" prop="password"
+                                    :style="{ order: getOrder('password') }">
+                                    <el-input v-model="formData.password" type="password"
+                                        :placeholder="t('common.password')"></el-input>
+                                </el-form-item>
+
+                                <el-form-item :label="t('common.confirmPassword')" prop="confirmPassword"
+                                    :style="{ order: getOrder('confirmPassword') }">
+                                    <el-input v-model="formData.confirmPassword" type="password"
+                                        :placeholder="t('common.confirmPassword')"></el-input>
+                                </el-form-item>
+                                <el-form-item class="email required" :label="t('common.email')" prop="email"
+                                    :style="{ order: getOrder('email') }">
+                                    <el-input v-model="formData.email" :placeholder="t('common.email2')"
                                         :prefixIcon="Message"></el-input>
                                 </el-form-item>
 
-                                <el-form-item class="email required" :label="$t('confirmEmail')" required
-                                    prop="confirmEmail">
-                                    <el-input v-model="formData.confirmEmail" :placeholder="$t('confirmEmail')"
+                                <el-form-item class="email required" :label="t('common.email2')" required
+                                    prop="confirmEmail" :style="{ order: getOrder('confirmEmail') }">
+                                    <el-input v-model="formData.confirmEmail" :placeholder="t('common.email2')"
                                         :prefixIcon="Message"></el-input>
                                 </el-form-item>
-
-                                <el-form-item class="required" :label="$t('password')" prop="password">
-                                    <el-input v-model="formData.password" type="password" show-password
-                                        :prefix-icon="Lock" :placeholder="$t('password')"></el-input>
-                                </el-form-item>
-
-                                <el-form-item class="required" :label="$t('confirmPassword')" prop="confirmPassword">
-                                    <el-input v-model="formData.confirmPassword" type="password" show-password
-                                        :prefix-icon="Lock" :placeholder="$t('confirmPassword')"></el-input>
-                                </el-form-item>
-
-
 
 
                             </div>
                             <div class="right-section">
-
-                                <el-form-item class="required" :label="$t('idCard')" prop="idCard">
-                                    <el-input v-model="formData.idCard" :placeholder="$t('idCard')" maxlength="10"
-                                        clearable></el-input>
-                                </el-form-item>
-
-                                <el-form-item class="required" :label="$t('affiliation')" prop="affiliation">
+                                <el-form-item class="required" :label="t('common.affiliation')" prop="affiliation">
                                     <el-input v-model="formData.affiliation"
-                                        :placeholder="$t('affiliation')"></el-input>
+                                        :placeholder="t('common.affiliation')"></el-input>
+                                </el-form-item>
+                                <!-- <el-form-item v-if="formData.country !== 'Taiwan'" :label="t('idCard')" prop="idCard">
+                                    <el-input v-model="formData.idCard" :placeholder="t('idCard')"></el-input>
+                                </el-form-item> -->
+
+                                <el-form-item class="required" :label="t('common.jobTitle')" prop="jobTitle">
+                                    <el-input v-model="formData.jobTitle"
+                                        :placeholder="t('common.jobTitle')"></el-input>
                                 </el-form-item>
 
-                                <el-form-item class="required" :label="$t('jobTitle')" prop="jobTitle">
-                                    <el-input v-model="formData.jobTitle" :placeholder="$t('jobTitle')"></el-input>
-                                </el-form-item>
+
+                                <!-- <el-form-item v-if="formData.country === 'Taiwan'" :label="t('remitAccountLast5')"
+                                    prop="remitAccountLast5">
+                                    <el-input minlength="5" maxlength="5" v-model="formData.remitAccountLast5"
+                                        :placeholder="t('remitAccountLast5')"></el-input>
+                                </el-form-item> -->
+
+                                <!-- <el-form-item v-if="formData.country === 'Taiwan'" :label="t('receipt')" prop="receipt">
+                                    <el-input v-model="formData.receipt" :placeholder="t('receipt')"></el-input>
+                                </el-form-item> -->
+
 
                                 <div class="member-phone required">
-                                    <el-form-item class="country-code" :label="$t('phoneNum')" prop="countryCode">
+                                    <el-form-item class="country-code" :label="t('common.phoneNum')" prop="countryCode">
                                         <div class="country-code-inner">
-                                            <el-input v-model="formData.countryCode"
-                                                :placeholder="$t('countryCode')"></el-input>
+                                            <el-input :disabled="formData.country === 'Taiwan'"
+                                                v-model="formData.countryCode" placeholder="Country Code"></el-input>
                                             <span>-</span>
                                         </div>
                                     </el-form-item>
-                                    <el-form-item :class="lang === 'zh' ? 'domestic-phone-num' : 'oversea-phone-num'"
-                                        :label="$t('phoneNum')" prop="phoneNum">
-                                        <el-input v-model="formData.phoneNum" :placeholder="$t('phoneNum')"></el-input>
+                                    <el-form-item
+                                        :class="locale === 'zh-TW' ? 'domestic-phone-num' : 'oversea-phone-num'"
+                                        :label="t('common.phoneNum')" prop="phoneNum">
+                                        <el-input v-model="formData.phoneNum"></el-input>
                                     </el-form-item>
                                 </div>
 
-                                <el-form-item :label="$t('food')">
+                                <el-form-item :label="t('common.food')" prop="food">
                                     <el-radio-group v-model="formData.food">
-                                        <el-radio value="葷">{{ $t('foodRadio1') }}</el-radio>
-                                        <el-radio value="素">{{ $t('foodRadio2') }}</el-radio>
+                                        <el-radio value="葷">{{ t('common.foodRadio1') }}</el-radio>
+                                        <el-radio value="素">{{ t('common.foodRadio2') }}</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
-                                <el-form-item :label="$t('foodTaboo')">
-                                    <el-input v-model="formData.foodTaboo" :placeholder="$t('foodTaboo')"></el-input>
+                                <el-form-item :label="t('common.foodTaboo')" prop="foodTaboo">
+                                    <el-input v-model="formData.foodTaboo"></el-input>
                                 </el-form-item>
 
+                                <el-form-item :label="t('common.category')" prop="category">
+                                    <el-select v-model="formData.category">
+                                        <el-option :label="t('common.category1')" :value="1"></el-option>
+                                        <el-option :label="t('common.category2')" :value="2"></el-option>
+                                        <!-- <el-option :label="t('category3')" :value="3"></el-option> -->
+                                    </el-select>
+                                </el-form-item>
+                                <el-form-item v-if="formData.category === 1" prop="organizationNumber"
+                                    :label="t('common.organizationNumber')">
+                                    <el-input v-model="formData.organizationNumber" class="organization-number"
+                                        :placeholder="t('common.organizationNumber')">
+                                    </el-input>
+                                </el-form-item>
+
+
                             </div>
+                        </ClientOnly>
+                    </div>
+                    <el-form-item class="captcha" prop="captcha">
+                        <el-input v-model="formData.verificationCode" :placeholder="t('common.captcha')"></el-input>
+                        <div class="captcha-img">
+                            <img :src="captchaData.image" alt="captcha">
+                            <el-button class="refresh-btn" @click="getCaptcha"><el-icon>
+                                    <ElIconRefreshRight />
+                                </el-icon></el-button>
                         </div>
-                        <el-form-item class="captcha" prop="captcha">
-                            <el-input v-model="formData.verificationCode" :placeholder="$t('captcha')"></el-input>
-                            <div class="captcha-img">
-                                <img :src="captchaData.image" :alt="$t('captcha')">
-                                <el-button class="refresh-btn" @click="getCaptcha"><el-icon>
-                                        <ElIconRefreshRight />
-                                    </el-icon></el-button>
-                            </div>
-                        </el-form-item>
-                        <el-form-item class="submit-btn">
-                            <el-button :disabled="isDisableSubmit" type="primary" @click="submit(form)">{{ $t('submit')
-                            }}</el-button>
-                        </el-form-item>
-                    </el-card>
-                </el-form> -->
+                    </el-form-item>
+                    <el-form-item class="submit-btn">
+                        <el-button type="primary" :disabled="isFormLocked" @click="submit(form)">{{ t('common.submit') }}</el-button>
+                    </el-form-item>
+                </el-form>
             </div>
         </main>
 
@@ -152,30 +168,82 @@
 
 import type { FormInstance, FormRules } from 'element-plus'
 import { Lock, Message } from '@element-plus/icons-vue'
-
 import Banner from '@/components/layout/Banner.vue';
 import Title from '@/components/layout/Title.vue';
-
 import countries from '@/assets/data/countries.json'
 
-const { t } = useI18n();
-
-const country = ref(countries);
-const { setting, fetchSetting } = useSetting()
-console.log('setting', setting.value)
-
 useSeoMeta({
-    title: '註冊資訊',
-    description: '註冊即將舉行的乳癌手術與重建研討會。加入我們，向領先專家學習，與同行交流，並掌握乳癌治療的最新進展。',
-    keywords: 'seminar registration, TSESS, TSESS, TSESS2026, TSESS2026, 註冊資訊, 台中國際乳癌研討會 , 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會, 學分資訊, 報名資訊',
-});
-
-const lang = ref('')
+    title: 'Registration - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
+    description: 'Explore the registration details for the TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society. Find information on personal , early-bird discounts, and payment methods.',
+    keywords: 'Registration,TOPBS,TOPBS 2026,2026 TOPBS'
+})
 
 
+const { t, locale } = useI18n()
+const countryList = ref(countries);
 const router = useRouter()
+const { isLogin } = useAuth()
 
 /**-------------------------------匯款帳號末5碼校驗----------------------------- */
+
+
+const validateRemitAccount = (rule: any, value: string, callback: any) => {
+    if (!value) {
+        callback()
+    } else if (value.length !== 5) {
+        callback(new Error(t('common.remitAccountLast5Validate2')))
+    } else if (!/^\d{5}$/.test(value)) {
+        callback(new Error(t('common.remitAccountLast5Validate2')))
+    }
+    else {
+        callback()
+    }
+}
+
+const validateChineseName = (rule: any, value: string, callback: any) => {
+    if (formData.country === 'Taiwan' && !value) {
+        callback(new Error(t('common.pleaseEnterChineseName')))
+    }
+    else {
+        callback()
+    }
+}
+
+const cleanRemitAccount = () => {
+    formData.remitAccountLast5 = ''
+}
+
+const getOrder = (field: string): number => {
+    const country = formData.country;
+
+    const sequence: Record<'Taiwan' | 'Other', Record<string, number>> = {
+        'Taiwan': {
+            'chineseName': 1,
+            'englishName': 2,
+            'idCard': 3,
+            'password': 4,
+            'confirmPassword': 5,
+            'email': 6,
+            'confirmEmail': 7,
+            'affiliation': 8,
+        },
+        'Other': {
+            'englishName': 1,
+            'chineseName': 2,
+            'email': 3,
+            'confirmEmail': 4,
+            'password': 5,
+            'confirmPassword': 6,
+            'idCard': 7,
+            'affiliation': 8,
+        }
+    }
+
+    const countryKey: 'Taiwan' | 'Other' = country === 'Taiwan' ? 'Taiwan' : 'Other';
+    const contryConfig = sequence[countryKey];
+
+    return contryConfig[field] || 0;
+}
 
 const codeMap: Record<string, number> = {
     A: 10,
@@ -206,22 +274,27 @@ const codeMap: Record<string, number> = {
     Z: 33,
 };
 
+const value1 = ref()
+const value2 = ref()
+const value3 = ref()
+const workshopCodes = ref<string[]>([])
+
 const checkCkDigit = (rule: any, value: string, callback: any) => {
     if (formData.country !== 'Taiwan') {
-        callback();
-        return;
+        callback()
+        return
     }
-    if (!value) callback(new Error('請輸入身分證字號'))
-    if (value) {
+    if (!value) callback(new Error(t('common.idCardValidate')))
+    if (value && formData.country === 'Taiwan') {
         console.log('checkCkDigit', value)
 
         if (!/^[A-Z][0-9]{9}$/.test(value)) {
-            callback({ valid: false, message: "身份證格式不正確" });
+            callback({ valid: false, message: t('common.idCardValidate2') });
         }
 
         const placeCode = codeMap[value[0]];
         if (!placeCode) {
-            callback({ valid: false, message: "首碼無效" });
+            callback({ valid: false, message: t('common.idCardValidate2') });
         }
 
         const bodyCode = value.substring(1, 9);
@@ -239,10 +312,12 @@ const checkCkDigit = (rule: any, value: string, callback: any) => {
             calHead(placeCode) + calBody(bodyCode) + parseInt(lastCode) * 1;
         const isValid = idSum % 10 === 0;
         if (!isValid) {
-            callback({ valid: false, message: "身分證號不合法" });
+            callback({ valid: false, message: t('common.idCardValidate2') });
         } else {
             callback();
         }
+    } else {
+        callback();
     }
 
 
@@ -259,12 +334,14 @@ const captchaData = reactive({
 
 
 const getCaptcha = async () => {
-    console.log('getCaptcha')
     let res = await CSRrequest.get('/member/captcha')
     console.log(res)
     Object.assign(captchaData, res.data)
     formData.verificationKey = captchaData.key
 }
+
+
+
 
 
 
@@ -292,7 +369,13 @@ interface formData {
     foodTaboo: string,
     categoryExtra: string,
     verificationCode: string,
-    verificationKey: string
+    verificationKey: string,
+    professionalNumber: string,
+    organizationNumber: string,
+    workshopCodes: string[],
+    value1?: string,
+    value2?: string,
+    value3?: string
 }
 
 const form = ref<FormInstance>()
@@ -320,15 +403,29 @@ const formData = reactive<formData>({
     foodTaboo: '',
     categoryExtra: '',
     verificationCode: '',
-    verificationKey: ''
+    verificationKey: '',
+    professionalNumber: '',
+    organizationNumber: '',
+    workshopCodes: [],
+    value1: undefined,
+    value2: undefined,
+    value3: undefined
 })
 
 
+/**---------------------- */
+
+const cleanCategoryExtra = (item: any) => {
+    item.categoryExtra = ''
+}
+
+
 const vaildConfirmPassword = (rule: any, value: string, callback: any) => {
+
     if (!value) {
-        callback(new Error(t('confirmPasswordValidate')))
+        callback(new Error(t('common.confirmPasswordValidate')))
     } else if (value !== formData.password) {
-        callback(new Error(t('confirmPasswordValidateNotMatch')))
+        callback(new Error(t('common.confirmPasswordValidate2')))
     } else {
         callback()
     }
@@ -336,11 +433,10 @@ const vaildConfirmPassword = (rule: any, value: string, callback: any) => {
 
 
 const checkEmail = (rule: any, value: string, callback: any) => {
-    console.log('checkEmail', value, formData.email)
     if (!value) {
-        callback(new Error(t('confirmEmailValidate')))
+        callback(new Error(t('common.confirmEmail')))
     } else if (value !== formData.email) {
-        callback(new Error(t('confirmEmailValidateNotMatch')))
+        callback(new Error(t('common.confirmEmailValidate')))
     } else {
         callback()
     }
@@ -348,93 +444,131 @@ const checkEmail = (rule: any, value: string, callback: any) => {
 
 
 const formRules = computed<FormRules>(() => ({
-    title: [{ required: true, message: t('titleValidate'), trigger: 'change' }],
-    firstName: [{ required: true, message: t('firstNameValidate'), trigger: 'blur' }],
-    lastName: [{ required: true, message: t('lastNameValidate'), trigger: 'blur' }],
-    email: [{ required: true, message: t('emailValidate'), trigger: 'blur' }, { type: 'email', message: t('emailValidateFormat'), trigger: 'blur' }],
+    title: [{ required: true, message: t('common.titleValidate'), trigger: 'change' }],
+    firstName: [{ required: true, message: t('common.firstNameValidate'), trigger: 'blur' }],
+    lastName: [{ required: true, message: t('common.lastNameValidate'), trigger: 'blur' }],
+    email: [{ required: true, message: t('common.emailValidate'), trigger: 'blur' }, { type: 'email', message: t('common.emailValidate2'), trigger: 'blur' }],
     confirmEmail: [{ validator: checkEmail, trigger: 'blur' }],
-    password: [{ required: true, message: t('passwordValidate'), trigger: 'blur' }],
-    chineseName: [{ required: formData.country === 'Taiwan', message: t('chineseNameValidate'), trigger: 'blur' }],
-    confirmPassword: [{ validator: vaildConfirmPassword, trigger: 'blur' }],
-    affiliation: [{ required: true, message: t('affiliationValidate'), trigger: 'blur' }],
-    jobTitle: [{ required: true, message: t('jobTitleValidate'), trigger: 'blur' }],
+    password: [{ required: true, message: t('common.passwordValidate'), trigger: 'blur' }],
+    chineseName: [{ required: formData.country === 'Taiwan', message: t('common.chineseNameValidate'), trigger: 'blur' }],
+    confirmPassword: [{ required: true, validator: vaildConfirmPassword, trigger: 'blur' }],
+    affiliation: [{ required: true, message: t('common.affiliationValidate'), trigger: 'blur' }],
+    jobTitle: [{ required: true, message: t('common.jobTitleValidate'), trigger: 'blur' }],
     idCard: [{ required: formData.country === 'Taiwan', validator: checkCkDigit, trigger: 'blur' }],
-    country: [{ required: true, message: t('countryValidate'), trigger: 'change' }],
-    countryCode: [{ required: true, message: t('countryCodeValidate'), trigger: 'blur' }],
-    phoneNum: [{ required: true, message: t('phoneNumValidate'), trigger: 'blur' }],
-    category: [{ required: true, message: t('categoryValidate'), trigger: 'change' }],
+    country: [{ required: true, message: t('common.countryValidate'), trigger: 'change' }],
+    countryCode: [{ required: true, message: t('common.countryCodeValidate'), trigger: 'blur' }],
+    phoneNum: [{ required: true, message: t('common.phoneNumValidate'), trigger: 'blur' }],
+    category: [{ required: true, message: t('common.categoryValidate'), trigger: 'change' }],
+    remitAccountLast5: [{ required: false, validator: validateRemitAccount, trigger: 'blur' }],
+    organizationNumber: [{ required: formData.category === 1, message: t('common.organizationNumberValidate'), trigger: 'blur' }],
 }))
 
+const getWorkshopName = (code?: string) => {
+    switch (code) {
+        case 'WSA001':
+            return '場次A'
+        case 'WSB001':
+            return '場次B'
+        case 'WSA002':
+            return '場次A'
+        case 'WSB002':
+            return '場次B'
+        case 'MAIN':
+            return '主會議'
+        default:
+            return '不參加'
+    }
+}
 
 
 const submit = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
     formEl.validate(async (valid) => {
         if (valid) {
-            formData.phone = formData.countryCode + '-' + formData.phoneNum
+            formData.phone = formData.countryCode + '-' + formData.phoneNum;
             let res = await CSRrequest.post('/member', {
                 body: formData
             })
-
             if (res.code === 500) {
                 getCaptcha()
                 formData.verificationCode = ''
                 ElNotification.error({
-                    title: 'Error',
+                    title: 'Failed',
                     message: res.msg,
-                })
+                    type: 'error',
+                    duration: 3000,
+                });
+
             }
 
             if (res.data.isLogin) {
-                localStorage.setItem(res.data.tokenName, res.data.tokenValue);
+                localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
                 ElNotification.success({
                     title: 'Success',
-                    message: '註冊成功',
-                })
+                    message: t('common.registrationSuccess'),
+                    type: 'success',
+                    duration: 3000,
+                });
+                useAuth().checkLoginState();
 
-                router.push('/')
+                router.push('/member-center');
             }
 
             formEl.resetFields()
         } else {
-            ElNotification.error({
-                title: 'Error',
-                message: '請檢查表單是否填寫正確',
-            })
+            console.log('error submit!!')
             return false;
         }
     })
 }
 
-
-const isDisableSubmit = computed(() => {
-    if (!setting.value) return true
-    const today = new Date().getTime();
-    const deadline = new Date(setting.value.lastRegistrationTime).getTime();
-    if (today > deadline) {
-        ElNotification.warning({
-            title: 'Warning',
-            message: t('registrationDeadlineEnd'),
-        })
+const listenKeydown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+        submit(form.value)
     }
-    return today > deadline
-})
+}
+
+const { setting, fetchSetting } = useSetting();
+watch(() => setting.value, () => {
+    if (setting.value && !setting.value.isRegistrationOpen) {
+        // router.push("/registration-fee");
+        ElNotification({
+            title: 'Notice',
+            message: t('common.registrationClosed'),
+            type: 'warning',
+            duration: 5000
+        });
+    }
+}, { immediate: true })
+
+
+
 
 /**---------------------- */
-onMounted(async () => {
-    // router.push('/demo-register')
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            submit(form.value)
-        }
-    })
-    getCaptcha()
-    await fetchSetting()
+// const isFormLocked = ref(false);
+const isFormLocked = computed(() => {
+    if (!setting.value) return false; // 如果設定尚未加載，預設為不鎖定
+    return !setting.value.isRegistrationOpen;
+});
 
-    nextTick(() => {
-        lang.value = localStorage.getItem('lang') || 'zh'
-        console.log('lang', lang.value)
-    })
+onMounted(() => {
+    getCaptcha()
+    fetchSetting()
+    window.addEventListener('keydown', listenKeydown)
+
+    if (isLogin.value) {
+        ElNotification.info({
+            title: 'Info',
+            message: t('common.alreadyLogin'),
+            type: 'info',
+            duration: 3000,
+        });
+        router.push('/')
+    }
+})
+
+onUnmounted(() => {
+    window.removeEventListener('keydown', listenKeydown)
 })
 </script>
 <style lang="scss" scoped>
@@ -470,8 +604,15 @@ onMounted(async () => {
         margin: 1rem auto;
         font-weight: 600;
 
-        @media screen and (max-width: 768px) {
-            width: 90%;
+        .registration-notice {
+            margin-bottom: 1.5rem;
+            padding: 0.9rem 1rem;
+            border: 1px solid $main-color;
+            border-radius: 14px;
+            background: linear-gradient(180deg, $main-color 0%, #a4cceb 100%);
+            color: white;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         :deep(.el-form-item__label) {
@@ -488,10 +629,6 @@ onMounted(async () => {
                 margin: 0 1rem 0 0;
                 text-align: center;
             }
-        }
-
-        .form-card {
-            border-radius: 8px;
         }
 
         .main-form {
@@ -562,7 +699,7 @@ onMounted(async () => {
 
                             &::after {
                                 position: absolute;
-                                content: 'Country Code+number';
+                                content: 'Country Code+Phone Number';
                                 color: red;
                                 font-size: 0.7rem;
                                 right: 0;
@@ -682,16 +819,9 @@ onMounted(async () => {
             .el-button {
                 // width: 10%;
                 margin: 0 auto;
-                background: linear-gradient(180deg, #ee9ab9 0%, #8f8dc2 100%);
+                background-color: $main-color;
                 border: none;
                 border-radius: 5px;
-
-                &:hover {
-                    background: linear-gradient(180deg, #ee9ab9 0%, #8f8dc2 100%);
-                    border: none;
-                    color: white;
-                    transform: scale(1.1);
-                }
             }
         }
     }
@@ -794,14 +924,10 @@ onMounted(async () => {
     }
 
     .reminder {
-        margin-bottom: 1.5rem;
-        padding: 0.9rem 1rem;
-        border: 1px solid #ee9ab9;
-        border-radius: 14px;
-        background: linear-gradient(180deg, #ee9ab9 0%, #8f8dc2 100%);
-        color: white;
-        font-size: 0.95rem;
-        line-height: 1.6;
+        text-align: center;
+        font-size: 1.2rem;
+        color: #D86C7C;
+        margin: 1rem auto;
     }
 }
 </style>
