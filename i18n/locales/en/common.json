@@ -231,6 +231,13 @@
     "registrationReminder": "Reminder: Your registration information will be retained for use in future annual meetings.",
     "registrationSuccess": "Registration Success",
     "registrationClosed": "Registration is closed",
-    "organizationNumberValidate": "Please enter member number"
+    "organizationNumberValidate": "Please enter member number",
+    "presentationType": "Presentation Type",
+    "updateProfileSuccess": "Your profile information has been successfully updated.",
+    "updateSuccess": "Profile Updated",
+    "updateFail": "Failed to update profile.",
+    "updateProfileFail": "Please check the form fields.",
+    "statusDescription2": "If your profile or payment is incomplete, please update your information and review your member center status.",
+    "statusDescription1": "Your account is active and ready for submissions, payment, and member services."
   }
 }

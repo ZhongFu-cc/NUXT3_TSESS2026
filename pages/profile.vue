@@ -3,22 +3,22 @@
         <Banner />
         <ClientOnly>
             <section class="hero-section">
-                <Title :title="$t('profile')"></Title>
+                <Title :title="$t('common.profile')"></Title>
             </section>
 
 
             <section class="profile-shell">
                 <aside class="profile-summary-card">
-                    <p class="card-eyebrow">{{ $t('accountOverview') }}</p>
-                    <h2 class="card-title">{{ $t('memberInfo') }}</h2>
+                    <p class="card-eyebrow">{{ $t('common.accountOverview') }}</p>
+                    <h2 class="card-title">{{ $t('common.memberInfo') }}</h2>
 
                     <div class="summary-list">
                         <div class="summary-item">
-                            <span class="summary-label">{{ $t('idCard') }}</span>
+                            <span class="summary-label">{{ $t('common.idCard') }}</span>
                             <strong class="summary-value">{{ memberInfo.idCard || '--' }}</strong>
                         </div>
                         <div class="summary-item">
-                            <span class="summary-label">{{ $t('email') }}</span>
+                            <span class="summary-label">{{ $t('common.email') }}</span>
                             <strong class="summary-value">{{ memberInfo.email || '--' }}</strong>
                         </div>
                         <!-- <div class="summary-item">
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="status-panel" :class="statusClass">
-                        <span class="status-label">{{ $t('registrationStatus') }}</span>
+                        <span class="status-label">{{ $t('common.registrationStatus') }}</span>
                         <strong class="status-value">{{ statusText }}</strong>
                         <p class="status-description">{{ statusDescription }}</p>
                     </div>
@@ -37,8 +37,8 @@
                 <section class="profile-form-card">
                     <div class="form-header">
                         <div>
-                            <p class="card-eyebrow">{{ $t('editableProfile') }}</p>
-                            <h2 class="card-title">{{ $t('editInfo') }}</h2>
+                            <p class="card-eyebrow">{{ $t('common.editableProfile') }}</p>
+                            <h2 class="card-title">{{ $t('common.editInfo') }}</h2>
                         </div>
                         <!-- <p class="form-note">{{ $t('formNote') }}</p> -->
                     </div>
@@ -46,33 +46,33 @@
 
 
                     <div v-if="isLoading" class="loading-state">
-                        {{ $t('loadingMemberData') }}
+                        {{ $t('common.loadingMemberData') }}
                     </div>
                     <el-form v-else ref="profileFormRef" :model="formData" :rules="formRules" label-position="top"
                         class="profile-form">
 
 
                         <div class="form-grid two-columns">
-                            <el-form-item :label="$t('firstName')" prop="firstName">
-                                <el-input v-model="formData.firstName" :placeholder="$t('firstName')" />
+                            <el-form-item :label="$t('common.firstName')" prop="firstName">
+                                <el-input v-model="formData.firstName" :placeholder="$t('common.firstName')" />
                             </el-form-item>
 
-                            <el-form-item :label="$t('lastName')" prop="lastName">
-                                <el-input v-model="formData.lastName" :placeholder="$t('lastName')" />
+                            <el-form-item :label="$t('common.lastName')" prop="lastName">
+                                <el-input v-model="formData.lastName" :placeholder="$t('common.lastName')" />
                             </el-form-item>
                         </div>
 
                         <div class="form-grid one-columns">
 
-                            <el-form-item :label="$t('chineseName')" prop="chineseName">
-                                <el-input v-model="formData.chineseName" :placeholder="$t('chineseName')" />
+                            <el-form-item :label="$t('common.chineseName')" prop="chineseName">
+                                <el-input v-model="formData.chineseName" :placeholder="$t('common.chineseName')" />
                             </el-form-item>
                         </div>
 
                         <div class="form-grid one-columns readonly-grid">
 
-                            <el-form-item :label="$t('email')" prop="email">
-                                <el-input v-model="formData.email" disabled :placeholder="$t('email')" />
+                            <el-form-item :label="$t('common.email')" prop="email">
+                                <el-input v-model="formData.email" disabled :placeholder="$t('common.email')" />
                             </el-form-item>
                         </div>
 
@@ -91,22 +91,22 @@
                         </div>
 
                         <div class="form-grid phone-grid">
-                            <el-form-item :label="$t('countryCode')" prop="countryCode">
-                                <el-input v-model="formData.countryCode" :placeholder="$t('countryCode')" />
+                            <el-form-item :label="$t('common.countryCode')" prop="countryCode">
+                                <el-input v-model="formData.countryCode" :placeholder="$t('common.countryCode')" />
                             </el-form-item>
 
-                            <el-form-item :label="$t('phoneNum')" prop="phoneNum">
-                                <el-input v-model="formData.phoneNum" :placeholder="$t('phoneNum')" />
+                            <el-form-item :label="$t('common.phoneNum')" prop="phoneNum">
+                                <el-input v-model="formData.phoneNum" :placeholder="$t('common.phoneNum')" />
                             </el-form-item>
                         </div>
 
                         <div class="form-grid two-columns">
-                            <el-form-item :label="$t('affiliation')" prop="affiliation">
-                                <el-input v-model="formData.affiliation" :placeholder="$t('affiliation')" />
+                            <el-form-item :label="$t('common.affiliation')" prop="affiliation">
+                                <el-input v-model="formData.affiliation" :placeholder="$t('common.affiliation')" />
                             </el-form-item>
 
-                            <el-form-item :label="$t('jobTitle')" prop="jobTitle">
-                                <el-input v-model="formData.jobTitle" :placeholder="$t('jobTitle')" />
+                            <el-form-item :label="$t('common.jobTitle')" prop="jobTitle">
+                                <el-input v-model="formData.jobTitle" :placeholder="$t('common.jobTitle')" />
                             </el-form-item>
                         </div>
 
@@ -115,7 +115,7 @@
                                 <el-input v-model="formData.receipt" :placeholder="$t('receipt')" />
                             </el-form-item> -->
 
-                            <el-form-item :label="$t('food')" prop="food">
+                            <el-form-item :label="$t('common.food')" prop="food">
                                 <el-radio-group v-model="formData.food" class="food-group">
                                     <el-radio v-for="item in foodOptions" :key="item.value" :value="item.value">
                                         {{ item.label }}
@@ -123,15 +123,19 @@
                                 </el-radio-group>
                             </el-form-item>
                         </div>
-                        <el-form-item :label="$t('foodTaboo')" prop="foodTaboo">
+                        <el-form-item :label="$t('common.foodTaboo')" prop="foodTaboo">
                             <el-input v-model="formData.foodTaboo" type="textarea" :rows="4"
-                                :placeholder="$t('foodTaboo')" />
+                                :placeholder="$t('common.foodTaboo')" />
+                        </el-form-item>
+
+                        <el-form-item :label="$t('common.organizationNumber')" prop="organizationNumber">
+                            <el-input v-model="formData.organizationNumber" :placeholder="$t('common.organizationNumber')" />
                         </el-form-item>
 
 
                         <div class="form-actions">
                             <el-button type="primary" :loading="isSaving" @click="submitForm(profileFormRef)">
-                                {{ $t('editProfile') }}
+                                {{ $t('common.editProfile') }}
                             </el-button>
                         </div>
                     </el-form>
@@ -165,6 +169,7 @@ interface ProfileFormData {
     receipt: string;
     food: string;
     foodTaboo: string;
+    organizationNumber: string;
 }
 
 const { t, setLocale, locale } = useI18n();
@@ -195,11 +200,12 @@ const formData = reactive<ProfileFormData>({
     receipt: '',
     food: '',
     foodTaboo: '',
+    organizationNumber: '',
 });
 
 const foodOptions = computed(() => [
-    { label: t('foodRadio1'), value: '葷' },
-    { label: t('foodRadio2'), value: '素' },
+    { label: t('common.foodRadio1'), value: '葷' },
+    { label: t('common.foodRadio2'), value: '素' },
 ]);
 
 const splitPhone = (phone: string, country: string) => {
@@ -243,6 +249,7 @@ const fillForm = (data: Record<string, any>) => {
     formData.receipt = data.receipt || '';
     formData.food = data.food || '';
     formData.foodTaboo = data.foodTaboo || '';
+    formData.organizationNumber = data.organizationNumber || '';
 
     initialSnapshot.value = JSON.stringify({ ...formData });
 };
@@ -267,14 +274,10 @@ const statusText = computed(() => {
 
 const statusDescription = computed(() => {
     if (memberInfo.status === 2) {
-        return locale.value === 'zh-TW'
-            ? '目前帳號狀態正常，可繼續使用投稿、付款與會員功能。'
-            : 'Your account is active and ready for submissions, payment, and member services.';
+        return t('common.statusDescription1');
     }
 
-    return locale.value === 'zh-TW'
-        ? '若資料或付款尚未完成，建議先更新資訊並回到會員中心確認狀態。'
-        : 'If your profile or payment is incomplete, please update your information and review your member center status.';
+    return t('common.statusDescription2');
 });
 
 const statusClass = computed(() => {
@@ -283,7 +286,7 @@ const statusClass = computed(() => {
 
 const validateChineseName = (_rule: any, value: string, callback: (error?: Error) => void) => {
     if (formData.country === 'Taiwan' && !value.trim()) {
-        callback(new Error(t('pleaseEnterChineseName')));
+        callback(new Error(t('common.chineseNameValidate')));
         return;
     }
 
@@ -297,7 +300,7 @@ const validateRemitAccount = (_rule: any, value: string, callback: (error?: Erro
     }
 
     if (!/^\d{5}$/.test(value)) {
-        callback(new Error(t('remitAccountLast5Validate2')));
+        callback(new Error(t('common.remitAccountLast5Validate2')));
         return;
     }
 
@@ -305,21 +308,21 @@ const validateRemitAccount = (_rule: any, value: string, callback: (error?: Erro
 };
 
 const formRules = computed<FormRules>(() => ({
-    title: [{ required: true, message: t('titleValidate'), trigger: 'change' }],
+    title: [{ required: true, message: t('common.titleValidate'), trigger: 'change' }],
     chineseName: [{ validator: validateChineseName, trigger: 'blur' }],
-    firstName: [{ required: true, message: t('firstNameValidate'), trigger: 'blur' }],
-    lastName: [{ required: true, message: t('lastNameValidate'), trigger: 'blur' }],
+    firstName: [{ required: true, message: t('common.firstNameValidate'), trigger: 'blur' }],
+    lastName: [{ required: true, message: t('common.lastNameValidate'), trigger: 'blur' }],
     email: [
-        { required: true, message: t('emailValidate'), trigger: 'blur' },
-        { type: 'email', message: t('emailValidate2'), trigger: 'blur' },
+        { required: true, message: t('common.emailValidate'), trigger: 'blur' },
+        { type: 'email', message: t('common.emailValidate2'), trigger: 'blur' },
     ],
-    country: [{ required: true, message: t('countryValidate'), trigger: 'change' }],
+    country: [{ required: true, message: t('common.countryValidate'), trigger: 'change' }],
     remitAccountLast5: [{ required: false, validator: validateRemitAccount, trigger: 'blur' }],
-    countryCode: [{ required: true, message: t('countryCodeValidate'), trigger: 'blur' }],
-    phoneNum: [{ required: true, message: t('phoneNumValidate'), trigger: 'blur' }],
-    affiliation: [{ required: true, message: t('affiliationValidate'), trigger: 'blur' }],
-    jobTitle: [{ required: true, message: t('jobTitleValidate'), trigger: 'blur' }],
-    food: [{ required: true, message: t('food'), trigger: 'change' }],
+    countryCode: [{ required: true, message: t('common.countryCodeValidate'), trigger: 'blur' }],
+    phoneNum: [{ required: true, message: t('common.phoneNumValidate'), trigger: 'blur' }],
+    affiliation: [{ required: true, message: t('common.affiliationValidate'), trigger: 'blur' }],
+    jobTitle: [{ required: true, message: t('common.jobTitleValidate'), trigger: 'blur' }],
+    food: [{ required: true, message: t('common.food'), trigger: 'change' }],
 }));
 
 const getMemberInfo = async () => {
@@ -354,7 +357,11 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 
     await formEl.validate(async (valid) => {
         if (!valid) {
-            ElMessage.error(locale.value === 'zh' ? '請先確認表單資料' : 'Please check the form fields.');
+            ElNotification({
+                title: t('common.updateFail'),
+                message: t('common.updateProfileFail'),
+                type: 'error',
+            });
             return;
         }
 
@@ -386,7 +393,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         isSaving.value = false;
 
         if (res.code !== 200) {
-            ElMessage.error(res.msg || (locale.value === 'zh' ? '更新失敗，請稍後再試' : 'Failed to update profile.'));
+            ElMessage.error(res.msg || t('common.updateFail'));
             return;
         }
 
@@ -400,8 +407,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         });
 
         ElNotification({
-            title: locale.value === 'zh' ? '資料更新成功' : 'Profile Updated',
-            message: locale.value === 'zh' ? '您的個人資料已成功更新。' : 'Your profile information has been successfully updated.',
+            title: t('common.updateSuccess'),
+            message: t('common.updateProfileSuccess'),
             type: 'success',
         });
 
