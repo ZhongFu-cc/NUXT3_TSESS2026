@@ -128,9 +128,9 @@
                                 :placeholder="$t('common.foodTaboo')" />
                         </el-form-item>
 
-                        <el-form-item :label="$t('common.organizationNumber')" prop="organizationNumber">
+                        <!-- <el-form-item :label="$t('common.organizationNumber')" prop="organizationNumber">
                             <el-input v-model="formData.organizationNumber" :placeholder="$t('common.organizationNumber')" />
-                        </el-form-item>
+                        </el-form-item> -->
 
 
                         <div class="form-actions">
