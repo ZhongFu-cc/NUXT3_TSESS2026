@@ -1,8 +1,8 @@
 <template>
     <main class="common-section">
         <Banner />
-        <Breadcrumbs firstRoute="Member" secoundRoute="Abstract" />
-        <Title title="Abstract" />
+        <Breadcrumbs :firstRoute="$t('common.member')" :secoundRoute="$t('common.abstract')" />
+        <Title :title="$t('common.abstract')" />
 
         <div class="paper-section">
             <div class="paper-table-box">
@@ -54,12 +54,12 @@
             <table class="paper-info-table">
                 <thead>
                     <tr>
-                        <td colspan="2" class="column-name title">{{ $t('abstract') }}</td>
+                        <td colspan="2" class="column-name title">{{ $t('common.abstract') }}</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-if="paperInfo.publicationNumber">
-                        <td class="column-name">{{ $t('abstractNumber') }}</td>
+                        <td class="column-name">{{ $t('common.abstractNumber') }}</td>
                         <td>{{ paperInfo.publicationNumber }}</td>
                     </tr>
                 </tbody>

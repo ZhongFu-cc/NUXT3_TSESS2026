@@ -3,24 +3,24 @@
         <ClientOnly>
             <Banner />
             <div class="title-section">
-                <h1 class="title">{{ $t('memberCenter') }}</h1>
+                <h1 class="title">{{ $t('common.memberCenter') }}</h1>
             </div>
 
             <section class="profile-reminder-section">
                 <div class="profile-reminder-card" :class="{ 'is-complete': isComplete }">
                     <div class="reminder-header">
                         <div>
-                            <p class="reminder-eyebrow">{{ t('profile') }}</p>
-                            <h2 v-if="!isComplete" class="reminder-title">{{ t('profileIncomplete') }}</h2>
-                            <h2 v-else class="reminder-title">{{ t('memberInfo') }}</h2>
+                            <p class="reminder-eyebrow">{{ t('common.profile') }}</p>
+                            <h2 v-if="!isComplete" class="reminder-title">{{ t('common.profileIncomplete') }}</h2>
+                            <h2 v-else class="reminder-title">{{ t('common.memberInfo') }}</h2>
                         </div>
                     </div>
 
                     <p v-if="!isComplete" class="reminder-description">
-                        {{ t('profileReminder') }}
+                        {{ t('common.profileReminder') }}
                     </p>
                     <p v-if="isComplete" class="reminder-description is-complete">
-                        {{ t('isQualified') }}
+                        {{ t('common.isQualified') }}
                     </p>
 
                     <div class="missing-field-list">
@@ -36,13 +36,13 @@
                     <nuxt-link class="select-box" :to="localePath('/profile')">
                         <img src="@/assets/img/user-edit.svg" alt="">
                         <div class="label-box">
-                            <p>{{ $t('profile') }}</p>
+                            <p>{{ $t('common.profile') }}</p>
                         </div>
                     </nuxt-link>
                     <nuxt-link class="select-box" :to="localePath('/abstract')">
                         <img src="@/assets/img/Online submission-01.svg" alt="">
                         <div class="label-box">
-                            <p>{{ $t('submission') }}</p>
+                            <p>{{ $t('common.submission') }}</p>
                         </div>
                     </nuxt-link>
                 </div>
@@ -76,11 +76,11 @@ const isComplete = computed(() => {
 const getStatusLabel = (status: number) => {
     switch (status) {
         case 0:
-            return t('notPaid');
+            return t('common.notPaid');
         case 1:
-            return t('pendingReview');
+            return t('common.pendingReview');
         case 3:
-            return t('paidFail');
+            return t('common.paidFail');
     }
 }
 
