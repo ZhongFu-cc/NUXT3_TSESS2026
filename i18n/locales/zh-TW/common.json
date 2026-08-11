@@ -182,7 +182,7 @@
     "allAuthors": "所有作者",
     "allAuthorsAffiliation": "所有作者服務單位",
     "abstractType": "投稿類別",
-    "upload": "更新",
+    "upload": "上傳",
     "uploadLimit": "限制上傳大小小於 20mb PDF 檔",
     "pdfFile": "檔案",
     "submit": "送出",
@@ -196,6 +196,14 @@
     "registrationClosed": "註冊尚未開放",
     "organizationNumberValidate": "請輸入會員編號",
     "confirmPasswordValidate2": "兩次密碼不符合",
-    "idCardValidate2": "請輸入正確身分證"
+    "idCardValidate2": "請輸入正確身分證",
+    "abstractNumber": "摘要編號",
+    "presentationType": "發表類別",
+    "updateProfileSuccess": "您的個人資料已成功更新。",
+    "updateSuccess": "資料更新成功",
+    "updateFail": "更新失敗，請稍後再試",
+    "updateProfileFail": "請先確認表單資料",
+    "statusDescription2": "若資料或付款尚未完成，建議先更新資訊並回到會員中心確認狀態。",
+    "statusDescription1": "目前帳號狀態正常，可繼續使用投稿、付款與會員功能。"
   }
 }

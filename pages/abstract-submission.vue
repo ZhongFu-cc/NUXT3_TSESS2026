@@ -9,7 +9,7 @@
                 <div class="main-form">
                     <div class="left-seciton">
                         <el-form-item :label="$t('common.abstractType')" prop="absType">
-                            <el-select v-model="data.absType" placeholder="Type">
+                            <el-select v-model="data.absType" :placeholder="$t('common.abstractType')">
                                 <el-option v-for="item in abstractTypes" :key="item.value" :label="item.label"
                                     :value="item.value"></el-option>
                             </el-select>
@@ -68,7 +68,7 @@
                         <el-upload ref="uploadRef" class="upload-demo" :limit="1" :on-change="handlePdfUpload"
                             :auto-upload="false" :on-remove="handleRemove" :on-exceed="handleExceed">
                             <el-button size="small" type="primary">{{ $t('common.upload') }}</el-button>
-                            <div slot="tip" class="el-upload__tip">{{ $t('common.uploadLimit') }}</div>
+                            <!-- <div slot="tip" class="el-upload__tip">{{ $t('common.uploadLimit') }}</div> -->
                         </el-upload>
                     </el-form-item>
                 </div>
