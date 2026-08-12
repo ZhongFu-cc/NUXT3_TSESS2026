@@ -1,9 +1,9 @@
 <template>
     <main class="common-section">
         <Banner />
-        <Breadcrumbs :first-route="'Member Center'" :secound-route="'Payment'" />
+        <Breadcrumbs :first-route="t('common.memberCenter')" :secound-route="t('common.payment')" />
 
-        <el-dialog v-model="remitDialogVisible" width="min(92vw, 32rem)" :close-on-click-modal="false"
+        <!-- <el-dialog v-model="remitDialogVisible" width="min(92vw, 32rem)" :close-on-click-modal="false"
             :close-on-press-escape="false" :show-close="false" class="remit-dialog">
             <template #header>
                 <div class="dialog-title-box">
@@ -12,19 +12,19 @@
                 </div>
             </template>
 
-            <div class="dialog-content">
-                <div v-if="hasSavedRemitAccount" class="saved-remit-info">
-                    <p>已填寫的末五碼</p>
-                    <el-input v-model="memberInfo.remitAccountLast5"></el-input>
-                </div>
-                <template v-else>
+<div class="dialog-content">
+    <div v-if="hasSavedRemitAccount" class="saved-remit-info">
+        <p>已填寫的末五碼</p>
+        <el-input v-model="memberInfo.remitAccountLast5"></el-input>
+    </div>
+    <template v-else>
                     <p class="input-caption">請輸入匯款帳號末五碼</p>
                     <el-input v-model="remitAccountLast5Input" maxlength="5" placeholder="請輸入 5 碼數字" />
                 </template>
-                <p v-if="remitDialogError" class="dialog-error">{{ remitDialogError }}</p>
-            </div>
+    <p v-if="remitDialogError" class="dialog-error">{{ remitDialogError }}</p>
+</div>
 
-            <template #footer>
+<template #footer>
                 <div class="dialog-actions">
                     <el-button @click="handleRemitDialogCancel">取消</el-button>
                     <el-button type="primary" :loading="isSavingRemitAccount"
@@ -33,23 +33,23 @@
                     </el-button>
                 </div>
             </template>
-        </el-dialog>
+</el-dialog> -->
 
         <div class="table-section">
-            <div v-if="memberInfo.country === 'Taiwan'" class="payment-info">
+            <!-- <div v-if="memberInfo.country === 'Taiwan'" class="payment-info">
                 <p>*戶名 : 台灣乳房腫瘤手術暨重建學會</p>
                 <p>*合作金庫銀行 : 長庚分行 帳號:3638871000153</p>
                 <p>*請於匯款後點擊下方付款按鈕，並輸入帳戶末五碼以利主辦單位核對。</p>
-            </div>
+            </div> -->
             <div class="table-box">
-                <span class="info" v-if="memberInfo.groupRole == 'slave'">*The group registration fee must be paid by
-                    the main registration member.</span>
-                <table class="orders-table" :class="isTaiwan(memberInfo.country)">
+                <!-- <span class="info" v-if="memberInfo.groupRole == 'slave'">*The group registration fee must be paid by
+                    the main registration member.</span> -->
+                <table class="orders-table none">
                     <thead>
                         <tr class="header-row">
-                            <th>Item</th>
-                            <th>Payment Amount {{ memberInfo.country === 'Taiwan' ? '(TWD)' : '(USD)' }}</th>
-                            <th :colspan="2">Payment Status</th>
+                            <th>{{ t('common.item') }}</th>
+                            <th>{{ t('common.paymentAmount') }} {{ memberInfo.country === 'Taiwan' ? '(TWD)' : '(USD)' }}</th>
+                            <th :colspan="2">{{ t('common.paymentStatus') }}</th>
                             <!-- <th></th> -->
                             <!-- <th v-if="memberInfo.country === 'Taiwan'">Last 5 digits of account number</th> -->
                         </tr>
@@ -61,23 +61,27 @@
                                 RATE).toFixed(2) }}</td>
                             <td class="last-col">{{
                                 enums.payMentStatus[item.status]
-                                }}</td>
+                            }}</td>
                             <!-- <td v-if="memberInfo.country === 'Taiwan'" class="last-col">
                                 {{ memberInfo.remitAccountLast5 }}
                             </td> -->
-                            <td v-if="memberInfo.country !== 'Taiwan'" class="temp-col"></td>
-                            <td v-if="memberInfo.country !== 'Taiwan' && (item.status === 0 || item.status === 3)"
-                                class="not-pay"
-                                :class="(memberInfo.groupRole == 'slave' && item.itemsSummary == 'Group Registration Fee') || isOverDeadline ? 'disabled' : ''"
-                                @click="getOrders(item.ordersId, (memberInfo.groupRole != 'slave' || item.itemsSummary != 'Group Registration Fee'))">
-                                <span>Pay now</span>
+                            <td v-if="item.status === 0 || item.status === 3" class="not-pay" :class="(memberInfo.groupRole == 'slave' &&
+                                item.itemsSummary == 'Group Registration Fee') ||
+                                isOverDeadline
+                                ? 'disabled'
+                                : ''" @click="getOrders(
+                                    item.ordersId,
+                                    memberInfo.groupRole != 'slave' ||
+                                    item.itemsSummary != 'Group Registration Fee'
+                                )">
+                                <span>{{ t('common.payNow') }}</span>
                             </td>
-                            <td v-if="memberInfo.country === 'Taiwan' && (item.status === 0 || item.status === 3)"
+                            <!-- <td v-if="memberInfo.country === 'Taiwan' && (item.status === 0 || item.status === 3)"
                                 class="not-pay" :class="isOverDeadline ? 'disabled' : ''"
                                 @click="openTaiwanPaymentDialog(item.ordersId)">
                                 <span>付款</span>
-                            </td>
-                            <td v-if="memberInfo.country !== 'Taiwan' && item.status === 2" class="completed">
+                            </td> -->
+                            <td v-if="item.status === 2" class="completed">
                                 <span><el-icon>
                                         <ElIconCircleCheckFilled />
                                     </el-icon></span>
@@ -100,6 +104,8 @@ import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import { useSetting } from '@/composables/useSetting';
 
+
+const { t } = useI18n();
 
 const orderListRef = ref<any>();
 
@@ -383,15 +389,11 @@ onMounted(() => {
         align-items: center;
 
         .table-box {
-            display: flex;
-            flex-direction: column;
-            background-color: white;
-            border-radius: 15px;
-            padding: 1rem;
-            justify-content: center;
-            width: min(100%, 1120px);
-            box-sizing: border-box;
-            overflow-x: auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, .06);
 
             @media screen and (max-width: 640px) {
                 overflow-x: visible;
@@ -406,8 +408,8 @@ onMounted(() => {
                 margin: 0 0 0.85rem;
                 padding: 0.55rem 0.8rem;
                 border-radius: 10px;
-                border: 1px solid #f2c9cf;
-                background-color: #fff5f6;
+                border: 1px solid #537676;
+                background-color: #537676;
                 font-size: 0.95rem;
                 font-weight: 600;
                 color: #b94858;
@@ -456,143 +458,144 @@ onMounted(() => {
             }
 
             .orders-table {
-                overflow: hidden;
-                background-color: white;
-                font-size: clamp(1rem, 1.4vw, 1.2rem);
-                border-collapse: separate;
-                border-spacing: 0 0.4rem;
                 width: 100%;
                 min-width: 760px;
-
-                @media screen and (max-width: 1048px) {
-                    font-size: 1rem;
-                }
+                border-collapse: separate;
+                border-spacing: 0 0.75rem;
+                font-size: clamp(1rem, 1.4vw, 1.1rem);
+                background: transparent;
 
                 @media screen and (max-width: 768px) {
                     min-width: 640px;
                 }
 
                 th {
-                    padding: 0.95rem 1rem;
-                    border-radius: 12px;
-                    text-align: start;
+                    padding: 1rem;
+                    background: linear-gradient(135deg,
+                            #537676 0%,
+                            #6e9393 100%);
+                    color: #fff;
+                    font-size: 0.95rem;
                     font-weight: 700;
-                    color: #6b4b53;
-                    background-color: #fff5f7;
+                    letter-spacing: 0.03em;
+                    text-transform: uppercase;
                     white-space: nowrap;
-                    border-bottom: 1px solid #d6cdd1;
+                    text-align: left;
+                    border: none;
+
+                    &:first-child {
+                        border-top-left-radius: 12px;
+                        border-bottom-left-radius: 12px;
+                    }
+
+                    &:last-child {
+                        border-top-right-radius: 12px;
+                        border-bottom-right-radius: 12px;
+                    }
                 }
 
-                td {
-                    padding: 0.8rem 1rem;
-                    vertical-align: middle;
+                tbody {
+                    tr {
+                        transition: all 0.25s ease;
+
+                        &:hover {
+                            transform: translateY(-2px);
+
+                            td {
+                                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+                            }
+                        }
+
+                        td {
+                            padding: 1rem;
+                            font-weight: 600;
+                            vertical-align: middle;
+                            transition: all 0.25s ease;
+                        }
+
+                        &.even {
+                            td {
+                                background: $main-color;
+                                color: #fff;
+                            }
+                        }
+
+                        &.odd {
+                            td {
+                                background: #fff;
+                                color: #e8979e;
+                            }
+                        }
+                    }
                 }
 
                 .first-col {
-                    border-top-left-radius: 5px;
-                    border-bottom-left-radius: 5px;
                     min-width: 18ch;
+                    border-top-left-radius: 12px;
+                    border-bottom-left-radius: 12px;
                 }
 
                 .last-col {
-                    border-top-right-radius: 5px;
-                    border-bottom-right-radius: 5px;
-                    border: none !important;
                     white-space: nowrap;
                 }
 
-
-
-                .even {
-                    td {
-                        background-color: #E8979E;
-                        color: white;
-                        font-weight: bold;
-                    }
-                }
-
-                .odd {
-                    td {
-                        background-color: white;
-                        color: #E8979E;
-                        font-weight: bold;
-                    }
-
-
-                }
-
-                .btn-col {
-                    background-color: white;
-                    padding: 0.5rem 0.5rem;
-                    border-radius: 5px;
-                }
-
-
-                .pay-btn {
-                    background-color: #26AE07;
-                    color: white;
-                    height: 100%;
-                    cursor: pointer;
-                    padding: 0.5rem 1rem;
-                    margin-left: 0.3rem;
-                    border-radius: 5px;
-                    width: 40%;
-                }
-
-
-                .completed {
-                    background-color: #D77102 !important;
-                    color: white;
-                    text-align: center;
-                    border-radius: 5px;
-                    cursor: default;
-                    min-width: 8.5rem;
-
+                td:last-child {
+                    border-top-right-radius: 12px;
+                    border-bottom-right-radius: 12px;
                 }
 
                 .temp-col {
-                    background-color: white !important;
-                    width: 0.1rem;
+                    width: 8px;
                     padding: 0;
-                    border: none !important;
+                    background: transparent !important;
+                    box-shadow: none !important;
+                }
+
+                .completed {
+                    background: linear-gradient(135deg,
+                            #f2a14a,
+                            #d77102) !important;
+
+                    color: #fff !important;
+                    text-align: center;
+                    cursor: default;
+                    min-width: 140px;
+                    font-weight: 700;
+                    white-space: nowrap;
+
+                    .el-icon {
+                        font-size: 1.1rem;
+                    }
                 }
 
                 .not-pay {
+                    background: linear-gradient(135deg,
+                            #32c315,
+                            #26ae07) !important;
+
+                    color: #fff !important;
                     text-align: center;
-                    background-color: #26AE07 !important;
-                    color: white !important;
-                    border-radius: 5px;
-                    min-width: 8.5rem;
-                    cursor: pointer;
+                    min-width: 140px;
                     font-weight: 700;
+                    cursor: pointer;
                     white-space: nowrap;
-                    transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
 
                     &:hover {
-                        background-color: #229a06 !important;
-                        box-shadow: 0 6px 14px rgba(38, 174, 7, 0.25);
+                        transform: translateY(-2px);
+                        box-shadow: 0 10px 24px rgba(38, 174, 7, 0.3);
+                    }
+
+                    &:active {
+                        transform: translateY(0);
                     }
 
                     &.disabled {
-                        background-color: #26AE07 !important;
                         opacity: 0.5;
                         cursor: not-allowed;
                         pointer-events: none;
-
                     }
                 }
 
-                @media screen and (max-width: 768px) {
-                    th {
-                        padding: 0.75rem 0.8rem;
-                    }
-
-                    td {
-                        padding: 0.65rem 0.8rem;
-                    }
-                }
-
-                // Mobile card layout
                 @media screen and (max-width: 640px) {
                     display: block;
                     min-width: unset;
@@ -606,91 +609,67 @@ onMounted(() => {
                     tbody {
                         display: flex;
                         flex-direction: column;
-                        gap: 0.75rem;
+                        gap: 1rem;
                     }
 
                     tr {
                         display: block;
-                        border-radius: 12px;
                         overflow: hidden;
-                        border: 1px solid rgba(232, 151, 158, 0.3);
+                        border-radius: 16px;
+                        border: 1px solid rgba(232, 151, 158, 0.2);
+                        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
 
-                        // even row: value bg = soft pink, label bg = deeper pink
                         &.even {
-                            background-color: #f9eced;
-
-                            td {
-                                background-color: transparent;
-                                text-align: center;
-                                color: rgb(85, 82, 82);
-                                font-weight: 600;
-                                border-bottom: 1px solid rgba(232, 151, 158, 0.25);
-
-                                &::before {
-                                    background-color: #E8979E;
-                                    color: #fff;
-                                }
-                            }
+                            background: #fdf5f6;
                         }
 
-                        // odd row: value bg = white, label bg = light pink
                         &.odd {
-                            background-color: #fff;
+                            background: #fff;
+                        }
 
-                            td {
-                                background-color: transparent;
-                                color: #7a3d48;
-                                font-weight: 600;
-                                border-bottom: 1px solid rgba(232, 151, 158, 0.18);
+                        td {
+                            display: flex !important;
+                            align-items: center;
+                            padding: 0;
+                            min-height: 56px;
+                            background: transparent !important;
+                            border-bottom: 1px solid rgba(232, 151, 158, 0.15);
+                            box-shadow: none !important;
 
-                                &::before {
-                                    background-color: #f2d6da;
-                                    color: #7a3d48;
-                                }
+                            &::before {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                min-width: 7rem;
+                                padding: 0.85rem;
+                                font-size: 0.78rem;
+                                font-weight: 700;
+                                letter-spacing: 0.05em;
+                                color: #fff;
+                                background: #e8979e;
+                                flex-shrink: 0;
+                                align-self: stretch;
                             }
+
+                            &:nth-child(1)::before {
+                                content: 'Item';
+                            }
+
+                            &:nth-child(2)::before {
+                                content: 'Amount';
+                            }
+
+                            &:nth-child(3)::before {
+                                content: 'Status';
+                            }
+
+                            padding-right: 1rem;
+                            line-height: 1.5;
+                            word-break: break-word;
                         }
 
                         td:last-child {
                             border-bottom: none;
-                        }
-                    }
-
-                    td {
-                        display: flex !important;
-                        align-items: center;
-                        justify-content: flex-start;
-                        border-radius: 0 !important;
-                        padding: 0;
-                        gap: 0;
-                        min-height: 3rem;
-
-                        &::before {
-                            display: flex;
-                            align-items: center;
-                            align-self: stretch;
-                            min-width: 6rem;
-                            padding: 0.65rem 0.8rem;
-                            font-size: 0.82rem;
-                            font-weight: 700;
-                            letter-spacing: 0.03em;
-                            white-space: nowrap;
-                            flex-shrink: 0;
-                            margin-right: 1rem;
-                        }
-
-                        padding-right: 0.8rem;
-                        line-height: 1.4;
-
-                        &:nth-child(1)::before {
-                            content: 'Item';
-                        }
-
-                        &:nth-child(2)::before {
-                            content: 'Amount';
-                        }
-
-                        &:nth-child(3)::before {
-                            content: 'Status';
                         }
                     }
 
@@ -701,24 +680,12 @@ onMounted(() => {
                     .not-pay,
                     .completed {
                         justify-content: center;
-                        border-radius: 0 !important;
                         min-width: unset;
-                        padding: 0.75rem 0.9rem;
-                        border-bottom: none !important;
+                        width: 100%;
+                        border-radius: 0 !important;
+                        padding: 1rem;
 
                         &::before {
-                            content: none !important;
-                            min-width: 0;
-                            padding: 0;
-                        }
-                    }
-
-                    &.taiwan {
-                        td {
-                            border-right: none !important;
-                        }
-
-                        .odd td::after {
                             display: none !important;
                         }
                     }

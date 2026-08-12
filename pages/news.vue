@@ -1,18 +1,19 @@
 <template>
     <div class="news-section">
         <Banner></Banner>
+        <Breadcrumbs :first-route="t('common.news')" secound-route=""/>
 
         <div class="main-box">
             <div class="title-box">
                 <div class="title-image-box">
                     <img class="home-banner-bak" src="../assets/img/EmojiObjectsOutlined.svg">
                 </div>
-                <h1 class="title">News</h1>
+                <h1 class="title">{{ t('common.news') }}</h1>
             </div>
 
             <div class="header-box">
-                <h5>Title</h5>
-                <h5>Date</h5>
+                <h5>{{ t('common.title') }}</h5>
+                <h5>{{ t('common.date') }}</h5>
             </div>
             <ul class="news-list">
                 <li class="news-item" v-for="(item, index) in newsList.records" :key="index"
@@ -36,6 +37,7 @@
 </template>
 <script lang="ts" setup>
 import Banner from '@/components/layout/Banner.vue';
+import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 
 useSeoMeta({
     title: 'News - 9th IOPBS & TOPBS 2025 International Conference on Oncoplastic Breast Surgery',
@@ -43,6 +45,7 @@ useSeoMeta({
     keywords: 'News, Latest News, 9th IOPBS, IOPBS 2025, TOPBS 2025, 2025 IOPBS, 2025 TOPBS '
 })
 
+const { t } = useI18n()
 const router = useRouter()
 
 let newsList = reactive<any>([])
@@ -108,7 +111,7 @@ onMounted(() => {
             .title {
                 font-size: 3rem;
                 font-weight: bold;
-                color: #0f6ba0;
+                color: $main-color;
             }
         }
 

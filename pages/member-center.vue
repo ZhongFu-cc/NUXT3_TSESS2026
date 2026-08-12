@@ -45,6 +45,12 @@
                             <p>{{ $t('common.submission') }}</p>
                         </div>
                     </nuxt-link>
+                    <nuxt-link class="select-box" :to="localePath('/payment')">
+                        <img src="@/assets/img/payment-icon.png" alt="">
+                        <div class="label-box">
+                            <p>{{ $t('common.payment') }}</p>
+                        </div>
+                    </nuxt-link>
                 </div>
 
             </div>
