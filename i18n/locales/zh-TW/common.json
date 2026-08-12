@@ -204,6 +204,12 @@
     "updateFail": "更新失敗，請稍後再試",
     "updateProfileFail": "請先確認表單資料",
     "statusDescription2": "若資料或付款尚未完成，建議先更新資訊並回到會員中心確認狀態。",
-    "statusDescription1": "目前帳號狀態正常，可繼續使用投稿、付款與會員功能。"
+    "statusDescription1": "目前帳號狀態正常，可繼續使用投稿、付款與會員功能。",
+    "item": "項目",
+    "paymentAmount": "付款金額",
+    "paymentStatus": "付款狀態",
+    "payNow": "前往付款",
+    "title": "標題",
+    "date": "日期"
   }
 }

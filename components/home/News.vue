@@ -91,6 +91,11 @@ const getNewsList = async () => {
 
 const headToNews = (id: number) => {
     console.log("點擊了最新消息", id)
+    if (id === null || id === undefined) {
+        router.push('/')
+        return
+    }
+
     router.push('/news-item/' + id)
 }
 
