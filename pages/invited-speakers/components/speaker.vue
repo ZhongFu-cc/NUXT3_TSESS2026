@@ -64,7 +64,9 @@ const envMinio = useRuntimeConfig().public.minio
         // margin-left: 2rem;
 
         text-align: center;
-        width: 13rem;
+        //width: 13rem;
+        // 原本是固定 , 這次使用百分比寬度, 以便在不同螢幕尺寸下自適應
+        width:100%;
 
         .speaker-name {
             font-size: 1.5rem;
