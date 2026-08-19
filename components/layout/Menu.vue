@@ -339,8 +339,8 @@ const emits = defineEmits(['openMenu']);
 
 /**================================================================ */
 onMounted(() => {
-    handleScroll()
-    window.addEventListener('scroll', handleScroll)
+    // handleScroll()
+    // window.addEventListener('scroll', handleScroll)
     // initLang();
 })
 
@@ -360,6 +360,7 @@ onMounted(() => {
         height: 6.5rem;
         padding: 0.5rem 0;
         border-bottom: 8px solid #6d979a;
+        background-color: #FFF;
 
 
         @media screen and (max-width: 1920px) {

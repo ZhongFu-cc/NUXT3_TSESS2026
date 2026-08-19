@@ -3,97 +3,50 @@
         <Banner />
         <Breadcrumbs :first-route="t('common.memberCenter')" :secound-route="t('common.payment')" />
 
-        <!-- <el-dialog v-model="remitDialogVisible" width="min(92vw, 32rem)" :close-on-click-modal="false"
-            :close-on-press-escape="false" :show-close="false" class="remit-dialog">
-            <template #header>
-                <div class="dialog-title-box">
-                    <h2>確認付款資訊</h2>
-                    <p>台灣會員送出付款確認前，需提供匯款帳號末五碼以利主辦單位核對。</p>
-                </div>
-            </template>
-
-<div class="dialog-content">
-    <div v-if="hasSavedRemitAccount" class="saved-remit-info">
-        <p>已填寫的末五碼</p>
-        <el-input v-model="memberInfo.remitAccountLast5"></el-input>
-    </div>
-    <template v-else>
-                    <p class="input-caption">請輸入匯款帳號末五碼</p>
-                    <el-input v-model="remitAccountLast5Input" maxlength="5" placeholder="請輸入 5 碼數字" />
-                </template>
-    <p v-if="remitDialogError" class="dialog-error">{{ remitDialogError }}</p>
-</div>
-
-<template #footer>
-                <div class="dialog-actions">
-                    <el-button @click="handleRemitDialogCancel">取消</el-button>
-                    <el-button type="primary" :loading="isSavingRemitAccount"
-                        :disabled="!canConfirmTaiwanPayment || isSavingRemitAccount" @click="confirmPayment">
-                        確認付款
-                    </el-button>
-                </div>
-            </template>
-</el-dialog> -->
-
         <div class="table-section">
-            <!-- <div v-if="memberInfo.country === 'Taiwan'" class="payment-info">
-                <p>*戶名 : 台灣乳房腫瘤手術暨重建學會</p>
-                <p>*合作金庫銀行 : 長庚分行 帳號:3638871000153</p>
-                <p>*請於匯款後點擊下方付款按鈕，並輸入帳戶末五碼以利主辦單位核對。</p>
-            </div> -->
             <div class="table-box">
-                <!-- <span class="info" v-if="memberInfo.groupRole == 'slave'">*The group registration fee must be paid by
-                    the main registration member.</span> -->
                 <table class="orders-table none">
                     <thead>
                         <tr class="header-row">
                             <th>{{ t('common.item') }}</th>
-                            <th>{{ t('common.paymentAmount') }} {{ memberInfo.country === 'Taiwan' ? '(TWD)' : '(USD)' }}</th>
+                            <th>{{ t('common.paymentAmount') }} (TWD)</th>
                             <th :colspan="2">{{ t('common.paymentStatus') }}</th>
-                            <!-- <th></th> -->
-                            <!-- <th v-if="memberInfo.country === 'Taiwan'">Last 5 digits of account number</th> -->
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(item, index) in orderList" :class="isEvenOrOdd(index)">
-                            <td class="first-col">{{ item.itemsSummary }}</td>
-                            <td>{{ memberInfo.country === 'Taiwan' ? item.totalAmount : (item.totalAmount /
-                                RATE).toFixed(2) }}</td>
-                            <td class="last-col">{{
-                                enums.payMentStatus[item.status]
-                            }}</td>
-                            <!-- <td v-if="memberInfo.country === 'Taiwan'" class="last-col">
-                                {{ memberInfo.remitAccountLast5 }}
-                            </td> -->
-                            <td v-if="item.status === 0 || item.status === 3" class="not-pay" :class="(memberInfo.groupRole == 'slave' &&
-                                item.itemsSummary == 'Group Registration Fee') ||
-                                isOverDeadline
-                                ? 'disabled'
-                                : ''" @click="getOrders(
-                                    item.ordersId,
-                                    memberInfo.groupRole != 'slave' ||
-                                    item.itemsSummary != 'Group Registration Fee'
-                                )">
+                        <tr v-for="(item, index) in orderList" :key="item.ordersId" :class="isEvenOrOdd(index)">
+                            <td class="first-col">
+                                <div>
+                                    <p v-for="(product, index) in item.ordersItemList" :key="product.ordersItemId">
+                                        {{ Number(index) + 1 }}.
+                                        {{ product.productName }}
+                                    </p>
+                                </div>
+                            </td>
+                            <td>
+                                {{ memberInfo.country === 'Taiwan' ? item.totalAmount : (item.totalAmount /
+                                    RATE).toFixed(2) }}
+                            </td>
+                            <td class="last-col">
+                                {{ enums.payMentStatus[item.status] }}
+                            </td>
+                            <td v-if="item.status === 0 || item.status === 3" class="not-pay"
+                                :class="isPayDisabled(item) ? 'disabled' : ''"
+                                @click="getOrders(item.ordersId, !isPayDisabled(item))">
                                 <span>{{ t('common.payNow') }}</span>
                             </td>
-                            <!-- <td v-if="memberInfo.country === 'Taiwan' && (item.status === 0 || item.status === 3)"
-                                class="not-pay" :class="isOverDeadline ? 'disabled' : ''"
-                                @click="openTaiwanPaymentDialog(item.ordersId)">
-                                <span>付款</span>
-                            </td> -->
                             <td v-if="item.status === 2" class="completed">
-                                <span><el-icon>
+                                <span>
+                                    <el-icon>
                                         <ElIconCircleCheckFilled />
-                                    </el-icon></span>
+                                    </el-icon>
+                                </span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
         </div>
-        <!-- Bearer 7bedca56-c711-4559-af47-afd6d4224da8 -->
-
 
         <div v-html="form" ref="formRef" style="display: none;"></div>
     </main>
@@ -104,53 +57,9 @@ import Banner from '@/components/layout/Banner.vue';
 import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import { useSetting } from '@/composables/useSetting';
 
-
-const { t } = useI18n();
-
-const orderListRef = ref<any>();
-
-const RATE = 32;
-
-
-const memberInfo = ref<any>({});
-const remitDialogVisible = ref(false);
-const remitAccountLast5Input = ref('');
-const remitDialogError = ref('');
-const isSavingRemitAccount = ref(false);
-const hasSavedRemitAccount = computed(() => {
-    const value = String(memberInfo.value?.remitAccountLast5 ?? '').trim();
-    return /^\d{5}$/.test(value);
-});
-const canConfirmTaiwanPayment = computed(() => {
-    if (hasSavedRemitAccount.value) {
-        return true;
-    }
-
-    return /^\d{5}$/.test(remitAccountLast5Input.value.trim());
-});
-
-const targetOrderId = ref<string>('')
-const openTaiwanPaymentDialog = (ordersId: string) => {
-    if (isOverDeadline.value) {
-        return;
-    }
-
-    remitDialogError.value = '';
-    remitAccountLast5Input.value = hasSavedRemitAccount.value ? String(memberInfo.value.remitAccountLast5) : '';
-    remitDialogVisible.value = true;
-
-    targetOrderId.value = ordersId
-}
-
-const getMemberInfo = async () => {
-    const res = await CSRrequest.get('/member/owner');
-
-    console.log(res)
-    memberInfo.value = res.data;
-}
-
-
-
+// ==========================================
+// 1. Types & Interfaces
+// ==========================================
 interface Order {
     itemsSummary: string;
     totalAmount: number;
@@ -158,12 +67,27 @@ interface Order {
     ordersId: string;
 }
 
-let orderList = reactive<Order[]>([])
-const getOrderListForOwner = async () => {
-    let res = await CSRrequest.get('/orders/owner')
-    Object.assign(orderList, res.data)
-    console.log(orderList)
+interface OrdersItem {
+    ordersItemId: string;
+    productType: string;
+    productName: string;
+    quantity: number;
+    unitPrice: number;
+    subtotal: number;
 }
+
+interface OrdersVO {
+    ordersId: string,
+    itemsSummary: string,
+    totalAmount: number,
+    status: number,
+    ordersItemList: OrdersItem[];
+}
+
+// ==========================================
+// 2. Constants & Enums
+// ==========================================
+const RATE = 32;
 
 const enums = {
     payMentStatus: {
@@ -171,138 +95,95 @@ const enums = {
         1: 'Comfirming',
         2: 'Payment completed',
         3: 'Payment failed',
-    } as any,
-
+    } as Record<number, string>,
     paymentBtnColor: {
         0: 'success',
         2: 'warning',
-    } as any,
-}
+    } as Record<number, string>,
+};
 
-/**----------------------------前往付款------------------- */
+// ==========================================
+// 3. Composables & Refs
+// ==========================================
+const { t } = useI18n();
+const { setting } = useSetting();
 
-const formRef = ref<any>()
+// DOM Refs
+const formRef = ref<HTMLDivElement | null>(null);
 
+// Page Data States
+const memberInfo = ref<any>({});
+const orderList = reactive<OrdersVO[]>([]);
 const form = ref<any>()
 
-const handleRemitDialogCancel = () => {
-    remitDialogVisible.value = false;
-}
+// Payment Modal States
+const isOverDeadline = ref(false);
+
+
+// ==========================================
+// 5. Watchers
+// ==========================================
+watch(() => setting.value, () => {
+    if (setting.value) {
+        isOverDeadline.value = !setting.value.isRegistrationOpen;
+    }
+}, { immediate: true });
+
+// ==========================================
+// 6. API & Business Logic Methods
+// ==========================================
+const getMemberInfo = async () => {
+    const res = await CSRrequest.get('/member/owner');
+    memberInfo.value = res.data;
+};
+
+const getOrderListForOwner = async () => {
+    const res = await CSRrequest.get('/orders/owner');
+    orderList.length = 0; // 清空原本的陣列
+    Object.assign(orderList, res.data);
+};
 
 const getOrders = async (ordersId: string, isPayable: boolean) => {
-    console.log(!isPayable)
-    // console.log('isOverDeadline:', isOverDeadline.value)
-    if (isOverDeadline.value) {
+    if (isOverDeadline.value || !isPayable) {
         return;
     }
 
+    await CSRrequest.get(`/orders/owner/${ordersId}`);
+    const res = await CSRrequest.get(`/orders/payment`, {
+        params: { id: ordersId }
+    });
 
-    if (!isPayable) {
-        // ElMessage.error('You are not allowed to pay for this item')
-        return
-    }
-    let res = await CSRrequest.get(`/orders/owner/${ordersId}`)
-    res = await CSRrequest.get(`/orders/payment`, {
-        params: {
-            id: ordersId
-        }
-    })
-
-    form.value = res.data
+    form.value = res.data;
 
     await nextTick();
     if (formRef.value) {
-        const formItem = formRef.value.querySelector("form")
-        // console.log(formItem)
-        formItem.submit()
+        const formItem = formRef.value.querySelector("form");
+        if (formItem) {
+            formItem.submit();
+        }
     }
-
-
-
-}
-
-/**---------------------------------------- */
-const isEvenOrOdd = (index: number) => {
-    return index % 2 === 0 ? 'even' : 'odd'
-}
-
-const isCompleted = (status: number) => {
-    return status === 2 ? 'completed' : 'not-pay'
-}
-
-const isTaiwan = (country: string) => {
-    return country === 'Taiwan' ? 'taiwan' : 'none'
-}
-
-const deadline = ref(new Date());
-const isOverDeadline = ref(false);
-const eventDays = ['2025-11-15', '2025-11-16', '2025-11-07'];
-
-const getLocalISODate = (date: Date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
 };
 
-const todayString = getLocalISODate(new Date());
-
-const { setting } = useSetting();
-watch(() => setting.value, () => {
-    if (setting.value) {
-        isOverDeadline.value = !setting.value.isRegistrationOpen
-    }
-}, { immediate: true })
-
-interface orderStatusPayload {
-    orderId: string;
-    remitAccountLast5: string;
-}
-
-const confirmPayment = async () => {
-    if (!canConfirmTaiwanPayment.value) {
-        remitDialogError.value = 'Please enter the last 5 digits of the remittance account number.';
-        return;
-    }
-
-    if (targetOrderId.value === '') {
-        remitDialogError.value = 'Invalid order. Please try again.';
-        return;
-    }
-
-    const payload: orderStatusPayload = { orderId: targetOrderId.value, remitAccountLast5: remitAccountLast5Input.value.trim() }
-
-    try {
-        const res: any = await CSRrequest.put('/orders/offline-transfer', {
-            body: payload,
-        });
-
-        if (res.code !== 200) {
-            ElNotification.error({
-                title: 'Error',
-                message: res.msg || 'Failed to update payment information. Please try again later.',
-            });
-            return;
-        }
-        ElNotification.success({
-            title: 'Success',
-            message: 'Payment information updated successfully.',
-        });
-        remitDialogVisible.value = false;
-        getOrderListForOwner();
-    } catch (error) {
-        ElNotification.error({
-            title: 'Error',
-            message: 'Failed to update payment information. Please try again later.',
-        });
-    }
-}
 
 
+// ==========================================
+// 7. Helper / Template Methods
+// ==========================================
+const isEvenOrOdd = (index: number) => {
+    return index % 2 === 0 ? 'even' : 'odd';
+};
+
+const isPayDisabled = (item: Order) => {
+    return (memberInfo.value.groupRole === 'slave' && item.itemsSummary === 'Group Registration Fee') || isOverDeadline.value;
+};
+
+// ==========================================
+// 8. Lifecycle Hooks
+// ==========================================
 onMounted(() => {
-    getOrderListForOwner()
-    getMemberInfo()
-})
+    getOrderListForOwner();
+    getMemberInfo();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -392,8 +273,7 @@ onMounted(() => {
             background: white;
             border-radius: 20px;
             padding: 2rem;
-            box-shadow:
-                0 10px 40px rgba(0, 0, 0, .06);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, .06);
 
             @media screen and (max-width: 640px) {
                 overflow-x: visible;
@@ -471,9 +351,7 @@ onMounted(() => {
 
                 th {
                     padding: 1rem;
-                    background: linear-gradient(135deg,
-                            #537676 0%,
-                            #6e9393 100%);
+                    background: linear-gradient(135deg, #537676 0%, #6e9393 100%);
                     color: #fff;
                     font-size: 0.95rem;
                     font-weight: 700;
@@ -530,7 +408,6 @@ onMounted(() => {
                 }
 
                 .first-col {
-                    min-width: 18ch;
                     border-top-left-radius: 12px;
                     border-bottom-left-radius: 12px;
                 }
@@ -552,10 +429,7 @@ onMounted(() => {
                 }
 
                 .completed {
-                    background: linear-gradient(135deg,
-                            #f2a14a,
-                            #d77102) !important;
-
+                    background: linear-gradient(135deg, #f2a14a, #d77102) !important;
                     color: #fff !important;
                     text-align: center;
                     cursor: default;
@@ -569,10 +443,7 @@ onMounted(() => {
                 }
 
                 .not-pay {
-                    background: linear-gradient(135deg,
-                            #32c315,
-                            #26ae07) !important;
-
+                    background: linear-gradient(135deg, #32c315, #26ae07) !important;
                     color: #fff !important;
                     text-align: center;
                     min-width: 140px;
@@ -691,7 +562,6 @@ onMounted(() => {
                     }
                 }
             }
-
         }
 
         .payment-info {
@@ -730,7 +600,5 @@ onMounted(() => {
             }
         }
     }
-
-
 }
 </style>
