@@ -217,7 +217,12 @@
     "title": "標題",
     "date": "日期",
     "membershipDue": "常年會費",
+    "membershipDueYear": "常年會費補繳-{year}年",
     "total": "總計",
-    "backToEdit": "返回修改"
+    "backToEdit": "返回修改",
+    "notPay": "未付款",
+    "confirming": "審核中",
+    "paymentCompleted": "付款完成",
+    "paymentFailed": "付款失敗"
   }
 }

@@ -487,6 +487,14 @@ const confirmFeePreview = async (): Promise<boolean> => {
         return false;
     }
 
+    const dueRows = (res.data.membershipDueDetails ?? [])
+        .filter((d: any) => d.amount > 0)
+        .map((d: any) => {
+            const year = locale.value === 'zh-TW' ? d.rocYear : d.adYear;
+            return `${t('common.membershipDueYear', { year })} : ${d.amount}`;
+        })
+        .join('<br>');
+
     try {
         await ElMessageBox.confirm(t('common.registrationFee'), {
             confirmButtonText: t('common.confirm'),
@@ -495,7 +503,7 @@ const confirmFeePreview = async (): Promise<boolean> => {
             dangerouslyUseHTMLString: true,
             message: `
                 ${t('common.registrationFee')} : ${res.data.registrationFee} <br>
-                ${t('common.membershipDue')} : ${res.data.membershipDue} <br>
+                ${dueRows ? dueRows + '<br>' : ''}
                 ${t('common.total')} : ${res.data.totalAmount} <br>
             `,
         });

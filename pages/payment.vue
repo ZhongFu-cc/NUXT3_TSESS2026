@@ -19,7 +19,9 @@
                                 <div>
                                     <p v-for="(product, index) in item.ordersItemList" :key="product.ordersItemId">
                                         {{ Number(index) + 1 }}.
-                                        {{ product.productName }}
+                                        {{ product.productName }} —
+                                        {{ memberInfo.country === 'Taiwan' ? product.subtotal : (product.subtotal /
+                                            RATE).toFixed(2) }}
                                     </p>
                                 </div>
                             </td>
@@ -58,7 +60,24 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 import { useSetting } from '@/composables/useSetting';
 
 // ==========================================
-// 1. Types & Interfaces
+// 1. Composables & Refs
+// ==========================================
+const { t } = useI18n();
+const { setting } = useSetting();
+
+// DOM Refs
+const formRef = ref<HTMLDivElement | null>(null);
+
+// Page Data States
+const memberInfo = ref<any>({});
+const orderList = reactive<OrdersVO[]>([]);
+const form = ref<any>()
+
+// Payment Modal States
+const isOverDeadline = ref(false);
+
+// ==========================================
+// 2. Types & Interfaces
 // ==========================================
 interface Order {
     itemsSummary: string;
@@ -76,25 +95,34 @@ interface OrdersItem {
     subtotal: number;
 }
 
+interface MembershipDueDetail {
+    rocYear: number;
+    adYear: number;
+    amount: number;
+}
+
 interface OrdersVO {
     ordersId: string,
     itemsSummary: string,
     totalAmount: number,
     status: number,
+    registrationFee: number,
+    membershipDue: number,
+    membershipDueDetails: MembershipDueDetail[],
     ordersItemList: OrdersItem[];
 }
 
 // ==========================================
-// 2. Constants & Enums
+// 3. Constants & Enums
 // ==========================================
 const RATE = 32;
 
 const enums = {
     payMentStatus: {
-        0: 'Unpaid',
-        1: 'Comfirming',
-        2: 'Payment completed',
-        3: 'Payment failed',
+        0: t('common.notPay'),
+        1: t('common.confirming'),
+        2: t('common.paymentCompleted'),
+        3: t('common.paymentFailed'),
     } as Record<number, string>,
     paymentBtnColor: {
         0: 'success',
@@ -102,26 +130,11 @@ const enums = {
     } as Record<number, string>,
 };
 
-// ==========================================
-// 3. Composables & Refs
-// ==========================================
-const { t } = useI18n();
-const { setting } = useSetting();
 
-// DOM Refs
-const formRef = ref<HTMLDivElement | null>(null);
-
-// Page Data States
-const memberInfo = ref<any>({});
-const orderList = reactive<OrdersVO[]>([]);
-const form = ref<any>()
-
-// Payment Modal States
-const isOverDeadline = ref(false);
 
 
 // ==========================================
-// 5. Watchers
+// 4. Watchers
 // ==========================================
 watch(() => setting.value, () => {
     if (setting.value) {
@@ -130,7 +143,7 @@ watch(() => setting.value, () => {
 }, { immediate: true });
 
 // ==========================================
-// 6. API & Business Logic Methods
+// 5. API & Business Logic Methods
 // ==========================================
 const getMemberInfo = async () => {
     const res = await CSRrequest.get('/member/owner');
@@ -139,6 +152,7 @@ const getMemberInfo = async () => {
 
 const getOrderListForOwner = async () => {
     const res = await CSRrequest.get('/orders/owner');
+    console.log('res.data', res.data);
     orderList.length = 0; // 清空原本的陣列
     Object.assign(orderList, res.data);
 };
@@ -167,7 +181,7 @@ const getOrders = async (ordersId: string, isPayable: boolean) => {
 
 
 // ==========================================
-// 7. Helper / Template Methods
+// 6. Helper / Template Methods
 // ==========================================
 const isEvenOrOdd = (index: number) => {
     return index % 2 === 0 ? 'even' : 'odd';
@@ -177,8 +191,7 @@ const isPayDisabled = (item: Order) => {
     return (memberInfo.value.groupRole === 'slave' && item.itemsSummary === 'Group Registration Fee') || isOverDeadline.value;
 };
 
-// ==========================================
-// 8. Lifecycle Hooks
+// 7. Lifecycle Hooks
 // ==========================================
 onMounted(() => {
     getOrderListForOwner();

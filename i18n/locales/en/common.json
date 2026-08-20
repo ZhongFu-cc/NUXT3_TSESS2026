@@ -249,7 +249,12 @@
     "paymentStatus": "Payment Status",
     "payNow": "Pay now",
     "membershipDue": "Member ship fee",
+    "membershipDueYear": "Annual Membership Dues ({year})",
     "total": "Total",
-    "backToEdit": "Back to edit"
+    "backToEdit": "Back to edit",
+    "notPay": "UnPaid",
+    "confirming": "Confirming",
+    "paymentCompleted": "Completed",
+    "paymentFailed": "Failed"
   }
 }
