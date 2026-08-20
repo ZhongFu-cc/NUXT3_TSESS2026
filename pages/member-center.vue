@@ -64,15 +64,11 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue';
 
 const { t, setLocale } = useI18n();
 
-definePageMeta({
-    middleware: 'auth' // 名稱對應檔名
-})
-
-const localePath = useLocalePath();
+const localePath = useLocalePath()
 
 const router = useRouter();
 
-const memberInfo = useState('memberInfo', () => null) as any
+const memberInfo = reactive<Record<string, any>>({});
 
 const inCompletedStatus = [0, 1, 3];
 const isComplete = computed(() => {
@@ -90,11 +86,20 @@ const getStatusLabel = (status: number) => {
     }
 }
 
+const getMemberInfo = async () => {
+    let res = await CSRrequest.get('/member/owner')
+    if (res.code !== 200) {
+        router.push('/login');
+        localStorage.removeItem('Authorization-member');
+        return;
+    }
+    Object.assign(memberInfo, res.data);
+}
 
-definePageMeta({
-    middleware: 'auth' // 名稱對應檔名
-})
 
+onMounted(() => {
+    getMemberInfo();
+});
 </script>
 <style lang="scss" scoped>
 .common-section {

@@ -117,6 +117,10 @@
                                     </el-form-item>
                                 </div>
 
+                                <el-form-item :label="t('common.receipt')" prop="receipt">
+                                    <el-input v-model="formData.receipt" :placeholder="t('common.receipt')"></el-input>
+                                </el-form-item>
+
                                 <el-form-item :label="t('common.food')" prop="food">
                                     <el-radio-group v-model="formData.food">
                                         <el-radio value="葷">{{ t('common.foodRadio1') }}</el-radio>
@@ -155,7 +159,8 @@
                         </div>
                     </el-form-item>
                     <el-form-item class="submit-btn">
-                        <el-button type="primary" :disabled="isFormLocked" @click="submit(form)">{{ t('common.submit') }}</el-button>
+                        <el-button type="primary" :disabled="isFormLocked" @click="submit(form)">{{ t('common.submit')
+                            }}</el-button>
                     </el-form-item>
                 </el-form>
             </div>
@@ -460,67 +465,146 @@ const formRules = computed<FormRules>(() => ({
     phoneNum: [{ required: true, message: t('common.phoneNumValidate'), trigger: 'blur' }],
     category: [{ required: true, message: t('common.categoryValidate'), trigger: 'change' }],
     remitAccountLast5: [{ required: false, validator: validateRemitAccount, trigger: 'blur' }],
-    organizationNumber: [{ required: formData.category === 1, message: t('common.organizationNumberValidate'), trigger: 'blur' }],
 }))
 
-const getWorkshopName = (code?: string) => {
-    switch (code) {
-        case 'WSA001':
-            return '場次A'
-        case 'WSB001':
-            return '場次B'
-        case 'WSA002':
-            return '場次A'
-        case 'WSB002':
-            return '場次B'
-        case 'MAIN':
-            return '主會議'
-        default:
-            return '不參加'
+// Helper function to handle fee preview dialog
+const confirmFeePreview = async (): Promise<boolean> => {
+    const payload = {
+        country: formData.country,
+        category: formData.category,
+        idCard: formData.idCard,
+    };
+
+    const res = await CSRrequest.post('/registration-fee/preview', { body: payload });
+
+    if (res.code !== 200) {
+        ElNotification.error({
+            title: 'Failed',
+            message: res.msg,
+            type: 'error',
+            duration: 3000,
+        });
+        return false;
     }
-}
 
+    const dueRows = (res.data.membershipDueDetails ?? [])
+        .filter((d: any) => d.amount > 0)
+        .map((d: any) => {
+            const year = locale.value === 'zh-TW' ? d.rocYear : d.adYear;
+            return `${t('common.membershipDueYear', { year })} : ${d.amount}`;
+        })
+        .join('<br>');
 
+    try {
+        await ElMessageBox.confirm(t('common.registrationFee'), {
+            confirmButtonText: t('common.confirm'),
+            cancelButtonText: t('common.backToEdit'),
+            type: 'info',
+            dangerouslyUseHTMLString: true,
+            message: `
+                ${t('common.registrationFee')} : ${res.data.registrationFee} <br>
+                ${dueRows ? dueRows + '<br>' : ''}
+                ${t('common.total')} : ${res.data.totalAmount} <br>
+            `,
+        });
+        return true; // User clicked confirm
+    } catch {
+        return false; // User cancelled the modal
+    }
+};
+
+// Combined submit function
 const submit = async (formEl: FormInstance | undefined) => {
     if (!formEl) return;
-    formEl.validate(async (valid) => {
-        if (valid) {
-            formData.phone = formData.countryCode + '-' + formData.phoneNum;
-            let res = await CSRrequest.post('/member', {
-                body: formData
-            })
-            if (res.code === 500) {
-                getCaptcha()
-                formData.verificationCode = ''
-                ElNotification.error({
-                    title: 'Failed',
-                    message: res.msg,
-                    type: 'error',
-                    duration: 3000,
-                });
 
-            }
+    // Use promise-based validation
+    const valid = await formEl.validate().catch(() => false);
+    if (!valid) {
+        console.log('error submit!!');
+        return;
+    }
 
-            if (res.data.isLogin) {
-                localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
-                ElNotification.success({
-                    title: 'Success',
-                    message: t('common.registrationSuccess'),
-                    type: 'success',
-                    duration: 3000,
-                });
-                useAuth().checkLoginState();
+    // Step 1: Preview and confirm fee
+    const feeConfirmed = await confirmFeePreview();
+    if (!feeConfirmed) return;
 
-                router.push('/member-center');
-            }
+    // Step 2: Submit member registration
+    formData.phone = `${formData.countryCode}-${formData.phoneNum}`;
+    const res = await CSRrequest.post('/member', { body: formData });
 
-            formEl.resetFields()
-        } else {
-            console.log('error submit!!')
-            return false;
-        }
-    })
-}
+    if (res.code === 500) {
+        getCaptcha();
+        formData.verificationCode = '';
+        ElNotification.error({
+            title: 'Failed',
+            message: res.msg,
+            type: 'error',
+            duration: 3000,
+        });
+        return;
+    }
+
+    if (res.data?.isLogin) {
+        localStorage.setItem(res.data.tokenName, `Bearer ${res.data.tokenValue}`);
+        ElNotification.success({
+            title: 'Success',
+            message: t('common.registrationSuccess'),
+            type: 'success',
+            duration: 3000,
+        });
+
+        useAuth().checkLoginState();
+        router.push('/member-center');
+    }
+
+    formEl.resetFields();
+};
+
+
+// const submit = async (formEl: FormInstance | undefined) => {
+//     if (!formEl) return;
+//     formEl.validate(async (valid) => {
+//         if (valid) {
+
+//             const feeConfirmed = await confirmFeePreview();
+//             if (!feeConfirmed) return;
+
+//             formData.phone = formData.countryCode + '-' + formData.phoneNum;
+//             let res = await CSRrequest.post('/member', {
+//                 body: formData
+//             })
+//             if (res.code === 500) {
+//                 getCaptcha()
+//                 formData.verificationCode = ''
+//                 ElNotification.error({
+//                     title: 'Failed',
+//                     message: res.msg,
+//                     type: 'error',
+//                     duration: 3000,
+//                 });
+
+//             }
+
+//             if (res.data.isLogin) {
+//                 localStorage.setItem(res.data.tokenName, 'Bearer ' + res.data.tokenValue);
+//                 ElNotification.success({
+//                     title: 'Success',
+//                     message: t('common.registrationSuccess'),
+//                     type: 'success',
+//                     duration: 3000,
+//                 });
+//                 useAuth().checkLoginState();
+
+//                 router.push('/member-center');
+//             }
+
+//             formEl.resetFields()
+//         } else {
+//             console.log('error submit!!')
+//             return false;
+//         }
+//     })
+// }
 
 const listenKeydown = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
