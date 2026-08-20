@@ -223,6 +223,8 @@
     "notPay": "未付款",
     "confirming": "審核中",
     "paymentCompleted": "付款完成",
-    "paymentFailed": "付款失敗"
+    "paymentFailed": "付款失敗",
+    "researchPresentation": "Research Presentation",
+    "surgicalVideoPresentation": "Surgical Video Presentation"
   }
 }

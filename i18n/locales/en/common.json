@@ -255,6 +255,8 @@
     "notPay": "UnPaid",
     "confirming": "Confirming",
     "paymentCompleted": "Completed",
-    "paymentFailed": "Failed"
+    "paymentFailed": "Failed",
+    "surgicalVideoPresentation": "Surgical Video Presentation",
+    "researchPresentation": "Research Presentation"
   }
 }

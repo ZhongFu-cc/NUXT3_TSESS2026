@@ -68,7 +68,7 @@
                         <el-upload ref="uploadRef" class="upload-demo" :limit="1" :on-change="handlePdfUpload"
                             :auto-upload="false" :on-remove="handleRemove" :on-exceed="handleExceed">
                             <el-button size="small" type="primary">{{ $t('common.upload') }}</el-button>
-                            <!-- <div slot="tip" class="el-upload__tip">{{ $t('common.uploadLimit') }}</div> -->
+                            <div slot="tip" class="el-upload__tip">{{ $t('common.uploadLimit') }}</div>
                         </el-upload>
                     </el-form-item>
                 </div>
@@ -117,12 +117,9 @@ interface AbstractInterface {
 
 const router = useRouter();
 
-const abstractTypes = ref([{
-    label: 'test', value: 'test'
-}
-    // { label: t('common.posterPresentation'), value: 'Poster Presentation' },
-    // { label: t('common.videoPresentation'), value: 'Video Presentation' },
-    // { label: t('common.youngInvestigator'), value: 'Young Investigator' },
+const abstractTypes = ref([
+    { label: t('common.researchPresentation'), value: 'Research Presentation' },
+    { label: t('common.surgicalVideoPresentation'), value: 'Surgical Video Presentation' },
 ])
 
 const formRef = ref<FormInstance>();
