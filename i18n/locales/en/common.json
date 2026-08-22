@@ -257,6 +257,8 @@
     "paymentCompleted": "Completed",
     "paymentFailed": "Failed",
     "surgicalVideoPresentation": "Surgical Video Presentation",
-    "researchPresentation": "Research Presentation"
+    "researchPresentation": "Research Presentation",
+    "reportTime": "Report Time",
+    "reportLocation": "Report Location"
   }
 }
