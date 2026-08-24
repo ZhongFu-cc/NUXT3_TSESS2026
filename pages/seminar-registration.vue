@@ -187,6 +187,7 @@ useSeoMeta({
 const { t, locale } = useI18n()
 const countryList = ref(countries);
 const router = useRouter()
+const localePath = useLocalePath()
 const { isLogin } = useAuth()
 
 /**-------------------------------匯款帳號末5碼校驗----------------------------- */
@@ -554,7 +555,7 @@ const submit = async (formEl: FormInstance | undefined) => {
         });
 
         useAuth().checkLoginState();
-        router.push('/member-center');
+        router.push(localePath('/member-center'));
     }
 
     formEl.resetFields();
@@ -647,7 +648,7 @@ onMounted(() => {
             type: 'info',
             duration: 3000,
         });
-        router.push('/')
+        router.push(localePath('/'))
     }
 })
 

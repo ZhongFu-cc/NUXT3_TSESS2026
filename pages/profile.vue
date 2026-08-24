@@ -174,6 +174,7 @@ interface ProfileFormData {
 
 const { t, setLocale, locale } = useI18n();
 const router = useRouter();
+const localePath = useLocalePath();
 
 const titles = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
 const countries = countriesJson;
@@ -331,7 +332,7 @@ const getMemberInfo = async () => {
     const res = await CSRrequest.get('/member/owner');
     if (res.code !== 200) {
         localStorage.removeItem('Authorization-member');
-        router.push('/login');
+        router.push(localePath('/login'));
         return;
     }
 
