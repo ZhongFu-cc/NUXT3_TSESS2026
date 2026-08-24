@@ -92,6 +92,9 @@ import { formRulesEN } from '@/utils/formRules';
 const { t } = useI18n();
 const { isLogin, checkLoginState, memberInfo } = useAuth();
 
+const localPath = useLocalePath()
+
+
 useSeoMeta({
     title: 'Abstract Submission - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
     description: 'Welcome to the abstract submission page for the TOPBS (Taiwan Oncoplastic Breast Surgery Society) Conference 2026. Submit your abstracts for poster, video, or young investigator presentations and be part of this prestigious event in Taipei.',
@@ -177,7 +180,7 @@ const submit = async (formEl: FormInstance | undefined) => {
                     duration: 3000,
                 })
                 loading.value = false;
-                router.push('/member-center');
+                router.push(localPath('/member-center'));
             } else if (res.code === 400 || res.code === 500) {
                 ElNotification.error({
                     title: 'Failed',
@@ -203,7 +206,7 @@ const submit = async (formEl: FormInstance | undefined) => {
 const { setting } = useSetting();
 watch(() => setting.value, () => {
     if (setting.value && !setting.value.isAbstractSubmissionOpen) {
-        router.push("/member-center");
+        router.push(localPath('abstract'));
         ElNotification.warning({
             title: 'Closed',
             message: 'Abstract submission is closed',
@@ -236,7 +239,7 @@ onMounted(() => {
     init();
     checkLoginState();
     if (!isLogin.value) {
-        router.push("/login");
+        router.push(localPath('login'));
         ElNotification.warning({
             title: 'Warning',
             message: t('common.pleaseLogInFirst'),

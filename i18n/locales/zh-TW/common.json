@@ -231,6 +231,13 @@
     "abstractFile": "檔案",
     "abstractStatus": "狀態",
     "accepted": "入選",
-    "rejected": "未入選"
+    "rejected": "未入選",
+    "edit": "編輯",
+    "view": "查看",
+    "delete": "刪除",
+    "preview": "查看",
+    "deleteConfirm": "確定要刪除嗎?",
+    "deletedSuccessfully": "刪除成功",
+    "deletedFailed": "刪除失敗"
   }
 }

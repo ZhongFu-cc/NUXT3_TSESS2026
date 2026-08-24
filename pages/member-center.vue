@@ -89,7 +89,7 @@ const getStatusLabel = (status: number) => {
 const getMemberInfo = async () => {
     let res = await CSRrequest.get('/member/owner')
     if (res.code !== 200) {
-        router.push('/login');
+        router.push(localePath('/login'));
         localStorage.removeItem('Authorization-member');
         return;
     }

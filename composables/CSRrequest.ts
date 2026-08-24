@@ -24,8 +24,13 @@ export default {
             onResponseError({ response }: { response: any }) {  // 加上型別
                 console.error(response)
 
-                // 401為沒token時的錯誤
-                if (response.status !== 401) {
+                // 401：token 過期或無效，清除本機憑證並導回登入頁
+                if (response.status === 401) {
+                    localStorage.removeItem('Authorization-member')
+                    if (typeof window !== 'undefined' && !window.location.pathname.includes('/login')) {
+                        window.location.href = '/login'
+                    }
+                } else {
                     ElMessage.error(response._data.msg)
                 }
 
