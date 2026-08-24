@@ -238,6 +238,7 @@
     "preview": "查看",
     "deleteConfirm": "確定要刪除嗎?",
     "deletedSuccessfully": "刪除成功",
-    "deletedFailed": "刪除失敗"
+    "deletedFailed": "刪除失敗",
+    "hasQuestion": "有任何問題的話，請聯繫學會秘書"
   }
 }
