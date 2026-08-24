@@ -262,6 +262,7 @@
     "reportLocation": "Report Location",
     "deleteConfirm": "Are you sure you want to delete this paper?",
     "deletedSuccessfully": "Deleted Successfully",
-    "deletedFailed": "Deleted Failed"
+    "deletedFailed": "Deleted Failed",
+    "hasQuestion": "If you have any questions, please contact the association secretary.   "
   }
 }

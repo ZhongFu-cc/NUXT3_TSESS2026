@@ -506,6 +506,7 @@ const confirmFeePreview = async (): Promise<boolean> => {
                 ${t('common.registrationFee')} : ${res.data.registrationFee} <br>
                 ${dueRows ? dueRows + '<br>' : ''}
                 ${t('common.total')} : ${res.data.totalAmount} <br>
+                ${t('common.hasQuestion')} <br>
             `,
         });
         return true; // User clicked confirm
