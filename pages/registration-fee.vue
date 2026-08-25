@@ -43,12 +43,9 @@
                     <td>US$150</td>
                 </tr>
             </tbody>
-
-
-
-
-
         </table>
+
+        <p class="tips">{{ t('common.registrationFeeTips') }}</p>
 
         <div class="btn-section">
             <nuxt-link class="register-btn" to="/login">

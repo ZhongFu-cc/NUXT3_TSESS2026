@@ -20,14 +20,12 @@
                                     <p v-for="(product, index) in item.ordersItemList" :key="product.ordersItemId">
                                         {{ Number(index) + 1 }}.
                                         {{ product.productName }} —
-                                        {{ memberInfo.country === 'Taiwan' ? product.subtotal : (product.subtotal /
-                                            RATE).toFixed(2) }}
+                                        {{ product.subtotal}}
                                     </p>
                                 </div>
                             </td>
                             <td>
-                                {{ memberInfo.country === 'Taiwan' ? item.totalAmount : (item.totalAmount /
-                                    RATE).toFixed(2) }}
+                                {{item.totalAmount }}
                             </td>
                             <td class="last-col">
                                 {{ enums.payMentStatus[item.status] }}
@@ -115,7 +113,6 @@ interface OrdersVO {
 // ==========================================
 // 3. Constants & Enums
 // ==========================================
-const RATE = 32;
 
 const enums = {
     payMentStatus: {

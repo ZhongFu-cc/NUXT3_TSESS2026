@@ -263,6 +263,7 @@
     "deleteConfirm": "Are you sure you want to delete this paper?",
     "deletedSuccessfully": "Deleted Successfully",
     "deletedFailed": "Deleted Failed",
-    "hasQuestion": "If you have any questions, please contact the association secretary.   "
+    "hasQuestion": "If you have any questions, please contact the association secretary.   ",
+    "registrationFeeTips": "*The prices are listed in USD. According to the financial regulations in Taiwan, the actual             credit card payment will be charged in TWD or your local currency. It may be a little different from the             price listed above. "
   }
 }
