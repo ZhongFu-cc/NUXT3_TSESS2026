@@ -25,6 +25,7 @@
                             <td>
                                 <span v-if="paper.status === 1" class="status-accepted">{{ $t('common.accepted') }}</span>
                                 <span v-else-if="paper.status === 2" class="status-rejected">{{ $t('common.rejected') }}</span>
+                                <span v-else-if="paper.status === 0" class="status-unreviewed">{{ $t('common.unreviewed') }}</span>
                             </td>
                             <td class="last-col">
                                 <div class="action-wrapper">
@@ -165,6 +166,7 @@
                         <td v-if="paperInfo.status">
                             <span v-if="paperInfo.status === 1" class="status-accepted">{{ $t('common.accepted') }}</span>
                             <span v-else-if="paperInfo.status === 2" class="status-rejected">{{ $t('common.rejected') }}</span>
+                            <span v-else-if="paperInfo.status === 0" class="status-unreviewed">{{ $t('common.unreviewed') }}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -375,7 +377,7 @@ onMounted(async () => {
                 .action-wrapper {
                     display: flex;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-start;
                     height: 100%;
                     min-height: 40px;
                     gap: 0.5rem;
@@ -393,8 +395,8 @@ onMounted(async () => {
             }
 
             .status-unreviewed {
-                color: gray;
-                border: 1px solid gainsboro;
+                color: white;
+                // border: 1px solid gainsboro;
                 border-radius: 5px;
                 padding: 0.2rem 0.5rem;
                 font-weight: bold;
@@ -402,7 +404,7 @@ onMounted(async () => {
 
             .status-accepted {
                 color: rgb(77, 151, 77);
-                border: 1px solid green;
+                // border: 1px solid green;
                 border-radius: 5px;
                 padding: 0.2rem 0.5rem;
                 font-weight: bold;
@@ -410,7 +412,7 @@ onMounted(async () => {
 
             .status-rejected {
                 color: red;
-                border: 1px solid red;
+                // border: 1px solid red;
                 border-radius: 5px;
                 padding: 0.2rem 0.5rem;
                 font-weight: bold;

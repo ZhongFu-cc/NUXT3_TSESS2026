@@ -240,6 +240,7 @@
     "deletedSuccessfully": "刪除成功",
     "deletedFailed": "刪除失敗",
     "hasQuestion": "有任何問題的話，請聯繫學會秘書",
-    "registrationFeeTips": "以美金（USD）標示。根據台灣的金融法規，信用卡實際扣款將以新台幣（TWD）或您的當地貨幣計價，可能與上述標示的價格略有出入。"
+    "registrationFeeTips": "以美金（USD）標示。根據台灣的金融法規，信用卡實際扣款將以新台幣（TWD）或您的當地貨幣計價，可能與上述標示的價格略有出入。",
+    "unreviewed": "審核中"
   }
 }
