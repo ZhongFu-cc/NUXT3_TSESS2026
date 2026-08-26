@@ -1,100 +1,369 @@
 <template>
-    <div class="common-section">
-        <Banner></Banner>
-        <Title title="Coming Soon"></Title>
-        <!-- <h1 class="title">感謝下列廠商熱情贊助!!</h1> -->
-        <div class="image-section">
-            <!-- <div v-for="(image, index) in images" :key="index" class="image-item">
-                <img :src="image.src" :alt="image.alt" @error="" />
-            </div> -->
-        </div>
-        <!-- <img src="../assets/img/sponsor_list.png" alt=""> -->
-        <!-- <div class="image-section">
-            <div v-for="(group, groupIndex) in groupedImages" :key="groupIndex" class="image-group">
-                <span v-for="(image, imgIndex) in group" :key="imgIndex" class="image-item">
-                    <img :src="image" alt="Sponsor Image" />
-                </span>
+    <div>
+        <main class="common-section">
+            <Banner></Banner>
+            <Breadcrumbs firstRoute="About" secoundRoute="List of Sponsors"></Breadcrumbs>
+            <Title title="List of Sponsors"></Title>
+
+            <div class="content">
+                <div class="level-box" v-if="diamondSponsors">
+                    <div class="level-svg-box">
+                        <img :src="diamondSponsors.imgSrc" alt="level">
+                    </div>
+                    <div v-for="sponsorLogoList in diamondSponsors.sponsorLogos" class="diamond-sponsor-logo-box">
+                        <div v-for="logo in sponsorLogoList" class="sponsor-logo-item">
+                            <img :src="logo" alt="logo">
+                        </div>
+                        <div v-for="sponsorLogoList in diamondSponsors.sponsorLogos" class="diamond-sponsor-logo-box">
+                            <!-- <div v-for="logo in sponsorLogoList" class="sponsor2-logo-item">
+                                <img src="../assets/img/sponsors/diamond2/1_Sankyo.png" alt="logo">
+                                <img src="../assets/img/sponsors/diamond2/2_AZ.png" alt="logo">
+                            </div> -->
+                        </div>
+                    </div>
+                    <el-divider></el-divider>
+                </div>
+
+
+
+                <div v-if="sponsorsList && sponsorsList.length > 0" v-for="(sponsor, index) in sponsorsList"
+                    class="level-box">
+                    <div class="level-svg-box">
+                        <img v-if="sponsor.imgSrc" :src="sponsor.imgSrc" alt="level">
+                    </div>
+                    <div v-for="(sponsorLogoList, index) in sponsor.sponsorLogos" class="sponsor-logo-box">
+                        <div v-for="logo in sponsorLogoList" class="sponsor-logo-item"
+                            :class="sponsor.level === 'None Level Sponsor' ? 'none-level-sponsor-logo-item' : ''">
+                            <img :src="logo" alt="logo">
+                        </div>
+                    </div>
+                    <el-divider v-if="index < sponsorsList.length - 1"></el-divider>
+                </div>
             </div>
-        </div> -->
-
-
+        </main>
 
     </div>
 </template>
-<script lang="ts" setup>
-import Title from '@/components/layout/Title.vue';
-import Banner from '@/components/layout/Banner.vue';
+<script setup lang="ts">
+import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
+import Banner from '@/components/layout/Banner.vue'
+import Title from '@/components/layout/Title.vue'
+
+import DiamondLogo from '../assets/img/sponsors/level-svg/diamond.png'
+import PlatinumLogo from '../assets/img/sponsors/level-svg/platinum.png'
+import GoldLogo from '../assets/img/sponsors/level-svg/gold.png'
+import SilverLogo from '../assets/img/sponsors/level-svg/silver.png'
+import BronzeLogo from '../assets/img/sponsors/level-svg/bronze.png'
 
 useSeoMeta({
-    title: '贊助廠商',
-    description: '感謝下列廠商熱情贊助!!',
-    keywords: 'sponsor list, TSESS, TSESS, TSESS2026, TSESS2026, 贊助廠商, 台中國際乳癌研討會 , 乳癌研討會, 乳癌, 乳癌教育, 乳癌防治, 中華民國乳癌教育暨防治學會, 中國醫藥大學附設醫院, 中國醫藥大學, 台灣乳房醫學會, 中華民國外科醫學會',
-});
-
-const imageUrl = ref(`/img/sponsor_logo`);
-const images = computed(() => {
-    return Array.from({ length: 32 }, (_, i) => ({
-        id: i + 1,
-        src: `${imageUrl.value}/LOGO_${i + 1}.png`,
-        alt: `Image ${i + 1}`,
-    }));
+    title: 'List of Sponsors - TSESS 2026',
+    description: 'Explore the list of sponsors for TSESS 2026. This page is currently under construction, but stay tuned for updates showcasing the esteemed sponsors who support and contribute to the success of the conference.',
+    keywords: 'List Of Sponsors, Sponsors, TSESS 2026'
 })
 
+const sponsorConfig = [
+    { key: 'diamond Sponsor', path: '@/assets/img/sponsors/diamond/*.{png,jpg,svg,jpeg}' },
+    { key: 'platinum Sponsor', path: '@/assets/img/sponsors/platinum/*.{png,jpg,svg,jpeg}' },
+    { key: 'gold Sponsor', path: '@/assets/img/sponsors/gold/*.{png,jpg,svg,jpeg}' },
+    { key: 'silver Sponsor', path: '@/assets/img/sponsors/silver/*.{png,jpg,svg,jpeg}' },
+    { key: 'bronze Sponsor', path: '@/assets/img/sponsors/bronze/*.{png,jpg,svg,jpeg}' },
+    { key: 'none level Sponsor', path: '@/assets/img/sponsors/none-level/*.{png,jpg,svg,jpeg}' }
+]
 
+const cols = ref(4);
+
+const screenWidth = ref(0);
+
+onMounted(() => {
+    generateSponsorlogoList()
+    screenWidth.value = window.innerWidth;
+    window.addEventListener('resize', () => {
+        screenWidth.value = window.innerWidth;
+
+        if (screenWidth.value <= 425) {
+            cols.value = 1;
+        } else if (screenWidth.value <= 810) {
+            cols.value = 2;
+        } else if (screenWidth.value <= 1024) {
+            cols.value = 3;
+        } else {
+            cols.value = 4;
+        }
+        generateSponsorlogoList()
+    });
+
+});
+
+const allGroupedSponsors = ref<any[]>([]);
+const diamondSponsors = ref<any>({});
+const sponsorsList = ref<any[]>([]);
+
+const generateSponsorlogoList = () => {
+
+    allGroupedSponsors.value = sponsorConfig.map(config => {
+        const results: Record<string, string[][]> = {};
+
+        sponsorConfig.forEach(config => {
+
+
+            let modules: Record<string, string>;
+            let currentCols = cols.value
+            switch (config.key) {
+                case 'diamond Sponsor':
+                    modules = import.meta.glob('@/assets/img/sponsors/diamond/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
+                    break;
+                case 'platinum Sponsor':
+                    modules = import.meta.glob('@/assets/img/sponsors/platinum/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
+                    break;
+                case 'gold Sponsor':
+                    modules = import.meta.glob('@/assets/img/sponsors/gold/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
+                    break;
+                case 'silver Sponsor':
+                    modules = import.meta.glob('@/assets/img/sponsors/silver/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
+                    break;
+                case 'bronze Sponsor':
+                    modules = import.meta.glob('@/assets/img/sponsors/bronze/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
+                    break;
+                case 'none level Sponsor':
+                    modules = import.meta.glob('@/assets/img/sponsors/none-level/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
+                    currentCols = 7;
+                    break;
+                default:
+                    modules = {};
+                    break;
+            }
+
+            const galleryImages: string[] = Object.values(modules);
+            const groupedList: string[][] = [];
+
+            galleryImages.forEach((image, index) => {
+                const groupIndex = Math.floor(index / currentCols);
+                if (!groupedList[groupIndex]) {
+                    groupedList[groupIndex] = [];
+                }
+                groupedList[groupIndex].push(image);
+            });
+
+            results[config.key] = groupedList;
+        });
+        return results;
+    })
+
+    diamondSponsors.value = {
+        level: 'Diamond Sponsor',
+        imgSrc: DiamondLogo,
+        sponsorLogos: allGroupedSponsors.value[0]['diamond Sponsor']
+    }
+
+    sponsorsList.value = [
+
+        {
+            level: 'Platinum Sponsor',
+            imgSrc: PlatinumLogo,
+            sponsorLogos: allGroupedSponsors.value[1]['platinum Sponsor']
+        },
+        {
+            level: 'Gold Sponsor',
+            imgSrc: GoldLogo,
+            sponsorLogos: allGroupedSponsors.value[2]['gold Sponsor']
+        },
+        {
+            level: 'Silver Sponsor',
+            imgSrc: SilverLogo,
+            sponsorLogos: allGroupedSponsors.value[3]['silver Sponsor']
+        },
+        {
+            level: 'Bronze Sponsor',
+            imgSrc: BronzeLogo,
+            sponsorLogos: allGroupedSponsors.value[4]['bronze Sponsor']
+        },
+        {
+            level: 'None Level Sponsor',
+            imgSrc: '',
+            sponsorLogos: allGroupedSponsors.value[5]['none level Sponsor']
+        }
+    ]
+
+}
 
 
 </script>
 <style lang="scss" scoped>
 .common-section {
     font-family: $common-section-font-family;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
 
-    .title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: $main-color;
-        margin: 0rem 0 1rem 0;
-    }
 
-    .image-section {
-        width: 80%;
-        display: grid;
-        gap: 1rem;
-        justify-content: center;
-        margin: 1rem 0 3rem 0;
+    .content {
+        margin: 1rem auto;
+        text-align: center;
+        width: 90%;
 
-        grid-template-columns: repeat(1, 1fr);
+        .level-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
 
-        @media (min-width: 480px) {
-            grid-template-columns: repeat(2, 1fr);
-        }
+            .level-svg-box {
+                width: 10rem;
+                height: auto;
 
-        @media (min-width: 780px) {
-            grid-template-columns: repeat(4, 1fr);
-        }
+                img {
+                    width: 100%;
+                    height: auto;
+                }
 
-        @media (min-width: 1080px) {
-            grid-template-columns: repeat(4, 1fr);
-        }
+                @media screen and (max-width: 810px) {
+                    width: 8rem;
+                }
+            }
 
-        img {
-            width: 100%;
-            // max-width: 200px;
-            justify-self: center;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+            .sponsor-logo-box {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                flex-wrap: wrap;
+                margin-top: 1rem;
 
-            &:hover {
-                transform: scale(1.05);
+                .sponsor-logo-item {
+                    width: calc(100% / 4 - 2rem);
+                    aspect-ratio: 600 / 400;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        max-width: 100%;
+                        max-height: 100%;
+                        width: auto;
+                        height: auto;
+                        object-fit: contain;
+
+                    }
+
+                    @media screen and (max-width:1024px) {
+                        width: calc(100% / 3 - 2rem);
+                    }
+
+                    @media screen and (max-width:810px) {
+                        width: calc(100% / 2 - 2rem);
+                    }
+
+                    @media screen and (max-width:425px) {
+                        width: calc(100% - 2rem);
+                    }
+                }
+
+                .none-level-sponsor-logo-item {
+                    // margin-top: 7rem;
+                    width: calc(100% / 8 - 1rem) !important;
+
+                    @media screen and (max-width: 1024px) {
+                        width: calc(100% / 8 - 1rem) !important;
+                    }
+
+                    @media screen and (max-width: 810px) {
+                        width: calc(100% / 5 - 1rem) !important;
+                    }
+
+                    @media screen and (max-width: 425px) {
+                        width: calc(100% / 3 - 1rem) !important;
+                    }
+                }
+
+
+            }
+
+            .diamond-sponsor-logo-box {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                flex-wrap: wrap;
+                margin-top: 1rem;
+
+
+
+                .sponsor-logo-item {
+                    width: calc(100% / 1.7 - 1rem);
+                    height: auto;
+
+
+
+                    img {
+                        width: 90%;
+                        height: auto;
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: cover;
+
+                    }
+
+                    @media screen and (max-width:1024px) {
+                        width: 100%;
+                    }
+
+                    @media screen and (max-width: 425px) {
+                        display: none;
+                        width: calc(100%);
+
+                    }
+
+
+                }
+
+
+
+
+                .sponsor2-logo-item {
+                    width: calc(100% / 1.5 - 1rem);
+                    height: auto;
+                    display: none;
+
+                    img {
+                        width: 90%;
+                        height: auto;
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: cover;
+
+                    }
+
+                    // @media screen and (max-width: 1024px) {
+                    //     display: flex;
+                    //     justify-content: center;
+                    //     width: calc(100% / 2 - 2rem);
+
+                    // }
+
+                    // @media screen and (max-width: 810px) {
+                    //     display: flex;
+                    //     justify-content: center;
+                    //     width: calc(100% / 2 - 1rem);
+
+                    // }
+
+                    @media screen and (max-width: 425px) {
+                        display: block;
+                        width: calc(100% - 1rem);
+
+                    }
+
+
+                }
+
+
             }
         }
+
     }
+}
 
-
+.el-divider {
+    border-width: 10px;
 }
 </style>
