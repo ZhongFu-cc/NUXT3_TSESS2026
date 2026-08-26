@@ -15,10 +15,10 @@
                             <img :src="logo" alt="logo">
                         </div>
                         <div v-for="sponsorLogoList in diamondSponsors.sponsorLogos" class="diamond-sponsor-logo-box">
-                            <div v-for="logo in sponsorLogoList" class="sponsor2-logo-item">
+                            <!-- <div v-for="logo in sponsorLogoList" class="sponsor2-logo-item">
                                 <img src="../assets/img/sponsors/diamond2/1_Sankyo.png" alt="logo">
                                 <img src="../assets/img/sponsors/diamond2/2_AZ.png" alt="logo">
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <el-divider></el-divider>
