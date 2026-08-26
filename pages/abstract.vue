@@ -25,6 +25,7 @@
                             <td>
                                 <span v-if="paper.status === 1" class="status-accepted">{{ $t('common.accepted') }}</span>
                                 <span v-else-if="paper.status === 2" class="status-rejected">{{ $t('common.rejected') }}</span>
+                                <span v-else-if="paper.status === 0" class="status-unreviewed">{{ $t('common.unreviewed') }}</span>
                             </td>
                             <td class="last-col">
                                 <div class="action-wrapper">
@@ -155,7 +156,7 @@
                         <td class="column-name">{{ $t('common.abstractFile') }}</td>
                         <td v-if="envMinio + paperInfo.FileUpload">
                             <a class="preview-link" :href="envMinio + paperInfo.paperFileUpload[0].path"
-                                target="_blank">Preview</a>
+                                target="_blank">{{ $t('common.preview') }}</a>
                         </td>
                     </tr>
                 </tbody>
@@ -164,7 +165,8 @@
                         <td class="column-name">{{ $t('common.abstractStatus') }}</td>
                         <td v-if="paperInfo.status">
                             <span v-if="paperInfo.status === 1" class="status-accepted">{{ $t('common.accepted') }}</span>
-                            <span v-else-if="paperInfo.status === 2" class="stat s-rejected">{{ $t('common.rejected') }}</span>
+                            <span v-else-if="paperInfo.status === 2" class="status-rejected">{{ $t('common.rejected') }}</span>
+                            <span v-else-if="paperInfo.status === 0" class="status-unreviewed">{{ $t('common.unreviewed') }}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -180,8 +182,9 @@ import Banner from '@/components/layout/Banner.vue';
 
 
 
-
+const { t } = useI18n();
 const router = useRouter();
+const localePath = useLocalePath();
 /**----------------------------------------- */
 const memberInfo = reactive<any>({});
 const getMemberInfo = async () => {
@@ -190,7 +193,7 @@ const getMemberInfo = async () => {
         Object.assign(memberInfo, res.data);
     } else {
         localStorage.removeItem('Authorization-member');
-        router.push('/login');
+        router.push(localePath('/login'));
     }
 }
 /**------------------------------------------ */
@@ -203,11 +206,11 @@ const getPapperList = async () => {
 
 
 const headToEditPaper = (paper: any) => {
-    router.push(`/abstract-item/${paper.paperId}`)
+    router.push(localePath(`/abstract-item/${paper.paperId}`))
 }
 
 const headToUploadFile = (paper: any) => {
-    router.push(`/abstract-file/${paper.paperId}`)
+    router.push(localePath(`/abstract-file/${paper.paperId}`))
 }
 
 const isOpen = ref(false);
@@ -236,19 +239,18 @@ const setShowAll = () => {
 }
 
 const deletePaper = async (paper: any) => {
-    ElMessageBox.confirm('Are you sure you want to delete this paper?', 'Warning', {
-        confirmButtonText: 'Delete',
-        cancelButtonText: 'Cancel',
+    ElMessageBox.confirm(t('common.deleteConfirm'), 'Warning', {
+        confirmButtonText: t('common.delete'),
+        cancelButtonText: t('common.cancel'),
         type: 'warning',
     }).then(async () => {
         let res = await CSRrequest.delete(`/paper/owner/${paper.paperId}`,);
-        console.log(res);
         if (res.code === 200) {
-            ElMessage.success('Deleted successfully');
+            ElNotification.success(t('common.deletedSuccessfully'));
             paperList.length = 0;
             getPapperList();
         } else {
-            ElMessage.error('Deleted failed');
+            ElNotification.error(t('common.deletedFailed'));
         }
     }).catch(() => {
         ElMessage.info('Deletion cancelled');
@@ -277,7 +279,7 @@ const headToSubmit = () => {
             duration: 3000,
         });
     } else {
-        router.push('/abstract-submission');
+        router.push(localePath('/abstract-submission'));
     }
 }
 
@@ -375,7 +377,7 @@ onMounted(async () => {
                 .action-wrapper {
                     display: flex;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-start;
                     height: 100%;
                     min-height: 40px;
                     gap: 0.5rem;
@@ -393,8 +395,8 @@ onMounted(async () => {
             }
 
             .status-unreviewed {
-                color: gray;
-                border: 1px solid gainsboro;
+                color: white;
+                // border: 1px solid gainsboro;
                 border-radius: 5px;
                 padding: 0.2rem 0.5rem;
                 font-weight: bold;
@@ -402,7 +404,7 @@ onMounted(async () => {
 
             .status-accepted {
                 color: rgb(77, 151, 77);
-                border: 1px solid green;
+                // border: 1px solid green;
                 border-radius: 5px;
                 padding: 0.2rem 0.5rem;
                 font-weight: bold;
@@ -410,7 +412,7 @@ onMounted(async () => {
 
             .status-rejected {
                 color: red;
-                border: 1px solid red;
+                // border: 1px solid red;
                 border-radius: 5px;
                 padding: 0.2rem 0.5rem;
                 font-weight: bold;
@@ -455,15 +457,15 @@ onMounted(async () => {
             .odd {
                 td {
                     background-color: white;
-                    color: #E8979E;
+                    color: $main-color;
                     font-weight: bold;
                 }
 
 
 
                 .see-more-btn {
-                    border: 1px solid #E8979E;
-                    color: #E8979E;
+                    border: 1px solid $main-color;
+                    color: $main-color;
                     padding: 0.3rem;
                     min-width: 3rem;
 
@@ -601,7 +603,8 @@ onMounted(async () => {
 
                 .column-name {
                     font-weight: bold;
-                    background-color: #f2f2f2;
+                    background-color: $main-color;
+                    color: white;
                     width: 30%;
 
                     @media screen and (max-width: 1048px) {
@@ -639,7 +642,7 @@ onMounted(async () => {
                     font-size: 2rem;
                     font-weight: bold;
                     text-align: center;
-                    background-color: #E8979E;
+                    background-color: $main-color;
                     color: white;
                 }
             }

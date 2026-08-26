@@ -26,9 +26,10 @@
 import { ref, reactive } from 'vue'
 
 const router = useRouter();
+const localePath = useLocalePath();
 
 const goToPath = (targetPath: string) => {
-    router.push(targetPath)
+    router.push(localePath(targetPath))
 }
 
 </script>

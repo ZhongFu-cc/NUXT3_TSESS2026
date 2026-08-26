@@ -68,7 +68,7 @@
                         <el-upload ref="uploadRef" class="upload-demo" :limit="1" :on-change="handlePdfUpload"
                             :auto-upload="false" :on-remove="handleRemove" :on-exceed="handleExceed">
                             <el-button size="small" type="primary">{{ $t('common.upload') }}</el-button>
-                            <!-- <div slot="tip" class="el-upload__tip">{{ $t('common.uploadLimit') }}</div> -->
+                            <div slot="tip" class="el-upload__tip">{{ $t('common.uploadLimit') }}</div>
                         </el-upload>
                     </el-form-item>
                 </div>
@@ -91,6 +91,9 @@ import { formRulesEN } from '@/utils/formRules';
 
 const { t } = useI18n();
 const { isLogin, checkLoginState, memberInfo } = useAuth();
+
+const localPath = useLocalePath()
+
 
 useSeoMeta({
     title: 'Abstract Submission - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
@@ -117,12 +120,9 @@ interface AbstractInterface {
 
 const router = useRouter();
 
-const abstractTypes = ref([{
-    label: 'test', value: 'test'
-}
-    // { label: t('common.posterPresentation'), value: 'Poster Presentation' },
-    // { label: t('common.videoPresentation'), value: 'Video Presentation' },
-    // { label: t('common.youngInvestigator'), value: 'Young Investigator' },
+const abstractTypes = ref([
+    { label: t('common.researchPresentation'), value: 'Research Presentation' },
+    { label: t('common.surgicalVideoPresentation'), value: 'Surgical Video Presentation' },
 ])
 
 const formRef = ref<FormInstance>();
@@ -180,7 +180,7 @@ const submit = async (formEl: FormInstance | undefined) => {
                     duration: 3000,
                 })
                 loading.value = false;
-                router.push('/member-center');
+                router.push(localPath('/member-center'));
             } else if (res.code === 400 || res.code === 500) {
                 ElNotification.error({
                     title: 'Failed',
@@ -206,7 +206,7 @@ const submit = async (formEl: FormInstance | undefined) => {
 const { setting } = useSetting();
 watch(() => setting.value, () => {
     if (setting.value && !setting.value.isAbstractSubmissionOpen) {
-        router.push("/member-center");
+        router.push(localPath('abstract'));
         ElNotification.warning({
             title: 'Closed',
             message: 'Abstract submission is closed',
@@ -239,7 +239,7 @@ onMounted(() => {
     init();
     checkLoginState();
     if (!isLogin.value) {
-        router.push("/login");
+        router.push(localPath('login'));
         ElNotification.warning({
             title: 'Warning',
             message: t('common.pleaseLogInFirst'),

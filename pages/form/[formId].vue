@@ -37,6 +37,7 @@ import RadioQuestion from "@/components/formField/FormRadio.vue"
 import type { FormInstance, FormRules, UploadProps, UploadUserFile, UploadFile, UploadFiles, UploadInstance } from 'element-plus';
 
 const router = useRouter();
+const localePath = useLocalePath();
 const formId = useRoute().params.formId as string;
 
 /**-------------------------------------------------------- */
@@ -155,7 +156,7 @@ const submit = async () => {
     })
 
     ElMessage.success("填寫完成")
-    router.push("/form/finish")
+    router.push(localePath("/form/finish"))
 
 }
 

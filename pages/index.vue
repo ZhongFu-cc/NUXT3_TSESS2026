@@ -1,6 +1,6 @@
 <template>
     <main class="common-section">
-        <Banner></Banner>
+        <BannerCarousel></BannerCarousel>
 
         <div class="main-section">
             <div class="content">
@@ -62,7 +62,7 @@
     </main>
 </template>
 <script lang="ts" setup>
-import Banner from '@/components/layout/Banner.vue';
+import BannerCarousel from '@/components/layout/BannerCarousel.vue';
 // import CountdownTimer from '@/components/CountdownTimer.vue';
 import News from '@/components/home/News.vue';
 import QuickLinks from '@/components/home/QuickLinks.vue';

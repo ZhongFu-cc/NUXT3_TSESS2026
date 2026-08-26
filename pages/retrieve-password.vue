@@ -33,6 +33,7 @@ import Title from '@/components/layout/Title.vue';
 import type { FormInstance, FormRules } from 'element-plus';
 
 const router = useRouter();
+const localePath = useLocalePath();
 
 const formRef = ref<FormInstance>();
 const formRules = reactive<FormRules>({
@@ -57,7 +58,7 @@ const submit = async (formEl: FormInstance | undefined) => {
             if (res.code === 200) {
                 ElMessage.success(res.msg);
                 formEl.resetFields();
-                router.push('/login');
+                router.push(localePath('/login'));
             } else {
                 ElMessage.error(res.msg);
             }

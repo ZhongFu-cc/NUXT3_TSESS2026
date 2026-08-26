@@ -55,7 +55,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
                 }
             }
         }
-    }
+    } 
 
     if (isLogin.value && to.path === localePath('/login')) {
         ElNotification({

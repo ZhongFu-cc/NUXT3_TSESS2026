@@ -47,6 +47,7 @@ useSeoMeta({
 
 const { t } = useI18n()
 const router = useRouter()
+const localePath = useLocalePath()
 
 let newsList = reactive<any>([])
 let currentPage = ref(1)
@@ -81,7 +82,7 @@ const getNewsList = async () => {
 }
 
 const headToNews = (id: number) => {
-    router.push('/news-item/' + id)
+    router.push(localePath('/news-item/' + id))
 }
 
 onMounted(() => {
