@@ -203,6 +203,7 @@ const primaryMenuItems = computed(() => [
 // 次級菜單項目 (在螢幕寬度不足以顯示所有 primary menu 項目時會顯示在 sub-menu 中)
 const secondaryMenuItems = computed(() => [
     { name: t('common.transportation'), route: '/transportation', activeKey: 'transportation' },
+    { name: t('common.accommodation'), route: '/accommodation', activeKey: 'accommodation' },
     { name: t('common.sponsorList'), route: '/sponsor-list', activeKey: 'sponsorList' }
 ])
 
