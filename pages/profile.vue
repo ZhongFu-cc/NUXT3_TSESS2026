@@ -111,10 +111,16 @@
                         </div>
 
                         <div class="form-grid two-columns">
-                            <!-- <el-form-item :label="$t('receipt')" prop="receipt">
-                                <el-input v-model="formData.receipt" :placeholder="$t('receipt')" />
-                            </el-form-item> -->
+                            <el-form-item :label="$t('common.receipt')" prop="receipt">
+                                <el-input v-model="formData.receipt" :placeholder="$t('common.receipt')" />
+                            </el-form-item>
 
+                            <el-form-item :label="$t('common.taxId')" prop="taxId">
+                                <el-input v-model="formData.taxId" :placeholder="$t('common.taxId')" />
+                            </el-form-item>
+                        </div>
+
+                        <div class="form-grid two-columns">
                             <el-form-item :label="$t('common.food')" prop="food">
                                 <el-radio-group v-model="formData.food" class="food-group">
                                     <el-radio v-for="item in foodOptions" :key="item.value" :value="item.value">
@@ -167,6 +173,7 @@ interface ProfileFormData {
     affiliation: string;
     jobTitle: string;
     receipt: string;
+    taxId: string;
     food: string;
     foodTaboo: string;
     organizationNumber: string;
@@ -199,6 +206,7 @@ const formData = reactive<ProfileFormData>({
     affiliation: '',
     jobTitle: '',
     receipt: '',
+    taxId: '',
     food: '',
     foodTaboo: '',
     organizationNumber: '',
@@ -248,6 +256,7 @@ const fillForm = (data: Record<string, any>) => {
     formData.affiliation = data.affiliation || '';
     formData.jobTitle = data.jobTitle || '';
     formData.receipt = data.receipt || '';
+    formData.taxId = data.taxId || '';
     formData.food = data.food || '';
     formData.foodTaboo = data.foodTaboo || '';
     formData.organizationNumber = data.organizationNumber || '';
@@ -382,6 +391,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             phone: `${formData.countryCode}-${formData.phoneNum}`,
             countryCode: formData.countryCode,
             receipt: formData.receipt || null,
+            taxId: formData.taxId || null,
             food: formData.food,
             foodTaboo: formData.foodTaboo || '',
         };

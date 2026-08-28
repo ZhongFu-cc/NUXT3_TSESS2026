@@ -49,6 +49,7 @@
     "countryCode": "Country Code",
     "phoneNum": "Phone Number",
     "receipt": "Receipt Title",
+    "taxId": "Tax ID Number",
     "category": "Category",
     "food": "Dietary Preference",
     "foodTaboo": "Dietary Restrictions",
@@ -265,6 +266,21 @@
     "deletedFailed": "Deleted Failed",
     "hasQuestion": "If you have any questions, please contact the association secretary.   ",
     "registrationFeeTips": "*The prices are listed in USD. According to the financial regulations in Taiwan, the actual             credit card payment will be charged in TWD or your local currency. It may be a little different from the             price listed above. ",
-    "unreviewed": "Reviewing"
+    "unreviewed": "Reviewing",
+    "accommodationHint": "If you would like to stay at one of the recommended hotels, please click the hotel link below to make your own reservation.",
+    "accommodationRecommendedHotels": "Recommended Hotels",
+    "accommodationOfficialWebsite": "Official Website",
+    "accommodationWalkMinutes": "{minutes} min by walk",
+    "accommodationDriveMinutes": "{minutes} min by car",
+    "accommodationPricePerNight": "TWD ${price} up / Night",
+    "accommodationEvergreenName": "Evergreen Hotel",
+    "accommodationEvergreenAddress": "No. 777, Gugong Blvd., Taibao City, Chiayi County 61248",
+    "accommodationBrickName": "Brick Hotel",
+    "accommodationBrickAddress": "No. 223, Taizi Blvd., Taibao City, Chiayi County 612",
+    "accommodationSankaikanName": "Sankaikan Hotel",
+    "accommodationSankaikanAddress": "No. 1020, Dakanglang, Puzi City, Chiayi County 61357",
+    "accommodationSeoTitle": "Accommodation | TSESS 2026",
+    "accommodationSeoDescription": "Recommended hotels near the Southern Branch of the National Palace Museum for TSESS 2026, including nightly rates, travel time and booking links.",
+    "accommodationSeoKeywords": "accommodation, hotel, TSESS, TSESS2026, Chiayi, Southern Branch of the National Palace Museum"
   }
 }

@@ -24,7 +24,7 @@
                 </div>
                 <li v-if="isLogin" @click="handleLogout">登出</li>
                 <li v-else>
-                    <nuxt-link :to="localePath('/login')" @click="closeMenu">{{ t('login') }}</nuxt-link>
+                    <nuxt-link :to="localePath('/login')" @click="closeMenu">{{ t('common.login') }}</nuxt-link>
                 </li>
                 <el-card class="translation-card">
                     <p>Translation</p>
@@ -60,19 +60,20 @@ const setLang = (lang: string) => {
 
 
 const menu = reactive<any>([
-    { title: t('home'), path: '/', isActive: false, isShow: true },
-    { title: t('aboutUs'), path: '/about-us', isActive: false, isShow: true },
-    { title: t('news'), path: '/news', isActive: false, isShow: true },
-    { title: t('invitedSpeaker'), path: '/invited-speakers', isActive: false, isShow: true },
-    { title: t('conferenceInformation'), path: '/conference-information', isActive: false, isShow: true },
+    { title: t('common.home'), path: '/', isActive: false, isShow: true },
+    { title: t('common.aboutUs'), path: '/about-us', isActive: false, isShow: true },
+    { title: t('common.news'), path: '/news', isActive: false, isShow: true },
+    { title: t('common.invitedSpeaker'), path: '/invited-speakers', isActive: false, isShow: true },
+    { title: t('common.conferenceInformation'), path: '/conference-information', isActive: false, isShow: true },
     {
-        title: t('seminarRegistration'), path: '', isActive: false, isShow: true, submenu: [
-            { title: t('registrationFee'), path: '/registration-fee', isActive: false },
-            { title: t('registrationForm'), path: '/login', isActive: false },
+        title: t('common.seminarRegistration'), path: '', isActive: false, isShow: true, submenu: [
+            { title: t('common.registrationFee'), path: '/registration-fee', isActive: false },
+            { title: t('common.registrationForm'), path: '/login', isActive: false },
         ]
     },
-     { title: t('transportation'), path: '/transportation', isActive: false, isShow: true },
-    { title: t('sponsorList'), path: '/sponsor-list', isActive: false, isShow: true },
+     { title: t('common.transportation'), path: '/transportation', isActive: false, isShow: true },
+    { title: t('common.accommodation'), path: '/accommodation', isActive: false, isShow: true },
+    { title: t('common.sponsorList'), path: '/sponsor-list', isActive: false, isShow: true },
 ])
 
 
@@ -95,9 +96,9 @@ const handleClick = (path: string) => {
 }
 
 const handleLogout = () => {
-    ElMessageBox.confirm(t('logoutConfirmation'), t('logoutTitle'), {
-        confirmButtonText: t('confirm'),
-        cancelButtonText: t('cancel'),
+    ElMessageBox.confirm(t('common.logoutConfirmation'), t('common.logoutTitle'), {
+        confirmButtonText: t('common.confirm'),
+        cancelButtonText: t('common.cancel'),
         type: 'warning',
     }).then(() => {
         const token = ref<string | null>(localStorage.getItem('Authorization-member') || null);
