@@ -49,6 +49,7 @@
     "countryCode": "Country Code",
     "phoneNum": "Phone Number",
     "receipt": "Receipt Title",
+    "taxId": "Tax ID Number",
     "category": "Category",
     "food": "Dietary Preference",
     "foodTaboo": "Dietary Restrictions",

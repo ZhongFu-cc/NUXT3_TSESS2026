@@ -121,6 +121,10 @@
                                     <el-input v-model="formData.receipt" :placeholder="t('common.receipt')"></el-input>
                                 </el-form-item>
 
+                                <el-form-item :label="t('common.taxId')" prop="taxId">
+                                    <el-input v-model="formData.taxId" :placeholder="t('common.taxId')"></el-input>
+                                </el-form-item>
+
                                 <el-form-item :label="t('common.food')" prop="food">
                                     <el-radio-group v-model="formData.food">
                                         <el-radio value="葷">{{ t('common.foodRadio1') }}</el-radio>
@@ -371,6 +375,7 @@ interface formData {
     phoneNum: string,
     category: number,
     receipt: string,
+    taxId: string,
     food: string,
     foodTaboo: string,
     categoryExtra: string,
@@ -404,6 +409,7 @@ const formData = reactive<formData>({
     countryCode: '886',
     phoneNum: '',
     receipt: '',
+    taxId: '',
     category: 1,
     food: '葷',
     foodTaboo: '',

@@ -14,6 +14,7 @@
     "idCard": "身分證字號",
     "remitAccountLast5": "匯款帳號末五碼",
     "receipt": "發票抬頭",
+    "taxId": "統一編號",
     "category": "類別",
     "phoneNum": "電話號碼",
     "food": "飲食偏好",
