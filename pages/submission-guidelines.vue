@@ -6,24 +6,11 @@
 
         <div class="content-section">
             <div class="purpose-section">
-                <h2 class="title">{{ t('submission.purposeTitle') }}</h2>
+                <h2 class="title">{{ t('submission.overviewTitle') }}</h2>
 
                 <div class="purpose-content">
-                    <p>{{ t('submission.purposeContent1') }}</p>
-                    <p>{{ t('submission.purposeContent2') }}</p>
-                </div>
-            </div>
-
-            <div class="purpose-section">
-                <p class="title">{{ t('submission.categoryTitle') }}</p>
-
-                <div class="purpose-content">
-                    <h4>{{ t('submission.researchPresentationTitle') }}</h4>
-                    <p>{{ t('submission.researchPresentationContent') }}</p>
-
-                    <h4>{{ t('submission.surgicalVideoTitle') }}</h4>
-                    <p>{{ t('submission.surgicalVideoContent1') }}</p>
-                    <p>{{ t('submission.surgicalVideoContent2') }}</p>
+                    <p>{{ t('submission.overviewContent1') }}</p>
+                    <p>{{ t('submission.overviewContent2') }}</p>
                 </div>
             </div>
 
@@ -82,127 +69,66 @@
             </div>
 
             <div class="purpose-section">
-                <h2 class="title">{{ t('submission.eligibilityTitle') }}</h2>
+                <h2 class="title">{{ t('submission.submissionTypeTitle') }}</h2>
 
                 <div class="purpose-content">
-                    <ul>
-                        <li>{{ t('submission.eligibility1') }}</li>
-                        <li>{{ t('submission.eligibility2') }}</li>
-                        <li>{{ t('submission.eligibility3') }}</li>
-                        <li>{{ t('submission.eligibility4') }}</li>
-                        <li>{{ t('submission.eligibility5') }}</li>
-                    </ul>
-                </div>
-            </div>
+                    <h4>{{ t('submission.researchTitle') }}</h4>
+                    <p>{{ t('submission.researchContent') }}</p>
 
-            <div class="purpose-section">
-                <h2 class="title">{{ t('submission.abstractRequirementTitle') }}</h2>
+                    <h4>{{ t('submission.surgicalVideoTitle') }}</h4>
+                    <p>{{ t('submission.surgicalVideoContent') }}</p>
 
-                <div class="purpose-content">
-                    <ul>
-                        <li>{{ t('submission.abstractRequirement1') }}</li>
-                        <li>{{ t('submission.abstractRequirement2') }}</li>
-                        <li>{{ t('submission.abstractRequirement3') }}</li>
-                        <li>{{ t('submission.abstractRequirement4') }}</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="purpose-section">
-                <h2 class="title">{{ t('submission.videoPrivacyTitle') }}</h2>
-
-                <div class="purpose-content">
-                    <ul>
-                        <li>{{ t('submission.videoPrivacy1') }}</li>
-                        <li>{{ t('submission.videoPrivacy2') }}</li>
-                        <li>{{ t('submission.videoPrivacy3') }}</li>
-                        <li>{{ t('submission.videoPrivacy4') }}</li>
-                        <li>{{ t('submission.videoPrivacy5') }}</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="purpose-section">
-                <h2 class="title">{{ t('submission.coiTitle') }}</h2>
-
-                <div class="purpose-content">
-                    <p>{{ t('submission.coiContent1') }}</p>
-                    <p>{{ t('submission.coiContent2') }}</p>
-                    <p>{{ t('submission.coiContent3') }}</p>
-                </div>
-            </div>
-
-            <div class="purpose-section">
-                <h2 class="title">{{ t('submission.finalCompetitionTitle') }}</h2>
-
-                <div class="purpose-content">
-                    <p>{{ t('submission.finalCompetitionContent1') }}</p>
-                    <p>{{ t('submission.finalCompetitionContent2') }}</p>
-                    <p>{{ t('submission.finalCompetitionContent3') }}</p>
-                </div>
-            </div>
-
-            <div class="purpose-section">
-                <h2 class="title">{{ t('submission.judgingTitle') }}</h2>
-
-                <div class="purpose-content">
-
-                    <p>{{ t('submission.judgingDescription1') }}</p>
-
-                    <div class="table-wrapper">
-                        <table class="guideline-table">
-                            <thead>
-                                <tr>
-                                    <th>{{ t('submission.judgingCriteria') }}</th>
-                                    <th>{{ t('submission.judgingWeight') }}</th>
-                                    <th>{{ t('submission.judgingFocus') }}</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>{{ t('submission.innovationTitle') }}</td>
-                                    <td>25%</td>
-                                    <td>{{ t('submission.innovationDescription') }}</td>
-                                </tr>
-
-                                <tr>
-                                    <td>{{ t('submission.academicValueTitle') }}</td>
-                                    <td>25%</td>
-                                    <td>{{ t('submission.academicValueDescription') }}</td>
-                                </tr>
-
-                                <tr>
-                                    <td>{{ t('submission.clinicalImpactTitle') }}</td>
-                                    <td>20%</td>
-                                    <td>{{ t('submission.clinicalImpactDescription') }}</td>
-                                </tr>
-
-                                <tr>
-                                    <td>{{ t('submission.technicalQualityTitle') }}</td>
-                                    <td>20%</td>
-                                    <td>{{ t('submission.technicalQualityDescription') }}</td>
-                                </tr>
-
-                                <tr>
-                                    <td>{{ t('submission.presentationTitle') }}</td>
-                                    <td>10%</td>
-                                    <td>{{ t('submission.presentationDescription') }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="highlight-box">
+                        <p>{{ t('submission.submissionTypeNote') }}</p>
                     </div>
-
-                    <p class="mt-4">
-                        {{ t('submission.judgingDescription3') }}
-                    </p>
                 </div>
             </div>
 
             <div class="purpose-section">
-                <h2 class="title">{{ t('submission.awardsTitle') }}</h2>
+                <h2 class="title">{{ t('submission.formatTitle') }}</h2>
+
+                <div class="table-wrapper">
+                    <table class="guideline-table">
+                        <thead>
+                            <tr>
+                                <th>{{ t('submission.formatHeaderName') }}</th>
+                                <th>{{ t('submission.formatHeaderSelection') }}</th>
+                                <th>{{ t('submission.formatHeaderTime') }}</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>{{ t('submission.format1Name') }}</td>
+                                <td>{{ t('submission.format1Selection') }}</td>
+                                <td>{{ t('submission.format1Time') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ t('submission.format2Name') }}</td>
+                                <td>{{ t('submission.format2Selection') }}</td>
+                                <td>{{ t('submission.format2Time') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ t('submission.format3Name') }}</td>
+                                <td>{{ t('submission.format3Selection') }}</td>
+                                <td>{{ t('submission.format3Time') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="purpose-section">
+                <h2 class="title">{{ t('submission.bestCompetitionTitle') }}</h2>
 
                 <div class="purpose-content">
+                    <p>{{ t('submission.bestCompetitionContent1') }}</p>
+                    <p>{{ t('submission.bestCompetitionContent2') }}</p>
+
+                    <h4>{{ t('submission.awardsSubtitle') }}</h4>
+
                     <div class="table-wrapper">
                         <table class="guideline-table">
                             <thead>
@@ -221,9 +147,9 @@
                                 </tr>
 
                                 <tr>
-                                    <td>{{ t('submission.runnerUpTitle') }}</td>
-                                    <td>{{ t('submission.runnerUpCount') }}</td>
-                                    <td>{{ t('submission.runnerUpPrize') }}</td>
+                                    <td>{{ t('submission.secondPlaceTitle') }}</td>
+                                    <td>{{ t('submission.secondPlaceCount') }}</td>
+                                    <td>{{ t('submission.secondPlacePrize') }}</td>
                                 </tr>
 
                                 <tr>
@@ -233,28 +159,89 @@
                                 </tr>
 
                                 <tr>
-                                    <td>{{ t('submission.specialAwardTitle') }}</td>
-                                    <td>{{ t('submission.specialAwardCount') }}</td>
-                                    <td>{{ t('submission.specialAwardPrize') }}</td>
+                                    <td>{{ t('submission.jurySpecialTitle') }}</td>
+                                    <td>{{ t('submission.jurySpecialCount') }}</td>
+                                    <td>{{ t('submission.jurySpecialPrize') }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>{{ t('submission.bestRapidFireTitle') }}</td>
+                                    <td>{{ t('submission.bestRapidFireCount') }}</td>
+                                    <td>{{ t('submission.bestRapidFirePrize') }}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <p class="note">
-                        {{ t('submission.awardsDescription') }}
-                    </p>
                 </div>
             </div>
 
             <div class="purpose-section">
-                <h2 class="title">{{ t('submission.authorizationTitle') }}</h2>
+                <h2 class="title">{{ t('submission.freePaperSessionTitle') }}</h2>
 
                 <div class="purpose-content">
-                    <p>{{ t('submission.authorizationContent1') }}</p>
-                    <p>{{ t('submission.authorizationContent2') }}</p>
-                    <p>{{ t('submission.authorizationContent3') }}</p>
-                    <p>{{ t('submission.authorizationContent4') }}</p>
+                    <p>{{ t('submission.freePaperSessionContent') }}</p>
+                </div>
+            </div>
+
+            <div class="purpose-section">
+                <h2 class="title">{{ t('submission.rapidFireTitle') }}</h2>
+
+                <div class="purpose-content">
+                    <p>{{ t('submission.rapidFireContent') }}</p>
+                </div>
+            </div>
+
+            <div class="purpose-section">
+                <h2 class="title">{{ t('submission.topicsTitle') }}</h2>
+
+                <div class="purpose-content">
+                    <ul>
+                        <li>{{ t('submission.topic1') }}</li>
+                        <li>{{ t('submission.topic2') }}</li>
+                        <li>{{ t('submission.topic3') }}</li>
+                        <li>{{ t('submission.topic4') }}</li>
+                        <li>{{ t('submission.topic5') }}</li>
+                        <li>{{ t('submission.topic6') }}</li>
+                        <li>{{ t('submission.topic7') }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="purpose-section">
+                <h2 class="title">{{ t('submission.requirementsTitle') }}</h2>
+
+                <div class="purpose-content">
+                    <ul>
+                        <li>{{ t('submission.requirement1') }}</li>
+                        <li>{{ t('submission.requirement2') }}</li>
+                        <li>{{ t('submission.requirement3') }}</li>
+                        <li>{{ t('submission.requirement4') }}</li>
+                        <li>{{ t('submission.requirement5') }}</li>
+                        <li>{{ t('submission.requirement6') }}</li>
+                        <li>{{ t('submission.requirement7') }}</li>
+                        <li>{{ t('submission.requirement8') }}</li>
+                        <li>{{ t('submission.requirement9') }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="purpose-section">
+                <h2 class="title">{{ t('submission.reviewOutcomeTitle') }}</h2>
+
+                <div class="purpose-content">
+                    <p>{{ t('submission.reviewOutcomeIntro') }}</p>
+
+                    <ul>
+                        <li>{{ t('submission.reviewOutcome1') }}</li>
+                        <li>{{ t('submission.reviewOutcome2') }}</li>
+                        <li>{{ t('submission.reviewOutcome3') }}</li>
+                        <li>{{ t('submission.reviewOutcome4') }}</li>
+                        <li>{{ t('submission.reviewOutcome5') }}</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p>{{ t('submission.reviewOutcomeNote') }}</p>
+                    </div>
                 </div>
             </div>
 
