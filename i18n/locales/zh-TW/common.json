@@ -257,6 +257,10 @@
     "accommodationSankaikanAddress": "61357 嘉義縣朴子市大槺榔1020號",
     "accommodationSeoTitle": "住宿資訊 | TSESS 2026",
     "accommodationSeoDescription": "提供 TSESS 2026 於國立故宮博物院南院周邊的推薦飯店資訊，包含每晚房價、路程時間與訂房連結。",
-    "accommodationSeoKeywords": "住宿, 飯店, TSESS, TSESS2026, 嘉義, 國立故宮博物院南院"
+    "accommodationSeoKeywords": "住宿, 飯店, TSESS, TSESS2026, 嘉義, 國立故宮博物院南院",
+    "paymentSuccess": "付款成功!",
+    "thankYouForPayment": "感謝您的付款!",
+    "backToPayment": "返回付款頁面",
+    "recommendedHotels": "推薦飯店"
   }
 }

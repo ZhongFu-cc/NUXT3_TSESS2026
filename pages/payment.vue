@@ -439,7 +439,7 @@ onMounted(() => {
                 }
 
                 .completed {
-                    background: linear-gradient(135deg, #f2a14a, #d77102) !important;
+                    background: linear-gradient(135deg, #32c315, #26ae07) !important;
                     color: #fff !important;
                     text-align: center;
                     cursor: default;
@@ -453,7 +453,7 @@ onMounted(() => {
                 }
 
                 .not-pay {
-                    background: linear-gradient(135deg, #32c315, #26ae07) !important;
+                    background: linear-gradient(135deg, #f2a14a, #d77102) !important;
                     color: #fff !important;
                     text-align: center;
                     min-width: 140px;
@@ -463,7 +463,7 @@ onMounted(() => {
 
                     &:hover {
                         transform: translateY(-2px);
-                        box-shadow: 0 10px 24px rgba(38, 174, 7, 0.3);
+                        box-shadow: 0 10px 24px rgba(218, 159, 97, 0.3);
                     }
 
                     &:active {
