@@ -2,7 +2,7 @@
     <div>
         <main class="common-section">
             <Banner />
-            <Breadcrumbs :first-route="'Accommodation'" :secound-route="'Recommended Hotels'" />
+            <Breadcrumbs :first-route="t('common.accommodation')" :secound-route="t('common.recommendedHotels')" />
             <Title :title="t('common.accommodationRecommendedHotels')" />
             <div class="title-section">
                 <!-- <p class="title">

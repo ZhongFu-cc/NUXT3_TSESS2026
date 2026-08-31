@@ -281,6 +281,10 @@
     "accommodationSankaikanAddress": "No. 1020, Dakanglang, Puzi City, Chiayi County 61357",
     "accommodationSeoTitle": "Accommodation | TSESS 2026",
     "accommodationSeoDescription": "Recommended hotels near the Southern Branch of the National Palace Museum for TSESS 2026, including nightly rates, travel time and booking links.",
-    "accommodationSeoKeywords": "accommodation, hotel, TSESS, TSESS2026, Chiayi, Southern Branch of the National Palace Museum"
+    "accommodationSeoKeywords": "accommodation, hotel, TSESS, TSESS2026, Chiayi, Southern Branch of the National Palace Museum",
+    "paymentSuccess": "Payment Success!",
+    "thankYouForPayment": "Thank you for your payment.",
+    "backToPayment": "Back to payment page",
+    "recommendedHotels": "Recommended Hotels"
   }
 }
