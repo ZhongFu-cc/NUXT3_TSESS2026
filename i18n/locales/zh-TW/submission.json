@@ -3,7 +3,6 @@
     "overviewTitle": "投稿說明",
     "overviewContent1": "台灣脊椎內視鏡醫學會（TSESS）誠摯邀請臨床醫師、研究者、會員與 young surgeons 投稿 TSESS 2026 年會，分享 endoscopic spine surgery 相關臨床研究、手術技術、surgical video、教育訓練、navigation、imaging、instrumentation 與新興科技應用。",
     "overviewContent2": "所有 Free Paper 投稿將由 TSESS 2026 Scientific Committee 或指定審查委員進行審查。接受投稿將依作品品質、臨床相關性、創新性、教育價值、完整度、主題平衡與議程容量，分配至最適合的發表形式（Research、Surgical Video 或 Rapid Fire）。",
-
     "importantDatesTitle": "重要日期",
     "stage": "階段",
     "date": "日期",
@@ -26,14 +25,12 @@
     "finalCompetitionStage": "現場決賽與頒獎",
     "finalCompetitionDate": "2026/12/5（六）",
     "finalCompetitionDetail": "現場發表、評審評分與頒獎",
-
     "submissionTypeTitle": "一、投稿類型",
     "researchTitle": "Research",
     "researchContent": "臨床研究、outcome analysis、case series、complication analysis、learning curve、registry 或 multicenter study。",
     "surgicalVideoTitle": "Surgical Video",
     "surgicalVideoContent": "具明確教育價值之手術影片、technical pearls、bailout strategy、difficult case 或新技術展示。",
     "submissionTypeNote": "投稿者須於投稿時標示內容型態為 Research 或 Surgical Video；最終發表形式由 Scientific Committee 決定（Research、Surgical Video 或 Rapid Fire）。",
-
     "formatTitle": "二、發表形式與分配原則",
     "formatHeaderName": "Presentation Format",
     "formatHeaderSelection": "Selection",
@@ -41,13 +38,12 @@
     "format1Name": "Best Endoscopic Presentation Competition",
     "format1Selection": "由所有 Free Paper 投稿中遴選最完整且最具學術與教育價值之作品。",
     "format1Time": "8 分鐘 presentation + 2 分鐘 Q&A",
-    "format2Name": "Hall B Free Paper Session",
+    "format2Name": "Free Paper Session",
     "format2Selection": "收錄內容完整、適合正式 oral presentation，但未進入 Best Competition final 之優秀投稿。",
     "format2Time": "6 分鐘 oral presentation + 2 分鐘 discussion",
     "format3Name": "Rapid Fire Presentation",
     "format3Selection": "適合主題明確、有教育價值，但資料量較少、早期成果，或適合短時間重點呈現之作品。",
     "format3Time": "4 分鐘 presentation + 1 分鐘 Q&A",
-
     "bestCompetitionTitle": "三、Best Endoscopic Presentation Competition",
     "bestCompetitionContent1": "Best Endoscopic Presentation Competition 為本次年會主要競賽項目。決賽作品將自所有 Free Paper 投稿中遴選，以表彰具學術品質、臨床相關性、創新性與教育價值之 endoscopic spine surgery 作品。",
     "bestCompetitionContent2": "Surgical Video 入選者須以 slide-based presentation 搭配剪輯後手術影片片段進行報告，不得以完整影片播放取代口頭簡報。",
@@ -70,13 +66,10 @@
     "bestRapidFireTitle": "Best Rapid Fire Presentation",
     "bestRapidFireCount": "1",
     "bestRapidFirePrize": "NT$3,000",
-
     "freePaperSessionTitle": "四、Free Paper Session",
     "freePaperSessionContent": "Free Paper Session 將收錄未進入 Best Endoscopic Presentation Competition final、但內容完整且適合正式 oral presentation 的優秀投稿。",
-
     "rapidFireTitle": "五、Rapid Fire Presentation",
     "rapidFireContent": "Rapid Fire Presentation 適合主題聚焦、具臨床或教育重點，但資料量較少、屬於早期成果，或較適合以短時間呈現的作品。Rapid Fire Presentation 不納入 Best Endoscopic Presentation Competition 主獎排名；大會得另設 Best Rapid Fire Presentation。",
-
     "topicsTitle": "六、投稿主題",
     "topic1": "Cervical, thoracic, lumbar 或 sacral endoscopic spine surgery",
     "topic2": "Full-endoscopic, uniportal 或 biportal endoscopic spine surgery",
@@ -85,7 +78,6 @@
     "topic5": "Navigation, imaging, instrumentation, simulation 與 emerging technology",
     "topic6": "Education, training, registry, multicenter study 與 international collaboration",
     "topic7": "具明確教育價值之 surgical video",
-
     "requirementsTitle": "七、投稿內容與格式",
     "requirement1": "Title",
     "requirement2": "Authors and affiliations",
@@ -96,7 +88,6 @@
     "requirement7": "Conflict of interest disclosure",
     "requirement8": "IRB approval number or exemption statement, if applicable",
     "requirement9": "Prior presentation or publication disclosure, if applicable",
-
     "reviewOutcomeTitle": "八、審查結果",
     "reviewOutcomeIntro": "審查結果可能包含下列形式：",
     "reviewOutcome1": "Best Endoscopic Presentation Competition Final",
@@ -105,7 +96,6 @@
     "reviewOutcome4": "Rapid Fire Presentation",
     "reviewOutcome5": "Not accepted",
     "reviewOutcomeNote": "TSESS 保留投稿接受、發表形式分配、議程安排與獎項資格之最終決定權。",
-
     "submitNow": "前往投稿"
   }
 }

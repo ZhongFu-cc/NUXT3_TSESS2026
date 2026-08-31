@@ -3,7 +3,6 @@
     "overviewTitle": "Overview",
     "overviewContent1": "The Taiwan Society of Endoscopic Spine Surgery (TSESS) cordially invites clinicians, researchers, members, and young surgeons to submit their work for the TSESS 2026 Annual Meeting. Submissions may include clinical research, surgical techniques, surgical videos, education and training, navigation, imaging, instrumentation, and emerging technologies related to endoscopic spine surgery.",
     "overviewContent2": "All Free Paper submissions will be reviewed by the TSESS 2026 Scientific Committee or designated reviewers. Accepted submissions will be assigned to the most appropriate presentation format (including Research, Surgical Video or Rapid Fire) based on academic quality, clinical relevance, innovation, educational value, maturity, topic balance, and program capacity.",
-
     "importantDatesTitle": "Important Dates",
     "stage": "Stage",
     "date": "Date",
@@ -26,14 +25,12 @@
     "finalCompetitionStage": "Final Competition and Awards",
     "finalCompetitionDate": "December 5, 2026",
     "finalCompetitionDetail": "On-site presentations, judging and award ceremony",
-
     "submissionTypeTitle": "1. Submission Types",
     "researchTitle": "Research",
     "researchContent": "Clinical research, outcome analysis, case series, complication analysis, learning curve, registry, or multicenter study.",
     "surgicalVideoTitle": "Surgical Video",
     "surgicalVideoContent": "Educational surgical video, technical pearls, bailout strategy, difficult case, or demonstration of emerging techniques.",
     "submissionTypeNote": "Authors should indicate whether the submission is Research or Surgical Video. The final presentation format will be determined by the Scientific Committee (Research, Surgical Video or Rapid Fire).",
-
     "formatTitle": "2. Presentation Formats and Assignment Principles",
     "formatHeaderName": "Presentation Format",
     "formatHeaderSelection": "Selection",
@@ -41,13 +38,12 @@
     "format1Name": "Best Endoscopic Presentation Competition",
     "format1Selection": "Selected from all Free Paper submissions for the most complete works with strong academic and educational value.",
     "format1Time": "8-minute presentation + 2-minute Q&A",
-    "format2Name": "Hall B Free Paper Session",
+    "format2Name": "Free Paper Session",
     "format2Selection": "Strong accepted submissions suitable for formal oral presentation but not selected as Best Competition finalists.",
     "format2Time": "6-minute oral presentation + 2-minute discussion",
     "format3Name": "Rapid Fire Presentation",
     "format3Selection": "Submissions with a clear message or educational value but with a narrower scope, earlier-stage data, or a concise presentation format.",
     "format3Time": "4-minute presentation + 1-minute Q&A",
-
     "bestCompetitionTitle": "3. Best Endoscopic Presentation Competition",
     "bestCompetitionContent1": "The Best Endoscopic Presentation Competition is the main competition program of the meeting. Finalists will be selected from all Free Paper submissions to recognize outstanding work in endoscopic spine surgery with academic quality, clinical relevance, innovation, and educational value.",
     "bestCompetitionContent2": "Surgical Video finalists should present in a slide-based format with edited video clips. Full-length video playback cannot replace the oral presentation.",
@@ -70,13 +66,10 @@
     "bestRapidFireTitle": "Best Rapid Fire Presentation",
     "bestRapidFireCount": "1",
     "bestRapidFirePrize": "NT$3,000",
-
     "freePaperSessionTitle": "4. Free Paper Session",
     "freePaperSessionContent": "Free Paper Session will include strong accepted submissions that are complete and suitable for formal oral presentation but are not selected as finalists for the Best Endoscopic Presentation Competition.",
-
     "rapidFireTitle": "5. Rapid Fire Presentation",
     "rapidFireContent": "Rapid Fire Presentation is suitable for submissions with a focused topic and clear clinical or educational message, but with a smaller dataset, earlier-stage results, or a format better suited to concise presentation. Rapid Fire presentations will not be included in the ranking of the Best Endoscopic Presentation Competition. A separate Best Rapid Fire Presentation award may be offered.",
-
     "topicsTitle": "6. Submission Topics",
     "topic1": "Cervical, thoracic, lumbar, or sacral endoscopic spine surgery",
     "topic2": "Full-endoscopic, uniportal, or biportal endoscopic spine surgery",
@@ -85,7 +78,6 @@
     "topic5": "Navigation, imaging, instrumentation, simulation, and emerging technology",
     "topic6": "Education, training, registry, multicenter study, and international collaboration",
     "topic7": "Surgical video with clear educational value",
-
     "requirementsTitle": "7. Submission Requirements",
     "requirement1": "Title",
     "requirement2": "Authors and affiliations",
@@ -96,7 +88,6 @@
     "requirement7": "Conflict of interest disclosure",
     "requirement8": "IRB approval number or exemption statement, if applicable",
     "requirement9": "Prior presentation or publication disclosure, if applicable",
-
     "reviewOutcomeTitle": "8. Review Outcomes",
     "reviewOutcomeIntro": "Possible review outcomes include:",
     "reviewOutcome1": "Best Endoscopic Presentation Competition Final",
@@ -105,7 +96,6 @@
     "reviewOutcome4": "Rapid Fire Presentation",
     "reviewOutcome5": "Not accepted",
     "reviewOutcomeNote": "TSESS reserves the right to make final decisions regarding acceptance, presentation format, program assignment, schedule arrangement, and award eligibility.",
-
     "submitNow": "Submit Now"
   }
 }
