@@ -61,132 +61,100 @@ useSeoMeta({
     keywords: 'List Of Sponsors, Sponsors, TSESS 2026'
 })
 
-const sponsorConfig = [
-    { key: 'diamond Sponsor', path: '@/assets/img/sponsors/diamond/*.{png,jpg,svg,jpeg}' },
-    { key: 'platinum Sponsor', path: '@/assets/img/sponsors/platinum/*.{png,jpg,svg,jpeg}' },
-    { key: 'gold Sponsor', path: '@/assets/img/sponsors/gold/*.{png,jpg,svg,jpeg}' },
-    { key: 'silver Sponsor', path: '@/assets/img/sponsors/silver/*.{png,jpg,svg,jpeg}' },
-    { key: 'bronze Sponsor', path: '@/assets/img/sponsors/bronze/*.{png,jpg,svg,jpeg}' },
-    { key: 'none level Sponsor', path: '@/assets/img/sponsors/none-level/*.{png,jpg,svg,jpeg}' }
-]
+const cols = ref(4)
+const screenWidth = ref(0)
 
-const cols = ref(4);
+const diamondSponsors = ref<any>({})
+const sponsorsList = ref<any[]>([])
 
-const screenWidth = ref(0);
+// 判斷當前螢幕寬度需要的欄數
+const updateCols = () => {
+    screenWidth.value = window.innerWidth
+    if (screenWidth.value <= 425) {
+        cols.value = 1
+    } else if (screenWidth.value <= 810) {
+        cols.value = 2
+    } else if (screenWidth.value <= 1024) {
+        cols.value = 3
+    } else {
+        cols.value = 4
+    }
+}
 
-onMounted(() => {
-    generateSponsorlogoList()
-    screenWidth.value = window.innerWidth;
-    window.addEventListener('resize', () => {
-        screenWidth.value = window.innerWidth;
-
-        if (screenWidth.value <= 425) {
-            cols.value = 1;
-        } else if (screenWidth.value <= 810) {
-            cols.value = 2;
-        } else if (screenWidth.value <= 1024) {
-            cols.value = 3;
-        } else {
-            cols.value = 4;
-        }
-        generateSponsorlogoList()
-    });
-
-});
-
-const allGroupedSponsors = ref<any[]>([]);
-const diamondSponsors = ref<any>({});
-const sponsorsList = ref<any[]>([]);
+// 讀取 modules 並依據檔案名稱自然排序（自然數字排序 1, 2, 10 等）
+const getSortedModules = (modules: Record<string, any>) => {
+    const sortedKeys = Object.keys(modules).sort((a, b) =>
+        a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
+    )
+    return sortedKeys.map(key => modules[key])
+}
 
 const generateSponsorlogoList = () => {
+    updateCols()
 
-    allGroupedSponsors.value = sponsorConfig.map(config => {
-        const results: Record<string, string[][]> = {};
+    // 各等級圖片動態匯入
+    const diamondModules = import.meta.glob('@/assets/img/sponsors/diamond/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' })
+    const platinumModules = import.meta.glob('@/assets/img/sponsors/platinum/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' })
+    const goldModules = import.meta.glob('@/assets/img/sponsors/gold/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' })
+    const silverModules = import.meta.glob('@/assets/img/sponsors/silver/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' })
+    const bronzeModules = import.meta.glob('@/assets/img/sponsors/bronze/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' })
+    const noneLevelModules = import.meta.glob('@/assets/img/sponsors/none-level/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' })
 
-        sponsorConfig.forEach(config => {
+    // 將陣列依照 column 數拆分為二維陣列
+    const chunkArray = (array: string[], size: number) => {
+        const chunked: string[][] = []
+        for (let i = 0; i < array.length; i += size) {
+            chunked.push(array.slice(i, i + size))
+        }
+        return chunked
+    }
 
-
-            let modules: Record<string, string>;
-            let currentCols = cols.value
-            switch (config.key) {
-                case 'diamond Sponsor':
-                    modules = import.meta.glob('@/assets/img/sponsors/diamond/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
-                    break;
-                case 'platinum Sponsor':
-                    modules = import.meta.glob('@/assets/img/sponsors/platinum/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
-                    break;
-                case 'gold Sponsor':
-                    modules = import.meta.glob('@/assets/img/sponsors/gold/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
-                    break;
-                case 'silver Sponsor':
-                    modules = import.meta.glob('@/assets/img/sponsors/silver/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
-                    break;
-                case 'bronze Sponsor':
-                    modules = import.meta.glob('@/assets/img/sponsors/bronze/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
-                    break;
-                case 'none level Sponsor':
-                    modules = import.meta.glob('@/assets/img/sponsors/none-level/*.{png,jpg,jpeg,svg}', { eager: true, query: '?url', import: 'default' });
-                    currentCols = 7;
-                    break;
-                default:
-                    modules = {};
-                    break;
-            }
-
-            const galleryImages: string[] = Object.values(modules);
-            const groupedList: string[][] = [];
-
-            galleryImages.forEach((image, index) => {
-                const groupIndex = Math.floor(index / currentCols);
-                if (!groupedList[groupIndex]) {
-                    groupedList[groupIndex] = [];
-                }
-                groupedList[groupIndex].push(image);
-            });
-
-            results[config.key] = groupedList;
-        });
-        return results;
-    })
-
+    // 處理 Diamond
+    const diamondImages = getSortedModules(diamondModules)
     diamondSponsors.value = {
         level: 'Diamond Sponsor',
         imgSrc: DiamondLogo,
-        sponsorLogos: allGroupedSponsors.value[0]['diamond Sponsor']
+        sponsorLogos: chunkArray(diamondImages, cols.value)
     }
 
+    // 處理其他等級（None level 固定每列 7 個）
     sponsorsList.value = [
-
         {
             level: 'Platinum Sponsor',
             imgSrc: PlatinumLogo,
-            sponsorLogos: allGroupedSponsors.value[1]['platinum Sponsor']
+            sponsorLogos: chunkArray(getSortedModules(platinumModules), cols.value)
         },
         {
             level: 'Gold Sponsor',
             imgSrc: GoldLogo,
-            sponsorLogos: allGroupedSponsors.value[2]['gold Sponsor']
+            sponsorLogos: chunkArray(getSortedModules(goldModules), cols.value)
         },
         {
             level: 'Silver Sponsor',
             imgSrc: SilverLogo,
-            sponsorLogos: allGroupedSponsors.value[3]['silver Sponsor']
+            sponsorLogos: chunkArray(getSortedModules(silverModules), cols.value)
         },
         {
             level: 'Bronze Sponsor',
             imgSrc: BronzeLogo,
-            sponsorLogos: allGroupedSponsors.value[4]['bronze Sponsor']
+            sponsorLogos: chunkArray(getSortedModules(bronzeModules), cols.value)
         },
         {
             level: 'None Level Sponsor',
             imgSrc: '',
-            sponsorLogos: allGroupedSponsors.value[5]['none level Sponsor']
+            sponsorLogos: chunkArray(getSortedModules(noneLevelModules), 7)
         }
     ]
-
 }
 
+onMounted(() => {
+    generateSponsorlogoList()
+    window.addEventListener('resize', generateSponsorlogoList)
+})
 
+onUnmounted(() => {
+    window.removeEventListener('resize', generateSponsorlogoList)
+})
 </script>
 <style lang="scss" scoped>
 .common-section {
@@ -289,7 +257,7 @@ const generateSponsorlogoList = () => {
 
 
                 .sponsor-logo-item {
-                    width: calc(100% / 1.7 - 1rem);
+                    width: calc(100% / 3 - 1rem);
                     height: auto;
 
 

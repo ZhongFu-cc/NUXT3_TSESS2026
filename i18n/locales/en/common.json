@@ -285,6 +285,9 @@
     "paymentSuccess": "Payment Success!",
     "thankYouForPayment": "Thank you for your payment.",
     "backToPayment": "Back to payment page",
-    "recommendedHotels": "Recommended Hotels"
+    "recommendedHotels": "Recommended Hotels",
+    "nov1": "01",
+    "dec1": "05",
+    "sep1": "01"
   }
 }
