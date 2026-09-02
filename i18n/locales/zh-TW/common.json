@@ -161,7 +161,7 @@
     "quickLinks": "快速連結",
     "keyDates": "重要日程",
     "keyDate1": "TSESS 2026",
-    "dec": "12月",
+    "dec": "5日",
     "onlineRegistration": "線上註冊",
     "verificationCode": "驗證碼",
     "signIn": "登入",
@@ -173,9 +173,9 @@
     "status": "狀態",
     "action": "操作",
     "submission": "投稿",
-    "sep": "9月",
+    "sep": "1日",
     "keyDate2": "官網線上投稿系統開放",
-    "nov": "11月",
+    "nov": "1日",
     "firstAuthorBirthday": "第一作者生日",
     "speaker": "講者",
     "speakerEmail": "講者信箱",
@@ -261,6 +261,9 @@
     "paymentSuccess": "付款成功!",
     "thankYouForPayment": "感謝您的付款!",
     "backToPayment": "返回付款頁面",
-    "recommendedHotels": "推薦飯店"
+    "recommendedHotels": "推薦飯店",
+    "nov1": "11月",
+    "dec1": "12月",
+    "sep1": "9月"
   }
 }

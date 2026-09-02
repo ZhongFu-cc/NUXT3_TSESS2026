@@ -1,51 +1,63 @@
 <template>
-  <ClientOnly>
-      <div class="key-date-section">
-        <div class="title-box">
-            <div class="title-text-box">
-                <div class="title-image-box">
-                    <img class="home-banner-bak" src="@/assets/img/CalendarHeatMap.svg">
+    <ClientOnly>
+        <div class="key-date-section">
+            <div class="title-box">
+                <div class="title-text-box">
+                    <div class="title-image-box">
+                        <img class="home-banner-bak" src="@/assets/img/CalendarHeatMap.svg">
+                    </div>
+                    <h1 class="title">{{ $t('common.keyDates') }}</h1>
                 </div>
-                <h1 class="title">{{ $t('common.keyDates') }}</h1>
             </div>
-        </div>
 
-        <ul class="key-date-item-box">
-            <li class="key-date-item">
-                <div class="key-date-info">
-                    <p class="date-box"><span>1</span><span class="month">{{ $t('common.sep') }}<span
-                                class="year">2026</span></span>
-                    </p>
-                    <p class="info">{{ $t('common.keyDate2') }}</p>
-                </div>
-                <a class="key-date-link" href="https://evt.to/zhxxqd2dy2hg" target="_blank">
-                    <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
-                </a>
-            </li>
-            <li class="key-date-item">
-                <div class="key-date-info">
-                    <p class="date-box"><span>1</span><span class="month">{{ $t('common.nov') }}<span
-                                class="year">2026</span></span>
-                    </p>
-                    <p class="info">{{ $t('submission.submissionDeadlineStage') }}</p>
-                </div>
-                <a class="key-date-link" href="https://evt.to/0h80ht9jr8k4" target="_blank">
-                    <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
-                </a>
-            </li>
-            <li class="key-date-item">
-                <div class="key-date-info">
-                    <p class="date-box"><span>5</span><span class="month">{{ $t('common.dec') }}<span
-                                class="year">2026</span></span>
-                    </p>
-                    <p class="info">{{ $t('common.keyDate1') }}</p>
-                </div>
-                <a class="key-date-link" href="https://evt.to/xxz8k0hxq1lv" target="_blank">
-                    <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
-                </a>
-            </li>
+            <ul class="key-date-item-box">
+                <li class="key-date-item">
+                    <div class="key-date-info">
+                        <p class="date-box">
+                        <div class="detail-box">
+                            <span class="day">{{ $t('common.sep1') }}</span>
+                            <span class="month">{{ $t('common.sep') }}</span>
+                        </div>
+                        <span class="year">2026</span>
+                        </p>
+                        <p class="info">{{ $t('common.keyDate2') }}</p>
+                    </div>
+                    <a class="key-date-link" href="https://evt.to/zhxxqd2dy2hg" target="_blank">
+                        <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
+                    </a>
+                </li>
+                <li class="key-date-item">
+                    <div class="key-date-info">
+                        <p class="date-box">
+                            <div class="detail-box">
+                                <span class="day">{{ $t('common.nov1') }}</span>
+                                <span class="month">{{ $t('common.nov') }}</span>
+                            </div>
+                            <span class="year">2026</span>
+                        </p>
+                        <p class="info">{{ $t('submission.submissionDeadlineStage') }}</p>
+                    </div>
+                    <a class="key-date-link" href="https://evt.to/0h80ht9jr8k4" target="_blank">
+                        <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
+                    </a>
+                </li>
+                <li class="key-date-item">
+                    <div class="key-date-info">
+                        <p class="date-box">
+                            <div class="detail-box">
+                                <span class="day">{{ $t('common.dec1') }}</span>
+                                <span class="month">{{ $t('common.dec') }}</span>
+                            </div>
+                            <span class="year">2026</span>
+                        </p>
+                        <p class="info">{{ $t('common.keyDate1') }}</p>
+                    </div>
+                    <a class="key-date-link" href="https://evt.to/xxz8k0hxq1lv" target="_blank">
+                        <img class="home-banner-bak" src="@/assets/img/save date-01.svg">
+                    </a>
+                </li>
 
-            <!-- <li class="key-date-item">
+                <!-- <li class="key-date-item">
                 <div class="key-date-info">
                     <p class="date-box"><span>30</span><span class="month">Sep<span class="year">2025</span></span></p>
                     <p class="info">Early Bird Registration Deadline</p>
@@ -58,7 +70,7 @@
 
 
 
-            <!-- <li class="key-date-item">
+                <!-- <li class="key-date-item">
                 <div class="key-date-info">
                     <p class="date-box"><span>07</span><span class="month">Nov<span class="year">2025</span></span>
                     </p>
@@ -68,9 +80,9 @@
                     <img class="home-banner-bak" src="../../assets/img/save date-01.svg">
                 </a>
             </li> -->
-        </ul>
-    </div>
-  </ClientOnly>
+            </ul>
+        </div>
+    </ClientOnly>
 </template>
 <script lang="ts" setup></script>
 <style lang="scss" scoped>
@@ -135,7 +147,7 @@
             .key-date-info {
                 border-radius: 5px;
                 background-color: #537676;
-                padding: 0.3rem 1rem;
+                padding: 0.3rem 0rem;
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
@@ -152,21 +164,35 @@
                     font-weight: bold;
                     position: relative;
                     padding: 0 0.3rem;
+                    gap: 0.3rem;
 
-                    .month {
+                    .detail-box {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        // gap: 0.3rem;
+                    }
+
+                    // .day {
+                    //     font-size: 1.3rem;
+                    //     font-weight: bold;
+                    // }
+
+                    .month, .day {
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         text-align: center;
                         flex-wrap: none;
-                        width: 5rem;
+                        width: 3rem;
 
-                        .year {
-                            font-size: 0.6rem;
-                            font-weight: normal;
-                        }
                     }
-
+                    
+                    .year {
+                        font-size: 1.3rem;
+                        text-align: center;
+                        font-weight: normal;
+                    }
                     &::after {
                         position: absolute;
                         content: '';
