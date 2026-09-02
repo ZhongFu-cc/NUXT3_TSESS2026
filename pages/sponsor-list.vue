@@ -29,7 +29,7 @@
                 <div v-if="sponsorsList && sponsorsList.length > 0" v-for="(sponsor, index) in sponsorsList"
                     class="level-box">
                     <div class="level-svg-box">
-                        <img v-if="sponsor.imgSrc" :src="sponsor.imgSrc" alt="level">
+                        <img v-if="sponsor.imgSrc && sponsor.sponsorLogos.length > 0" :src="sponsor.imgSrc" alt="level">
                     </div>
                     <div v-for="(sponsorLogoList, index) in sponsor.sponsorLogos" class="sponsor-logo-box">
                         <div v-for="logo in sponsorLogoList" class="sponsor-logo-item"
@@ -37,7 +37,7 @@
                             <img :src="logo" alt="logo">
                         </div>
                     </div>
-                    <el-divider v-if="index < sponsorsList.length - 1"></el-divider>
+                    <el-divider v-if="index < sponsorsList.length - 1 && sponsor.sponsorLogos.length > 0"></el-divider>
                 </div>
             </div>
         </main>
