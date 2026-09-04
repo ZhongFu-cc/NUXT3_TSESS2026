@@ -123,6 +123,7 @@ const router = useRouter();
 const abstractTypes = ref([
     { label: t('common.researchPresentation'), value: 'Research Presentation' },
     { label: t('common.surgicalVideoPresentation'), value: 'Surgical Video Presentation' },
+    { label: t('common.ePoster'), value: 'E-Poster' }
 ])
 
 const formRef = ref<FormInstance>();
