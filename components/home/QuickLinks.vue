@@ -8,6 +8,12 @@
                 <h1 class="title">{{ $t('common.quickLinks') }}</h1>
             </div>
             <div class="link-item-box">
+                  <nuxt-link to="/submission-guidelines" class="link-item item3">
+                    <div class="item-image-box">
+                        <img class="link-item" src="@/assets/img/Online submission-01.svg">
+                    </div>
+                    <div class="link-item-text">{{ $t('common.abstract') }}</div>
+                </nuxt-link>
                 <nuxt-link to="/conference-information" class="link-item item1">
                     <div class="item-image-box">
                         <img class="link-item" src="@/assets/img/AuditOutlined.svg">
@@ -20,12 +26,7 @@
                     </div>
                     <div class="link-item-text">{{ $t('common.registration') }}</div>
                 </nuxt-link>
-                <nuxt-link to="/submission-guidelines" class="link-item item3">
-                    <div class="item-image-box">
-                        <img class="link-item" src="@/assets/img/Online submission-01.svg">
-                    </div>
-                    <div class="link-item-text">{{ $t('common.abstract') }}</div>
-                </nuxt-link>
+            
             </div>
         </ClientOnly>
         </div>
