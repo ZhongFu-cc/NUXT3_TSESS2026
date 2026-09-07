@@ -71,7 +71,13 @@ const menu = reactive<any>([
             { title: t('common.registrationForm'), path: '/login', isActive: false },
         ]
     },
-     { title: t('common.transportation'), path: '/transportation', isActive: false, isShow: true },
+    {
+        title: t('common.abstract'), path: '', isActive: false, isShow: true, submenu: [
+            { title: t('common.submissionGuidelines'), path: '/submission-guidelines', isActive: false },
+            { title: t('common.abstractSubmission'), path: '/abstract-submission', isActive: false },
+        ]
+    },
+    { title: t('common.transportation'), path: '/transportation', isActive: false, isShow: true },
     { title: t('common.accommodation'), path: '/accommodation', isActive: false, isShow: true },
     { title: t('common.sponsorList'), path: '/sponsor-list', isActive: false, isShow: true },
 ])
@@ -151,7 +157,7 @@ const logout = async () => {
             font-size: 1.3rem;
             font-weight: bold;
             color: white;
-            
+
             img {
                 width: 1.5rem;
                 margin-right: 0.5rem;
