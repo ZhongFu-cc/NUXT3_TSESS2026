@@ -23,9 +23,12 @@
                             <td class="paper-title" :class="!isShowAll ? 'first-col' : ''">{{ paper.absTitle }}</td>
                             <td v-if="isShowAll">{{ paper.firstAuthor }}</td>
                             <td>
-                                <span v-if="paper.status === 1" class="status-accepted">{{ $t('common.accepted') }}</span>
-                                <span v-else-if="paper.status === 2" class="status-rejected">{{ $t('common.rejected') }}</span>
-                                <span v-else-if="paper.status === 0" class="status-unreviewed">{{ $t('common.unreviewed') }}</span>
+                                <span v-if="paper.status === 1" class="status-accepted">{{ $t('common.accepted')
+                                }}</span>
+                                <span v-else-if="paper.status === 2" class="status-rejected">{{ $t('common.rejected')
+                                }}</span>
+                                <span v-else-if="paper.status === 0" class="status-unreviewed">{{
+                                    $t('common.unreviewed') }}</span>
                             </td>
                             <td class="last-col">
                                 <div class="action-wrapper">
@@ -164,9 +167,12 @@
                     <tr>
                         <td class="column-name">{{ $t('common.abstractStatus') }}</td>
                         <td v-if="paperInfo.status">
-                            <span v-if="paperInfo.status === 1" class="status-accepted">{{ $t('common.accepted') }}</span>
-                            <span v-else-if="paperInfo.status === 2" class="status-rejected">{{ $t('common.rejected') }}</span>
-                            <span v-else-if="paperInfo.status === 0" class="status-unreviewed">{{ $t('common.unreviewed') }}</span>
+                            <span v-if="paperInfo.status === 1" class="status-accepted">{{ $t('common.accepted')
+                            }}</span>
+                            <span v-else-if="paperInfo.status === 2" class="status-rejected">{{ $t('common.rejected')
+                            }}</span>
+                            <span v-else-if="paperInfo.status === 0" class="status-unreviewed">{{
+                                $t('common.unreviewed') }}</span>
                         </td>
                     </tr>
                 </tbody>
@@ -451,6 +457,8 @@ onMounted(async () => {
                     }
                 }
 
+                
+
 
             }
 
@@ -477,8 +485,8 @@ onMounted(async () => {
                 }
 
                 .edit-btn {
-                    border: 1px solid #E8979E;
-                    color: #E8979E;
+                    border: 1px solid $main-color;
+                    color: $main-color;
                     padding: 0.3rem;
                     min-width: 3rem;
 
@@ -487,6 +495,10 @@ onMounted(async () => {
                         transform: scale(1.05);
                         transition: all 0.3s ease-in-out;
                     }
+                }
+
+                .status-unreviewed {
+                    color: $main-color;
                 }
             }
 
@@ -513,7 +525,7 @@ onMounted(async () => {
                         text-align: left;
 
                         .status-unreviewed {
-                            color: gray;
+                            color: white;
                             border: 1px solid gainsboro;
                             border-radius: 5px;
                             padding: 0.2rem 0.5rem;
@@ -572,6 +584,15 @@ onMounted(async () => {
             }
         }
 
+        @media screen and (max-width: 600px) {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+
+            .paper-table {
+                width: 100%;
+                min-width: 620px;
+            }
+        }
 
     }
 
