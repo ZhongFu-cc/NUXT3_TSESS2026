@@ -265,6 +265,11 @@
     "nov1": "11月",
     "dec1": "12月",
     "sep1": "9月",
-    "ePoster": "E-Poster"
+    "ePoster": "E-Poster",
+    "submitted": "提交完成",
+    "submissionSuccess": "稿件提交成功",
+    "submissionFailed": "稿件提交失敗",
+    "closed": "已關閉",
+    "abstractSubmissionClosed": "提交稿件功能已關閉"
   }
 }

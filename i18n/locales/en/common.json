@@ -289,6 +289,11 @@
     "nov1": "01",
     "dec1": "05",
     "sep1": "01",
-    "ePoster": "E-Poster"
+    "ePoster": "E-Poster",
+    "submitted": "Submitted!",
+    "submissionSuccess": "Your abstract has been submitted successfully!",
+    "submissionFailed": "Your abstract submission failed!",
+    "closed": "Closed",
+    "abstractSubmissionClosed": "Abstract submission is closed"
   }
 }
