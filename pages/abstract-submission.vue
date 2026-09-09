@@ -96,9 +96,9 @@ const localPath = useLocalePath()
 
 
 useSeoMeta({
-    title: 'Abstract Submission - TOPBS 2026 Taiwan Oncoplastic Breast Surgery Society',
-    description: 'Welcome to the abstract submission page for the TOPBS (Taiwan Oncoplastic Breast Surgery Society) Conference 2026. Submit your abstracts for poster, video, or young investigator presentations and be part of this prestigious event in Taipei.',
-    keywords: 'Abstract Submission,TOPBS,TOPBS 2026,2026 TOPBS'
+    title: 'Abstract Submission - TSESS2026',
+    description: 'Welcome to the abstract submission page for the TSESS',
+    keywords: 'Abstract Submission,TSESS,TSESS 2026,2026 TSESS'
 })
 
 interface AbstractInterface {
@@ -175,8 +175,8 @@ const submit = async (formEl: FormInstance | undefined) => {
             });
             if (res.code === 200) {
                 ElNotification.success({
-                    title: 'Submitted',
-                    message: 'Your abstract has been submitted successfully!',
+                    title: t('common.submitted'),
+                    message: t('common.submissionSuccess'),
                     type: 'success',
                     duration: 3000,
                 })
@@ -185,7 +185,7 @@ const submit = async (formEl: FormInstance | undefined) => {
             } else if (res.code === 400 || res.code === 500) {
                 ElNotification.error({
                     title: 'Failed',
-                    message: `Your abstract submission failed! ${res.msg}`,
+                    message: `${t('common.submissionFailed')} ${res.msg}`,
                     type: 'error',
                     duration: 3000,
                 })
@@ -209,8 +209,8 @@ watch(() => setting.value, () => {
     if (setting.value && !setting.value.isAbstractSubmissionOpen) {
         router.push(localPath('abstract'));
         ElNotification.warning({
-            title: 'Closed',
-            message: 'Abstract submission is closed',
+            title: t('common.closed'),
+            message: t('common.abstractSubmissionClosed'),
             type: 'warning',
             duration: 3000,
         })
