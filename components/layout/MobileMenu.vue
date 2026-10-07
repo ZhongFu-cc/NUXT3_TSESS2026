@@ -29,7 +29,7 @@
                 <el-card class="translation-card">
                     <p>Translation</p>
                     <ol>
-                        <li @click="setLang('zh')">繁體中文</li>
+                        <li @click="setLang('zh-TW')">繁體中文</li>
                         <li @click="setLang('en')">English</li>
                     </ol>
                 </el-card>
