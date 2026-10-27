@@ -78,6 +78,9 @@
                     <h4>{{ t('submission.surgicalVideoTitle') }}</h4>
                     <p>{{ t('submission.surgicalVideoContent') }}</p>
 
+                    <h4>{{ t('submission.ePosterTitle') }}</h4>
+                    <p>{{ t('submission.ePosterContent') }}</p>
+
                     <div class="highlight-box">
                         <p>{{ t('submission.submissionTypeNote') }}</p>
                     </div>
@@ -114,6 +117,12 @@
                                 <td>{{ t('submission.format3Name') }}</td>
                                 <td>{{ t('submission.format3Selection') }}</td>
                                 <td>{{ t('submission.format3Time') }}</td>
+                            </tr>
+
+                            <tr>
+                                <td>{{ t('submission.format4Name') }}</td>
+                                <td>{{ t('submission.format4Selection') }}</td>
+                                <td>{{ t('submission.format4Time') }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -237,6 +246,7 @@
                         <li>{{ t('submission.reviewOutcome3') }}</li>
                         <li>{{ t('submission.reviewOutcome4') }}</li>
                         <li>{{ t('submission.reviewOutcome5') }}</li>
+                        <li>{{ t('submission.reviewOutcome6') }}</li>
                     </ul>
 
                     <div class="highlight-box">
