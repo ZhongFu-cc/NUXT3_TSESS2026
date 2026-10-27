@@ -121,8 +121,8 @@
 
                             <tr>
                                 <td>{{ t('submission.format4Name') }}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ t('submission.format4Selection') }}</td>
+                                <td>{{ t('submission.format4Time') }}</td>
                             </tr>
                         </tbody>
                     </table>
