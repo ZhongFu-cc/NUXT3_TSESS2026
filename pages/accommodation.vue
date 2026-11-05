@@ -27,7 +27,7 @@
                         <h3 class="title">{{ hotel.name }}</h3>
 
                         <div class="hotel-info">
-                            <p>
+                            <p v-if="hotel.minutes">
                                 <img :src="hotel.transport === 'walk' ? walkIcon : carIcon" alt="">
                                 {{ hotel.transport === 'walk'
                                     ? t('common.accommodationWalkMinutes', { minutes: hotel.minutes })
@@ -66,6 +66,8 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs.vue'
 import evergreenImg from '@/assets/img/hotel-img/evergreen-nanyuan.jpg'
 import brickImg from '@/assets/img/hotel-img/brick-hotel.jpg'
 import sankaikanImg from '@/assets/img/hotel-img/sankaikan-hotel.jpg'
+import guanzhiImg from '@/assets/img/hotel-img/guanzhi-chiayi.jpg'
+import chiananImg from '@/assets/img/hotel-img/chianan-fenghua.jpg'
 import walkIcon from '@/assets/img/walk.svg'
 import carIcon from '@/assets/img/car.svg'
 import moneyIcon from '@/assets/img/money.svg'
@@ -107,6 +109,28 @@ const hotels = computed(() => [
         address: t('common.accommodationSankaikanAddress'),
         phone: '05-370-9399',
         website: 'https://www.bbnet.com.tw/sankaikan/reserve/?lang=tw&c=info&m=about'
+    },
+    {
+        key: 'guanzhi',
+        name: t('common.accommodationGuanzhiName'),
+        image: guanzhiImg,
+        transport: 'car',
+        minutes: 26,
+        price: '2,900',
+        address: t('common.accommodationGuanzhiAddress'),
+        phone: '05-281-3456',
+        website: 'https://www.guanzhi-chiayi.com.tw/'
+    },
+    {
+        key: 'chianan',
+        name: t('common.accommodationChiananName'),
+        image: chiananImg,
+        transport: 'car',
+        minutes: 25,
+        price: '2,399',
+        address: t('common.accommodationChiananAddress'),
+        phone: '05-233-0000',
+        website: 'https://tlathena.ec-hotel.net/webhotel-v4/0733/index?roomNum=1&checkin_date=2026/12/25&agent_vat_no=GFB&Adult=2&Plan_ID=25007001&locale=zh_TW&Child=0&checkout_date=2026/12/27&_rand=dtbwp9txkbo'
     }
 ]);
 
@@ -211,13 +235,15 @@ useSeoMeta({
 
     .hotel-cards {
         display: flex;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        justify-content: center;
         align-items: stretch;
+        gap: 2.5rem 2%;
         width: 90%;
 
         margin: 2% auto;
 
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 768px) {
             flex-direction: column;
             align-items: center;
             gap: 2rem;
@@ -225,13 +251,20 @@ useSeoMeta({
 
         .hotel-card {
             width: 32%;
+            box-sizing: border-box;
             display: flex;
             border-radius: 1.5rem;
             border-color: $main-color;
             border-width: 0 1px 1px 1px;
             box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.5);
 
+            // 平板 (768-1024px): 2 欄
             @media screen and (max-width: 1024px) {
+                width: 48%;
+            }
+
+            // 手機 (768px 以下): 單欄
+            @media screen and (max-width: 768px) {
                 width: 80%;
             }
 
