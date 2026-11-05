@@ -389,7 +389,7 @@ onMounted(() => {
                 }
             }
 
-            @media screen and (max-width: 940px) {
+            @media screen and (max-width: 1200px) {
                 display: none;
             }
         }
@@ -412,6 +412,7 @@ onMounted(() => {
                 display: flex;
                 align-items: center;
                 line-height: 1.2rem;
+                white-space: nowrap;
 
                 &:hover {
                     cursor: pointer;
@@ -512,7 +513,7 @@ onMounted(() => {
                 gap: 0.8rem;
             }
 
-            @media screen and (max-width: 1440px) {
+            @media screen and (max-width: 1700px) {
                 font-size: 1rem;
 
                 .secondary-menu-box {
@@ -525,7 +526,7 @@ onMounted(() => {
 
             }
 
-            @media screen and (max-width: 940px) {
+            @media screen and (max-width: 1200px) {
                 display: none;
             }
         }
@@ -599,7 +600,7 @@ onMounted(() => {
         align-items: center;
         width: 100%;
 
-        @media screen and (max-width: 940px) {
+        @media screen and (max-width: 1200px) {
             display: flex;
             justify-content: space-around;
             text-align: center;
