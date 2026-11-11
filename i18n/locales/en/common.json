@@ -307,5 +307,8 @@
     "submissionFailed": "Your abstract submission failed!",
     "closed": "Closed",
     "abstractSubmissionClosed": "Abstract submission is closed"
-  }
+  },
+  "fileName": "File Name",
+  "fileType": "File Type",
+  "operate": "Operate"
 }
