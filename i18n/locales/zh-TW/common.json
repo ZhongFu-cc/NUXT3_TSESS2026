@@ -283,5 +283,8 @@
     "submissionFailed": "稿件提交失敗",
     "closed": "已關閉",
     "abstractSubmissionClosed": "提交稿件功能已關閉"
-  }
+  },
+  "fileName": "檔案名稱",
+  "fileType": "檔案類別",
+  "operate": "操作"
 }

@@ -294,7 +294,7 @@ const headToSubmit = () => {
 
 // 默認關閉二階段上傳按鈕，只有在審核通過且在上傳時間內才會開啟
 const isUploadDisabled = ref(true);
-const { setting } = useSetting();
+const { setting, fetchSetting } = useSetting();
 watch(() => setting.value, () => {
     if (setting.value) {
         console.log('setting changed in abstract.vue', setting.value);
@@ -307,6 +307,7 @@ watch(() => setting.value, () => {
 
 /**------------------------------------------ */
 onMounted(async () => {
+    fetchSetting();
     getMemberInfo();
     getPapperList();
     nextTick(() => {
@@ -409,7 +410,7 @@ onMounted(async () => {
             }
 
             .status-accepted {
-                color: rgb(77, 151, 77);
+                color: white;
                 // border: 1px solid green;
                 border-radius: 5px;
                 padding: 0.2rem 0.5rem;
@@ -533,8 +534,8 @@ onMounted(async () => {
                         }
 
                         .status-accepted {
-                            color: rgb(77, 151, 77);
-                            border: 1px solid green;
+                            color: white;
+                            border: 1px solid white;
                             border-radius: 5px;
                             padding: 0.2rem 0.5rem;
                             font-weight: bold;

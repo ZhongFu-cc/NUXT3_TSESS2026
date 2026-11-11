@@ -204,7 +204,7 @@ const submit = async (formEl: FormInstance | undefined) => {
     })
 }
 
-const { setting } = useSetting();
+const { setting, fetchSetting } = useSetting();
 watch(() => setting.value, () => {
     if (setting.value && !setting.value.isAbstractSubmissionOpen) {
         router.push(localPath('abstract'));
@@ -237,6 +237,7 @@ const init = () => {
 
 
 onMounted(() => {
+    fetchSetting();
     init();
     checkLoginState();
     if (!isLogin.value) {

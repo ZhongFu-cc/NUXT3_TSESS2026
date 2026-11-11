@@ -69,7 +69,7 @@ import { useSetting } from '@/composables/useSetting';
 // 1. Composables & Refs
 // ==========================================
 const { t } = useI18n();
-const { setting } = useSetting();
+const { setting, fetchSetting } = useSetting();
 
 // DOM Refs
 const formRef = ref<HTMLDivElement | null>(null);
@@ -211,6 +211,7 @@ const isPayDisabled = (item: Order) => {
 // 7. Lifecycle Hooks
 // ==========================================
 onMounted(() => {
+    fetchSetting();
     getOrderListForOwner();
     getMemberInfo();
 });
