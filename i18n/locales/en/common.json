@@ -257,6 +257,14 @@
     "confirming": "Confirming",
     "paymentCompleted": "Completed",
     "paymentFailed": "Failed",
+    "certificateTitle": "Certificate of Attendance",
+    "certificateDesc": "You can download your certificate of attendance here after the event.",
+    "downloadCertificate": "Download Certificate",
+    "downloadingCertificate": "Generating certificate...",
+    "downloadCertificateFail": "Failed to download certificate, please try again later",
+    "downloadReceipt": "Download Receipt",
+    "downloadingReceipt": "Generating receipt...",
+    "downloadReceiptFail": "Failed to download receipt, please try again later",
     "surgicalVideoPresentation": "Surgical Video Presentation",
     "researchPresentation": "Research Presentation",
     "reportTime": "Report Time",
@@ -299,5 +307,8 @@
     "submissionFailed": "Your abstract submission failed!",
     "closed": "Closed",
     "abstractSubmissionClosed": "Abstract submission is closed"
-  }
+  },
+  "fileName": "File Name",
+  "fileType": "File Type",
+  "operate": "Operate"
 }

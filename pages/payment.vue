@@ -41,6 +41,14 @@
                                         <ElIconCircleCheckFilled />
                                     </el-icon>
                                 </span>
+                                <button type="button" class="receipt-btn" :disabled="downloadingId !== ''"
+                                    @click="downloadReceipt(item.ordersId)">
+                                    <el-icon>
+                                        <ElIconDownload />
+                                    </el-icon>
+                                    <span>{{ downloadingId === item.ordersId ? t('common.downloadingReceipt') :
+                                        t('common.downloadReceipt') }}</span>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -61,7 +69,7 @@ import { useSetting } from '@/composables/useSetting';
 // 1. Composables & Refs
 // ==========================================
 const { t } = useI18n();
-const { setting } = useSetting();
+const { setting, fetchSetting } = useSetting();
 
 // DOM Refs
 const formRef = ref<HTMLDivElement | null>(null);
@@ -176,6 +184,18 @@ const getOrders = async (ordersId: string, isPayable: boolean) => {
 };
 
 
+// 下載收據,後端直接以 PDF 串流回應
+const { downloadPdf } = useBlobDownload();
+const downloadingId = ref('');
+const downloadReceipt = async (ordersId: string) => {
+    if (downloadingId.value) return;
+    downloadingId.value = ordersId;
+    try {
+        await downloadPdf('/member/receipt', 'receipt.pdf', t('common.downloadReceiptFail'), { id: ordersId });
+    } finally {
+        downloadingId.value = '';
+    }
+};
 
 // ==========================================
 // 6. Helper / Template Methods
@@ -191,6 +211,7 @@ const isPayDisabled = (item: Order) => {
 // 7. Lifecycle Hooks
 // ==========================================
 onMounted(() => {
+    fetchSetting();
     getOrderListForOwner();
     getMemberInfo();
 });
@@ -449,6 +470,32 @@ onMounted(() => {
 
                     .el-icon {
                         font-size: 1.1rem;
+                    }
+
+                    .receipt-btn {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.35rem;
+                        margin-left: 0.75rem;
+                        padding: 0.4rem 0.9rem;
+                        border: 1px solid rgba(255, 255, 255, 0.8);
+                        border-radius: 999px;
+                        background: rgba(255, 255, 255, 0.18);
+                        color: #fff;
+                        font-family: inherit;
+                        font-size: 0.9rem;
+                        font-weight: 700;
+                        cursor: pointer;
+                        transition: background 0.25s ease;
+
+                        &:hover:not(:disabled) {
+                            background: rgba(255, 255, 255, 0.32);
+                        }
+
+                        &:disabled {
+                            opacity: 0.6;
+                            cursor: not-allowed;
+                        }
                     }
                 }
 
