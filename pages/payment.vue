@@ -41,7 +41,7 @@
                                         <ElIconCircleCheckFilled />
                                     </el-icon>
                                 </span>
-                                <button type="button" class="receipt-btn" :disabled="downloadingId !== ''"
+                                <button v-if="showReceipt" type="button" class="receipt-btn" :disabled="downloadingId !== ''"
                                     @click="downloadReceipt(item.ordersId)">
                                     <el-icon>
                                         <ElIconDownload />
@@ -187,6 +187,11 @@ const getOrders = async (ordersId: string, isPayable: boolean) => {
 // 下載收據,後端直接以 PDF 串流回應
 const { downloadPdf } = useBlobDownload();
 const downloadingId = ref('');
+
+// 收據下載於 2026/11/18 12:00 (台灣時間) 才開放;onMounted 後才判斷,避免 SSR 與 client 時間不一致
+const RECEIPT_OPEN_AT = new Date('2026-11-18T12:00:00+08:00').getTime();
+const showReceipt = ref(false);
+
 const downloadReceipt = async (ordersId: string) => {
     if (downloadingId.value) return;
     downloadingId.value = ordersId;
@@ -211,6 +216,7 @@ const isPayDisabled = (item: Order) => {
 // 7. Lifecycle Hooks
 // ==========================================
 onMounted(() => {
+    showReceipt.value = Date.now() >= RECEIPT_OPEN_AT;
     fetchSetting();
     getOrderListForOwner();
     getMemberInfo();
