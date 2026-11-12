@@ -4,9 +4,9 @@
         <table class="file-list-table">
             <thead>
                 <tr>
-                    <th>{{ $t('fileName') }}</th>
-                    <th class="type">{{ $t('fileType') }}</th>
-                    <th>{{ $t('operate') }}</th>
+                    <th>{{ $t('common.fileName') }}</th>
+                    <th class="type">{{ $t('common.fileType') }}</th>
+                    <th>{{ $t('common.operate') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -15,9 +15,9 @@
                     <td class="first-col">{{ file.fileName }}</td>
                     <td class="type">{{ file.type }}</td>
                     <td class="last-col">
-                        <a class="preview-link" :href="envMinio + file.path" target="_blank">{{ $t('download') }}</a>
-                        <el-button link @click="openUploadDialog(file.paperFileUploadId)">{{ $t('update') }}</el-button>
-                        <el-button link @click="deleteFile(file.paperId, file.paperFileUploadId)">{{ $t('delete')
+                        <a class="preview-link" :href="envMinio + file.path" target="_blank">{{ $t('common.download') }}</a>
+                        <el-button link @click="openUploadDialog(file.paperFileUploadId)">{{ $t('common.update') }}</el-button>
+                        <el-button link @click="deleteFile(file.paperId, file.paperFileUploadId)">{{ $t('common.delete')
                             }}</el-button>
                     </td>
                 </tr>
@@ -30,7 +30,7 @@
                 :on-change="handleUpload" :auto-upload="false" :on-exceed="handleExceed">
                 <el-icon class="el-icon--upload"><ElIcon-upload-filled /></el-icon>
                 <div class="el-upload__text">
-                    {{ $t('dropFile') }} <em>{{ $t('clickToUpload') }}</em>
+                    {{ $t('common.dropFile') }} <em>{{ $t('common.clickToUpload') }}</em>
                 </div>
             </el-upload>
 
@@ -39,12 +39,12 @@
 
         </div>
 
-        <el-dialog v-model="isUploadDialogVisiabled" title="Update File" width="30%">
+        <el-dialog v-model="isUploadDialogVisiabled" :title="$t('common.updateFile')" width="30%">
             <el-upload ref="upload" class="upload" drag :limit="1" :on-change="handleUpdateUpload" :auto-upload="false"
                 :on-exceed="handleExceed">
                 <el-icon class="el-icon--upload"><ElIcon-upload-filled /></el-icon>
                 <div class="el-upload__text">
-                    {{ $t('dropFile') }} <em>{{ $t('clickToUpload') }}</em>
+                    {{ $t('common.dropFile') }} <em>{{ $t('common.clickToUpload') }}</em>
                 </div>
             </el-upload>
 
@@ -59,6 +59,7 @@ import Banner from '@/components/layout/Banner.vue';
 import { genFileId, type UploadInstance, type UploadProps, type UploadRawFile, type UploadUserFile } from 'element-plus';
 import { hashFile, slideCheck, slideTestUpload, slideUpdateUpload, slideUpload } from '@/utils/sha256';
 
+const { t } = useI18n();
 const paperId = useRoute().params.paperId as string
 
 const fileList = reactive<any>([])
@@ -97,12 +98,12 @@ const isProgressShowing = ref<boolean>(false)
 const handleUpload: UploadProps['onChange'] = async (file: UploadUserFile, uploadFiles) => {
     console.log('file', file);
     if (file.size == 0) {
-        ElMessage.error('File is empty');
+        ElMessage.error(t('common.fileEmpty'));
         return false;
     }
 
     if (file.size && file.size > 5 * 1024 * 1024 * 1024) {
-        ElMessage.error('File size exceeds 5GB limit');
+        ElMessage.error(t('common.fileSizeExceeded'));
         return false;
     }
 
@@ -122,7 +123,7 @@ const handleUpload: UploadProps['onChange'] = async (file: UploadUserFile, uploa
         }
 
         if (res.file.type == '') {
-            ElMessage.error('File type is not supported');
+            ElMessage.error(t('common.fileTypeNotSupported'));
             percentage.value = 0;
             upload.value!.clearFiles()
             return false;
@@ -130,7 +131,7 @@ const handleUpload: UploadProps['onChange'] = async (file: UploadUserFile, uploa
         }
 
         await slideUpload(paperId, checkResult, res.file, res.hash, res.chunks, percentage)
-        ElMessage.success('Upload completed');
+        ElMessage.success(t('common.uploadCompleted'));
         upload.value!.clearFiles()
         getPaperFileList();
     }
@@ -150,12 +151,12 @@ const paperFileUploadId = ref<any>()
 const handleUpdateUpload: UploadProps['onChange'] = async (file: UploadUserFile, uploadFiles) => {
     console.log('file', file);
     if (file.size == 0) {
-        ElMessage.error('File is empty');
+        ElMessage.error(t('common.fileEmpty'));
         return false;
     }
 
     if (file.size && file.size > 5 * 1024 * 1024 * 1024) {
-        ElMessage.error('File size exceeds 5GB limit');
+        ElMessage.error(t('common.fileSizeExceeded'));
         return false;
     }
 
@@ -175,7 +176,7 @@ const handleUpdateUpload: UploadProps['onChange'] = async (file: UploadUserFile,
         }
 
         if (res.file.type == '') {
-            ElMessage.error('File type is not supported');
+            ElMessage.error(t('common.fileTypeNotSupported'));
             percentage.value = 0;
             upload.value!.clearFiles()
             return false;
@@ -184,7 +185,7 @@ const handleUpdateUpload: UploadProps['onChange'] = async (file: UploadUserFile,
 
         await slideUpdateUpload(paperId, paperFileUploadId.value, checkResult, res.file, res.hash, res.chunks, percentage)
         console.log('Upload completed');
-        ElMessage.success('Upload completed');
+        ElMessage.success(t('common.uploadCompleted'));
         upload.value!.clearFiles()
         getPaperFileList();
         isUploadDialogVisiabled.value = false;
@@ -202,9 +203,9 @@ const isEvenOrOdd = (index: number) => {
 const deleteFile = async (paperId: any, fileId: any) => {
     console.log('Deleting file with ID:', fileId);
     try {
-        ElMessageBox.confirm('Are you sure you want to delete this file?', 'Warning', {
-            confirmButtonText: 'Delete',
-            cancelButtonText: 'Cancel',
+        ElMessageBox.confirm(t('common.deleteFileConfirm'), t('common.warning'), {
+            confirmButtonText: t('common.delete'),
+            cancelButtonText: t('common.cancel'),
             type: 'warning'
         }).then(async () => {
             await CSRrequest.delete(`/paper/owner/second-stage/${paperId}`, {
@@ -212,13 +213,13 @@ const deleteFile = async (paperId: any, fileId: any) => {
                     paperFileUploadId: fileId
                 }
             })
-            ElMessage.success('File deleted successfully')
+            ElMessage.success(t('common.deleteFileSuccess'))
             getPaperFileList()
         }).catch(() => {
-            ElMessage.info('Delete cancelled')
+            ElMessage.info(t('common.deleteCancelled'))
         });
     } catch (error) {
-        ElMessage.error('Failed to delete file')
+        ElMessage.error(t('common.deleteFileFailed'))
         console.error('Error deleting file:', error)
     }
 }
