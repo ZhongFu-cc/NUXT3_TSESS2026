@@ -501,6 +501,11 @@ onMounted(async () => {
                 .status-unreviewed {
                     color: $main-color;
                 }
+
+                td .status-accepted {
+                    background-color: $main-color;
+                    color: white;
+                }
             }
 
             // @media screen and (min-width: 1920px) {
