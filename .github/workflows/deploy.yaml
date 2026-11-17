@@ -3,6 +3,11 @@ on:
     branches: 
       - '**'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # never cancel a main run mid-deploy (pm2 stopped / rsync running)
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
 # 工作流程
 jobs:
   deploy:
@@ -18,9 +23,23 @@ jobs:
           cache: 'npm'
           cache-dependency-path: './package-lock.json'
 
+      - name: Cache node_modules
+        id: modules-cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ runner.os }}-node20-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.modules-cache.outputs.cache-hit != 'true'
+        run: npm ci --prefer-offline --no-audit --no-fund
+
+      - name: Nuxt prepare (when node_modules restored from cache)
+        if: steps.modules-cache.outputs.cache-hit == 'true'
+        run: npx nuxt prepare
+
       - name: Build and Replace Env
         run: |
-          npm ci
           npm run build
         env:
           NUXT_PUBLIC_DOMAIN: ${{ secrets.NUXT_PUBLIC_DOMAIN }}
