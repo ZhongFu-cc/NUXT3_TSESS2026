@@ -68,18 +68,75 @@ const handleBannerHeight = () => {
   }
 }
 
+const isLogin = useState('isLogin', () => false);
+const memberInfo = useState('memberInfo', () => null) as Ref<any>;
+const runtimeConfig = useRuntimeConfig();
+
 const handleVaildateLogin = () => {
   const token = ref<string | null>(localStorage.getItem('Authorization-member') || null);
-  const isLogin = useState('isLogin', () => false);
 
   if (token.value) {
     isLogin.value = true;
   }
 }
 
+// token 過期時，localStorage 仍留有 token，menu 會一直顯示已登入。
+// 這裡向後端驗證 token，失效就清除並更新 menu。直接用 $fetch，避免 CSRrequest 在 401 時強制導頁/彈錯誤訊息。
+let lastValidatedAt = 0;
+const VALIDATE_INTERVAL = 60 * 1000;
+const validateSession = async (force = false) => {
+  const token = localStorage.getItem('Authorization-member');
+  if (!token) {
+    isLogin.value = false;
+    memberInfo.value = null;
+    return;
+  }
+  if (!force && Date.now() - lastValidatedAt < VALIDATE_INTERVAL) return;
+  lastValidatedAt = Date.now();
+
+  const clearSession = () => {
+    localStorage.removeItem('Authorization-member');
+    isLogin.value = false;
+    memberInfo.value = null;
+  };
+
+  try {
+    const res: any = await $fetch('/member/getMemberInfo', {
+      baseURL: runtimeConfig.public.apiBase as string,
+      headers: { 'Authorization-member': token },
+    });
+    if (res?.code === 200) {
+      isLogin.value = true;
+      memberInfo.value = res.data;
+    } else {
+      clearSession();
+    }
+  } catch (error: any) {
+    const status = error?.response?.status ?? error?.statusCode;
+    // 只有確定是登入失效才清除，網路錯誤則保持原狀
+    if (status === 401) clearSession();
+  }
+}
+
+// 分頁久未使用後切回來時重新驗證
+const handleVisibilityChange = () => {
+  if (document.visibilityState === 'visible') validateSession();
+}
 
 onMounted(() => {
-  // setLocale('zh')
+  validateSession(true);
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  window.addEventListener('focus', handleVisibilityChange);
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('visibilitychange', handleVisibilityChange);
+  window.removeEventListener('focus', handleVisibilityChange);
+})
+
+// 路由切換時也檢查（有節流，一分鐘內只打一次）
+useRouter().afterEach(() => {
+  if (import.meta.client) validateSession();
 })
 
 onBeforeMount(() => {

@@ -54,7 +54,7 @@
                 </el-form-item>
                 <div class="btn-section">
                     <p>{{ t('common.dontHaveAccount') }} &nbsp</p>
-                    <nuxt-link class="sign-text" to="/seminar-registration">{{t('common.signUp')}}</nuxt-link>
+                    <nuxt-link class="sign-text" to="/online-registration">{{t('common.signUp')}}</nuxt-link>
                 </div>
             </el-form>
         </div>
