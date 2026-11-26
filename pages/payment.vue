@@ -567,6 +567,7 @@ onMounted(() => {
                             padding: 0;
                             min-height: 56px;
                             background: transparent !important;
+                            color: #4a3a3e !important;
                             border-bottom: 1px solid rgba(232, 151, 158, 0.15);
                             box-shadow: none !important;
 
