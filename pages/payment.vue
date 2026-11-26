@@ -15,7 +15,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="(item, index) in orderList" :key="item.ordersId" :class="isEvenOrOdd(index)">
-                            <td class="first-col">
+                            <td class="first-col" :data-label="t('common.item')">
                                 <div>
                                     <p v-for="(product, index) in item.ordersItemList" :key="product.ordersItemId">
                                         {{ Number(index) + 1 }}.
@@ -24,10 +24,10 @@
                                     </p>
                                 </div>
                             </td>
-                            <td>
+                            <td :data-label="t('common.paymentAmount')">
                                 {{item.totalAmount }}
                             </td>
-                            <td class="last-col">
+                            <td class="last-col" :data-label="t('common.paymentStatus')">
                                 {{ enums.payMentStatus[item.status] }}
                             </td>
                             <td v-if="item.status === 0 || item.status === 3" class="not-pay"
@@ -554,50 +554,40 @@ onMounted(() => {
                         box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
 
                         &.even {
-                            background: #fdf5f6;
+                            background: $main-color;
+
+                            td {
+                                border-bottom-color: rgba(255, 255, 255, 0.25);
+                            }
                         }
 
                         &.odd {
                             background: #fff;
+
+                            td:not(.not-pay):not(.completed) {
+                                color: #d9737e !important;
+                            }
                         }
 
                         td {
                             display: flex !important;
-                            align-items: center;
-                            padding: 0;
-                            min-height: 56px;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            justify-content: center;
+                            gap: 0.25rem;
+                            padding: 0.75rem 1rem;
                             background: transparent !important;
                             border-bottom: 1px solid rgba(232, 151, 158, 0.15);
                             box-shadow: none !important;
 
                             &::before {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                min-width: 7rem;
-                                padding: 0.85rem;
+                                content: attr(data-label);
                                 font-size: 0.78rem;
                                 font-weight: 700;
                                 letter-spacing: 0.05em;
-                                color: #fff;
-                                background: #e8979e;
-                                flex-shrink: 0;
-                                align-self: stretch;
+                                opacity: 0.75;
                             }
 
-                            &:nth-child(1)::before {
-                                content: 'Item';
-                            }
-
-                            &:nth-child(2)::before {
-                                content: 'Amount';
-                            }
-
-                            &:nth-child(3)::before {
-                                content: 'Status';
-                            }
-
-                            padding-right: 1rem;
                             line-height: 1.5;
                             word-break: break-word;
                         }
@@ -613,6 +603,8 @@ onMounted(() => {
 
                     .not-pay,
                     .completed {
+                        flex-direction: row;
+                        align-items: center;
                         justify-content: center;
                         min-width: unset;
                         width: 100%;
